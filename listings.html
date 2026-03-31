@@ -45,7 +45,10 @@ nav{position:fixed;top:42px;left:0;right:0;z-index:199;background:#fff;border-bo
 .nav-menu a:hover,.nav-menu a.active{color:var(--gold)}
 .nav-actions{display:flex;align-items:center;gap:12px;flex-shrink:0;position:relative;z-index:1}
 .nav-btns{display:flex;gap:10px;align-items:center}
-.nav-spacer{width:46px;height:46px;flex-shrink:0;visibility:hidden}
+.account-trigger{width:46px;height:46px;border:1.5px solid var(--border);border-radius:50%;background:linear-gradient(180deg,#fff 0%,var(--cream) 100%);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;box-shadow:0 8px 18px rgba(14,30,46,.06);position:relative}
+.account-trigger svg{width:18px;height:18px;stroke:var(--navy);fill:none;stroke-width:1.8}
+.account-trigger:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:0 10px 20px rgba(14,30,46,.1)}
+.account-trigger:hover svg{stroke:var(--gold)}
 .nbtn-outline{border:1.5px solid var(--navy);color:var(--navy);padding:9px 20px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;transition:all .2s}
 .nbtn-outline:hover{background:var(--navy);color:#fff}
 .nbtn-fill{background:var(--gold);color:#fff;padding:10px 22px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:1.5px solid var(--gold);transition:all .2s}
@@ -54,8 +57,9 @@ nav{position:fixed;top:42px;left:0;right:0;z-index:199;background:#fff;border-bo
 .hbg span{width:22px;height:2px;background:var(--navy);display:block}
 .mob-nav{display:none;position:fixed;top:118px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);flex-direction:column;z-index:198;padding:16px 5vw;box-shadow:0 6px 20px rgba(0,0,0,.07)}
 .mob-nav.open{display:flex}
-.mob-nav a{font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--navy);padding:13px 0;border-bottom:1px solid var(--border)}
+.mob-nav a,.mob-auth{font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--navy);padding:13px 0;border-bottom:1px solid var(--border)}
 .mob-nav a:last-child{border:none}
+.mob-auth{display:none;width:100%;background:none;border:none;text-align:left;font-family:'DM Sans',sans-serif;cursor:pointer}
 
 /* PAGE HERO */
 .page-hero{margin-top:118px;background:linear-gradient(135deg,#102133 0%,#0e1e2e 55%,#13283d 100%);padding:64px 5vw 68px;position:relative;overflow:hidden}
@@ -198,7 +202,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
 
 
 /* PAGE TRANSITION */
-.page-fade{position:fixed;inset:0;background:#fff;z-index:9999;pointer-events:none;opacity:0;transition:opacity .35s ease}
+.page-fade{position:fixed;inset:0;background:linear-gradient(180deg,#13263a 0%,#0e1e2e 100%);z-index:9999;pointer-events:none;opacity:0;transition:opacity .35s ease}
 .page-fade.out{opacity:1;pointer-events:auto}
 
 /* BACK TO TOP */
@@ -237,6 +241,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
   .filter-divider{display:none}
   .hbg{display:flex}
   .nav-menu,.nav-btns{display:none}
+  .mob-auth{display:block}
   .topbar-side:last-child{display:none}
   .f-grid{grid-template-columns:1fr}
   .v-grid{grid-template-columns:1fr}
@@ -280,13 +285,16 @@ footer{background:var(--navy);padding:60px 5vw 0}
       <a href="tel:+442087729552" class="nbtn-outline">Call Us</a>
       <a href="index.html#contact" class="nbtn-fill">Free Valuation</a>
     </div>
-    <div class="nav-spacer" aria-hidden="true"></div>
+    <button class="account-trigger" type="button" aria-label="Open account options" onclick="openAuthFromListings()">
+      <svg viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="8" r="4"/></svg>
+    </button>
     <div class="hbg" onclick="document.getElementById('mobNav').classList.toggle('open')"><span></span><span></span><span></span></div>
   </div>
 </nav>
 
 <!-- MOBILE NAV -->
 <div class="mob-nav" id="mobNav">
+  <button class="mob-auth" type="button" onclick="openAuthFromListings()">Sign In / Register</button>
   <a href="index.html#services">Services</a>
   <a href="index.html#about">About</a>
   <a href="index.html#process">Process</a>
@@ -747,6 +755,17 @@ function showToast(msg) {
 let mapInstance = null;
 let mapMarker = null;
 
+function transitionTo(url) {
+  const pageFade = document.getElementById('pageFade');
+  if(pageFade) pageFade.classList.add('out');
+  setTimeout(() => { window.location.href = url; }, 350);
+}
+
+function openAuthFromListings() {
+  sessionStorage.setItem('urbanOpenAuthOnLoad', '1');
+  transitionTo('index.html');
+}
+
 function openMap(id) {
   const p = PROPERTIES.find(x => x.id === id);
   if(!p) return;
@@ -799,15 +818,13 @@ window.addEventListener('DOMContentLoaded', () => {
         if(targetId){
           e.preventDefault();
           sessionStorage.setItem('urbanPendingSection', targetId);
-          pageFade.classList.add('out');
-          setTimeout(() => window.location.href = 'index.html', 350);
+          transitionTo('index.html');
           return;
         }
       }
       if(href.includes('#')) return;
       e.preventDefault();
-      pageFade.classList.add('out');
-      setTimeout(() => window.location.href = href, 350);
+      transitionTo(href);
     });
   });
   pageFade.classList.remove('out');

@@ -41,7 +41,7 @@ a{text-decoration:none;color:inherit}
 
 
 /* PAGE TRANSITION */
-.page-fade{position:fixed;inset:0;background:#fff;z-index:9999;pointer-events:none;opacity:0;transition:opacity .35s ease}
+.page-fade{position:fixed;inset:0;background:linear-gradient(180deg,#13263a 0%,#0e1e2e 100%);z-index:9999;pointer-events:none;opacity:0;transition:opacity .35s ease}
 .page-fade.out{opacity:1;pointer-events:auto}
 
 /* WHATSAPP BUTTON */
@@ -1840,6 +1840,11 @@ document.getElementById('viewingForm').addEventListener('submit',handleViewingRe
 if(window.lucide)lucide.createIcons();
 consumeOAuthCallback();
 bootstrapSession();
+
+if(sessionStorage.getItem('urbanOpenAuthOnLoad')==='1'){
+  sessionStorage.removeItem('urbanOpenAuthOnLoad');
+  window.addEventListener('load', () => setTimeout(() => openAuthModal(), 140), {once:true});
+}
 
 const bttBtn = document.getElementById('btt');
 window.addEventListener('scroll', () => { bttBtn.classList.toggle('show', window.scrollY > 400); });
