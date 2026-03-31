@@ -1859,6 +1859,16 @@ pageFade.classList.remove('out');
 window.addEventListener('pageshow', () => pageFade.classList.remove('out'));
 window.addEventListener('load', () => pageFade.classList.remove('out'));
 
+const pendingSection = sessionStorage.getItem('urbanPendingSection');
+if(pendingSection){
+  sessionStorage.removeItem('urbanPendingSection');
+  const scrollToPendingSection = () => {
+    const target = document.getElementById(pendingSection);
+    if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+  };
+  window.addEventListener('load', () => setTimeout(scrollToPendingSection, 120), {once:true});
+}
+
 </script>
 
 <!-- COOKIE BANNER -->

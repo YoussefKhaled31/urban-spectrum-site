@@ -790,8 +790,19 @@ window.addEventListener('DOMContentLoaded', () => {
   if (!pageFade) return;
   document.querySelectorAll('a[href]').forEach(link => {
     const href = link.getAttribute('href');
-    if(!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('http') || href.startsWith('https') || href.includes('#')) return;
+    if(!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('http') || href.startsWith('https')) return;
     link.addEventListener('click', e => {
+      if(href.startsWith('index.html#')){
+        const targetId = href.split('#')[1];
+        if(targetId){
+          e.preventDefault();
+          sessionStorage.setItem('urbanPendingSection', targetId);
+          pageFade.classList.add('out');
+          setTimeout(() => window.location.href = 'index.html', 350);
+          return;
+        }
+      }
+      if(href.includes('#')) return;
       e.preventDefault();
       pageFade.classList.add('out');
       setTimeout(() => window.location.href = href, 350);
