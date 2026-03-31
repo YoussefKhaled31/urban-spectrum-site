@@ -25,6 +25,20 @@ a{text-decoration:none;color:inherit}
   --border:#e4e0d8;
 }
 
+
+/* COOKIE BANNER */
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:400;background:var(--navy);border-top:3px solid var(--gold);padding:20px 5vw;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;transform:translateY(100%);transition:transform .4s ease;box-shadow:0 -8px 32px rgba(10,18,28,.2)}
+.cookie-banner.show{transform:translateY(0)}
+.cookie-text{flex:1;min-width:260px}
+.cookie-text p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.7}
+.cookie-text a{color:var(--gold-light);text-decoration:underline}
+.cookie-text strong{color:#fff;font-weight:600}
+.cookie-actions{display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap}
+.cookie-accept{background:var(--gold);color:#fff;border:none;padding:12px 24px;font:700 11px 'DM Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.cookie-accept:hover{background:#9a7d20}
+.cookie-decline{background:transparent;color:rgba(255,255,255,.5);border:1.5px solid rgba(255,255,255,.2);padding:11px 20px;font:600 11px 'DM Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.cookie-decline:hover{border-color:rgba(255,255,255,.5);color:rgba(255,255,255,.8)}
+
 /* TOP BAR */
 .topbar{
   background:var(--navy);padding:0 5vw;
@@ -483,7 +497,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
   <div class="topbar-side">
     <a href="tel:+442087729552" class="hot">+44 (0)20 8772 9552</a>
     <div class="tdiv"></div>
-    <a href="/cdn-cgi/l/email-protection#fb92959d94bb8e89999a95888b9e988f898e968b96d59894d58e90"><span class="__cf_email__" data-cfemail="f0999e969fb0858292919e838095938482859d809dde939fde859b">[email&#160;protected]</span></a>
+    <a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a>
     <div class="tdiv"></div>
     <a>114 Balham High Rd, London SW12 9AA</a>
   </div>
@@ -1074,7 +1088,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
       </div>
       <div class="cblk">
         <div class="cblk-lbl">Email</div>
-        <h4><a href="/cdn-cgi/l/email-protection#7e171018113e0b0c1c1f100d0e1b1d0a0c0b130e13501d11500b15"><span class="__cf_email__" data-cfemail="f990979f96b98c8b9b98978a899c9a8d8b8c948994d79a96d78c92">[email&#160;protected]</span></a></h4>
+        <h4><a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a></h4>
       </div>
       <div class="cblk">
         <div class="cblk-lbl">Office Hours</div>
@@ -1206,7 +1220,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
     </div>
     <div class="f-col">
       <h4>Contact</h4>
-      <address>114 Balham High Road<br>London SW12 9AA<br>United Kingdom<br><br><a href="tel:+442087729552">+44 (0)20 8772 9552</a><br><a href="/cdn-cgi/l/email-protection#cca5a2aaa38cb9beaeada2bfbca9afb8beb9a1bca1e2afa3e2b9a7"><span class="__cf_email__" data-cfemail="e0898e868fa0959282818e939085839492958d908dce838fce958b">[email&#160;protected]</span></a></address>
+      <address>114 Balham High Road<br>London SW12 9AA<br>United Kingdom<br><br><a href="tel:+442087729552">+44 (0)20 8772 9552</a><br><a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a></address>
     </div>
   </div>
   <div class="f-bottom">
@@ -1808,5 +1822,17 @@ if(window.lucide)lucide.createIcons();
 consumeOAuthCallback();
 bootstrapSession();
 </script>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-text">
+    <p><strong>We use cookies</strong> to enhance your experience on our website. By continuing to browse, you agree to our use of cookies in accordance with our <a href="#">Privacy Policy</a>. We do not sell your personal data.</p>
+  </div>
+  <div class="cookie-actions">
+    <button class="cookie-accept" onclick="acceptCookies()">Accept All</button>
+    <button class="cookie-decline" onclick="declineCookies()">Essential Only</button>
+  </div>
+</div>
+
 </body>
 </html>

@@ -179,6 +179,20 @@ footer{background:var(--navy);padding:60px 5vw 0}
 
 
 
+
+/* COOKIE BANNER */
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:400;background:var(--navy);border-top:3px solid var(--gold);padding:20px 5vw;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;transform:translateY(100%);transition:transform .4s ease;box-shadow:0 -8px 32px rgba(10,18,28,.2)}
+.cookie-banner.show{transform:translateY(0)}
+.cookie-text{flex:1;min-width:260px}
+.cookie-text p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.7}
+.cookie-text a{color:var(--gold-light);text-decoration:underline}
+.cookie-text strong{color:#fff;font-weight:600}
+.cookie-actions{display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap}
+.cookie-accept{background:var(--gold);color:#fff;border:none;padding:12px 24px;font:700 11px 'DM Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.cookie-accept:hover{background:#9a7d20}
+.cookie-decline{background:transparent;color:rgba(255,255,255,.5);border:1.5px solid rgba(255,255,255,.2);padding:11px 20px;font:600 11px 'DM Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.cookie-decline:hover{border-color:rgba(255,255,255,.5);color:rgba(255,255,255,.8)}
+
 /* WHATSAPP BUTTON */
 .wa-btn{position:fixed;bottom:24px;left:24px;z-index:250;width:56px;height:56px;border-radius:50%;background:#25D366;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(37,211,102,.4);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s}
 .wa-btn:hover{transform:scale(1.08);box-shadow:0 12px 32px rgba(37,211,102,.5)}
@@ -374,6 +388,17 @@ footer{background:var(--navy);padding:60px 5vw 0}
       <textarea id="vMessage" placeholder="Any questions or specific requirements..."></textarea>
     </div>
     <button class="v-submit" onclick="submitViewing()">Request Viewing</button>
+  </div>
+</div>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-text">
+    <p><strong>We use cookies</strong> to enhance your experience on our website. By continuing to browse, you agree to our use of cookies in accordance with our <a href="#">Privacy Policy</a>. We do not sell your personal data.</p>
+  </div>
+  <div class="cookie-actions">
+    <button class="cookie-accept" onclick="acceptCookies()">Accept All</button>
+    <button class="cookie-decline" onclick="Essential Only">Essential Only</button>
   </div>
 </div>
 
@@ -741,6 +766,11 @@ function closeMap() {
 }
 
 document.addEventListener('keydown', e => { if(e.key === 'Escape'){ closeViewing(); closeMap(); } });
+
+function acceptCookies(){localStorage.setItem('cookieConsent','accepted');document.getElementById('cookieBanner').classList.remove('show')}
+function declineCookies(){localStorage.setItem('cookieConsent','declined');document.getElementById('cookieBanner').classList.remove('show')}
+if(!localStorage.getItem('cookieConsent')){setTimeout(()=>document.getElementById('cookieBanner').classList.add('show'),1200)}
+
 renderAll(PROPERTIES);
 </script>
 </body>
