@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban Spectrum Property Management Ltd — London</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:#1a1a1a;background:#fff;font-weight:400;line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+:root{
+  --navy:#0e1e2e;
+  --gold:#b8952a;
+  --gold-mid:#d4ab3f;
+  --gold-light:#f0d078;
+  --cream:#f8f5ef;
+  --stone:#ede9e0;
+  --mid:#6b6b6b;
+  --border:#e4e0d8;
+}
+
+/* TOP BAR */
+.topbar{
+  background:var(--navy);padding:0 5vw;
+  display:flex;justify-content:space-between;align-items:center;
+  position:fixed;top:0;left:0;right:0;z-index:200;height:42px;
+}
+.topbar-side{display:flex;align-items:center;gap:20px}
+.topbar a{font-size:11px;letter-spacing:0.1em;color:rgba(255,255,255,0.6);text-transform:uppercase;font-weight:500;transition:color .2s}
+.topbar a:hover{color:var(--gold-light)}
+.topbar .hot{color:var(--gold-light);font-weight:600}
+.tdiv{width:1px;height:13px;background:rgba(255,255,255,0.18)}
+
+/* NAV */
+nav{
+  position:fixed;top:42px;left:0;right:0;z-index:199;
+  background:#fff;border-bottom:2px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;height:76px;
+}
+.nav-brand{line-height:1.2}
+.nav-brand-name{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--navy)}
+.nav-brand-sub{font-size:9.5px;font-weight:600;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase}
+.nav-menu{display:flex;list-style:none;gap:30px}
+.nav-menu a{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:#555;transition:color .2s}
+.nav-menu a:hover{color:var(--gold)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.nav-btns{display:flex;gap:10px;align-items:center}
+.account-trigger{width:46px;height:46px;border:1.5px solid var(--border);border-radius:50%;background:linear-gradient(180deg,#fff 0%,var(--cream) 100%);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;box-shadow:0 8px 18px rgba(14,30,46,.06);position:relative}
+.account-trigger svg{width:18px;height:18px;stroke:var(--navy);fill:none;stroke-width:1.8}
+.account-trigger:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:0 10px 20px rgba(14,30,46,.1)}
+.account-trigger:hover svg{stroke:var(--gold)}
+.nbtn-outline{border:1.5px solid var(--navy);color:var(--navy);padding:9px 20px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;transition:all .2s}
+.nbtn-outline:hover{background:var(--navy);color:#fff}
+.nbtn-fill{background:var(--gold);color:#fff;padding:10px 22px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:1.5px solid var(--gold);transition:all .2s}
+.nbtn-fill:hover{background:#9a7d20;border-color:#9a7d20}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hbg span{width:22px;height:2px;background:var(--navy);display:block}
+.mob-nav{display:none;position:fixed;top:118px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);flex-direction:column;z-index:198;padding:16px 5vw;box-shadow:0 6px 20px rgba(0,0,0,.07)}
+.mob-nav.open{display:flex}
+.mob-nav a,.mob-auth{font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--navy);padding:13px 0;border-bottom:1px solid var(--border)}
+.mob-nav a:last-child{border:none}
+.mob-auth{display:none;width:100%;background:none;border:none;text-align:left;font-family:'DM Sans',sans-serif;cursor:pointer}
+
+/* AUTH MODAL */
+.auth-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:28px;z-index:260}
+.auth-modal.open{display:flex}
+.auth-backdrop{position:absolute;inset:0;background:rgba(7,14,22,.52);backdrop-filter:blur(10px)}
+.auth-panel{position:relative;width:min(100%,1040px);max-height:min(88vh,780px);overflow:auto;background:linear-gradient(180deg,#fff 0%,#fdfbf7 100%);border:1px solid rgba(14,30,46,.08);border-radius:28px;box-shadow:0 40px 100px rgba(10,18,28,.24);display:grid;grid-template-columns:minmax(300px,.92fr) minmax(0,1.08fr)}
+.auth-aside{background:radial-gradient(circle at top right,rgba(240,208,120,.12),transparent 34%),linear-gradient(160deg,#13263a 0%,#0f1d2d 48%,#18283a 100%);color:#fff;padding:48px 42px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
+.auth-aside::before,.auth-aside::after{content:'';position:absolute;border-radius:50%;border:1px solid rgba(240,208,120,.16)}
+.auth-aside::before{width:250px;height:250px;right:-82px;top:-88px}
+.auth-aside::after{width:170px;height:170px;left:-54px;bottom:-54px}
+.auth-kicker{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-light);font-weight:700;margin-bottom:22px;display:block}
+.auth-aside h3{font-family:'Playfair Display',serif;font-size:38px;line-height:1.02;letter-spacing:-.02em;margin-bottom:18px;max-width:360px;position:relative}
+.auth-aside p{font-size:14px;line-height:1.82;color:rgba(255,255,255,.74);max-width:340px;position:relative}
+.auth-points{list-style:none;margin-top:34px;display:flex;flex-direction:column;gap:16px;position:relative;padding-top:26px;border-top:1px solid rgba(240,208,120,.16)}
+.auth-points li{display:flex;align-items:center;gap:11px;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.auth-points svg{width:14px;height:14px;stroke:var(--gold-light);fill:none;stroke-width:2}
+.auth-main{padding:42px 42px 38px;background:linear-gradient(180deg,rgba(255,255,255,.92) 0%,rgba(248,245,239,.68) 100%)}
+.auth-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:30px}
+.auth-top h2{font-family:'Playfair Display',serif;font-size:38px;color:var(--navy);line-height:1.02;letter-spacing:-.02em}
+.auth-top p{font-size:13.5px;color:#706d66;margin-top:10px;max-width:430px;line-height:1.7}
+.auth-close{width:46px;height:46px;border:1px solid rgba(14,30,46,.1);border-radius:14px;background:rgba(255,255,255,.82);color:var(--navy);font-size:24px;line-height:1;cursor:pointer;transition:all .2s}
+.auth-close:hover{background:var(--navy);color:#fff;border-color:var(--navy);transform:translateY(-1px)}
+.auth-tabs{display:inline-flex;gap:6px;padding:6px;background:rgba(248,245,239,.86);border:1px solid rgba(14,30,46,.08);border-radius:999px;margin-bottom:24px;box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
+.auth-tab{border:none;background:transparent;color:#7a766e;font:700 11px 'DM Sans',sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:12px 18px;border-radius:999px;cursor:pointer;transition:all .2s}
+.auth-tab.active{background:var(--navy);color:#fff;box-shadow:0 12px 24px rgba(14,30,46,.16)}
+.auth-socials{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.auth-social{display:grid;grid-template-columns:22px 1fr;align-items:center;gap:12px;border:1px solid rgba(14,30,46,.1);border-radius:18px;padding:15px 16px;background:rgba(255,255,255,.78);font:600 12px 'DM Sans',sans-serif;color:var(--navy);text-align:left;cursor:pointer;transition:all .22s;box-shadow:0 10px 22px rgba(14,30,46,.04)}
+.auth-social svg{width:20px;height:20px;flex-shrink:0}
+.auth-social:hover{border-color:rgba(184,149,42,.55);background:#fff;transform:translateY(-2px);box-shadow:0 16px 30px rgba(14,30,46,.1)}
+.auth-divider{display:flex;align-items:center;gap:14px;color:#9a9489;font-size:10px;letter-spacing:.22em;text-transform:uppercase;margin:22px 0}
+.auth-divider::before,.auth-divider::after{content:'';height:1px;background:linear-gradient(90deg,rgba(228,224,216,0),rgba(228,224,216,1),rgba(228,224,216,0));flex:1}
+.auth-form{display:none}
+.auth-form.active{display:block}
+.auth-form-register .auth-grid{gap:12px}
+.auth-form-register .auth-field{margin-bottom:12px}
+.auth-form-register .auth-meta{margin:4px 0 16px}
+.auth-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.auth-field{display:flex;flex-direction:column;gap:8px;margin-bottom:15px}
+.auth-field label{font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy)}
+.auth-field input,.auth-field select{border:1px solid rgba(14,30,46,.12);border-radius:16px;background:rgba(255,255,255,.82);padding:15px 16px;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--navy);outline:none;transition:border-color .2s,box-shadow .2s,background .2s;-webkit-appearance:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.78)}
+.auth-field input::placeholder,.auth-field select{color:#908b83}
+.auth-field input:focus,.auth-field select:focus{border-color:rgba(184,149,42,.78);box-shadow:0 0 0 4px rgba(184,149,42,.12);background:#fff}
+.auth-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:6px 0 20px}
+.auth-check{display:flex;align-items:center;gap:9px;font-size:12px;color:#7a766e}
+.auth-check input{accent-color:var(--gold)}
+.auth-link{font-size:12px;color:#a88216;font-weight:700}
+.auth-submit{width:100%;border:none;border-radius:18px;background:linear-gradient(180deg,#13263a 0%,#0d1a29 100%);color:#fff;padding:16px 18px;font:700 11.5px 'DM Sans',sans-serif;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;box-shadow:0 18px 30px rgba(14,30,46,.18)}
+.auth-submit:hover{background:linear-gradient(180deg,#b8952a 0%,#9f7f1f 100%);transform:translateY(-1px);box-shadow:0 18px 30px rgba(184,149,42,.22)}
+.auth-foot{display:flex;justify-content:center;gap:6px;margin-top:18px;font-size:12.5px;color:#7a766e}
+.auth-foot button{border:none;background:none;color:#a88216;font:700 12.5px 'DM Sans',sans-serif;cursor:pointer}
+.auth-feedback{display:none;margin:0 0 16px;padding:13px 15px;border-radius:16px;font-size:12.5px;line-height:1.6}
+.auth-feedback.show{display:block}
+.auth-feedback.error{background:#fbefed;color:#8b3d34;border:1px solid rgba(187,77,62,.18)}
+.auth-feedback.success{background:#edf7f0;color:#2d6b47;border:1px solid rgba(45,122,79,.18)}
+.auth-user-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff8e7;border:1px solid rgba(184,149,42,.22);padding:14px 16px;border-radius:18px;margin-bottom:22px}
+.auth-user-copy strong{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.auth-user-copy span{font-size:13px;color:var(--navy)}
+.auth-logout{border:1px solid rgba(14,30,46,.14);background:#fff;color:var(--navy);padding:10px 14px;border-radius:999px;font:700 10.5px 'DM Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.auth-logout:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.auth-toast{position:fixed;right:18px;bottom:18px;z-index:300;background:var(--navy);color:#fff;padding:14px 18px;border-radius:14px;box-shadow:0 18px 36px rgba(10,18,28,.18);font-size:12.5px;line-height:1.5;opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .25s,transform .25s}
+.auth-toast.show{opacity:1;transform:translateY(0)}
+.account-trigger.logged-in{width:auto;min-width:46px;padding:0 14px;border-radius:999px;gap:10px;background:var(--navy);border-color:var(--navy);box-shadow:0 12px 24px rgba(14,30,46,.16)}
+.account-trigger.logged-in svg{stroke:#fff;width:16px;height:16px}
+.account-trigger.logged-in .account-name{display:inline-block;color:#fff;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;max-width:110px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.account-name{display:none}
+.account-status-dot{position:absolute;right:4px;top:4px;width:10px;height:10px;border-radius:50%;background:#2d7a4f;border:2px solid #fff;display:none}
+.account-trigger.logged-in .account-status-dot{display:block}
+.auth-field input.invalid{border-color:#bb4d3e;box-shadow:0 0 0 4px rgba(187,77,62,.08)}
+.auth-submit:disabled{opacity:.72;cursor:wait;transform:none}
+
+/* HERO */
+.hero{margin-top:118px;display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 118px)}
+.hero-l{
+  background:var(--navy);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 5vw 80px 5vw;position:relative;overflow:hidden;
+}
+.hero-l::before,.hero-l::after{content:'';position:absolute;border-radius:50%;border:1px solid rgba(184,149,42,0.12);pointer-events:none}
+.hero-l::before{width:320px;height:320px;bottom:-80px;right:-80px}
+.hero-l::after{width:180px;height:180px;bottom:30px;right:30px;border-color:rgba(184,149,42,0.07)}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.hero-eyebrow-line{width:30px;height:1px;background:var(--gold)}
+.hero-eyebrow span{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,4.2vw,60px);font-weight:700;color:#fff;line-height:1.13;margin-bottom:22px}
+.hero h1 em{font-style:italic;color:var(--gold-light)}
+.hero-desc{font-size:14.5px;color:rgba(255,255,255,.58);line-height:1.8;max-width:400px;margin-bottom:38px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hcta-p{background:var(--gold);color:#fff;padding:13px 30px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:2px solid var(--gold);transition:all .2s}
+.hcta-p:hover{background:transparent;color:var(--gold-light);border-color:var(--gold-light)}
+.hcta-s{border:2px solid rgba(255,255,255,.3);color:rgba(255,255,255,.85);padding:13px 30px;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;transition:all .2s}
+.hcta-s:hover{border-color:rgba(255,255,255,.7);color:#fff}
+.hero-stats{display:flex;gap:28px;margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,.08)}
+.hs-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--gold-light);line-height:1}
+.hs-lbl{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px}
+
+.hero-r{position:relative;overflow:hidden;background:var(--stone);min-height:460px}
+.hero-r-bg{position:absolute;inset:0;background:linear-gradient(160deg,rgba(14,30,46,.2) 0%,transparent 55%),url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80') center/cover no-repeat}
+.hero-float{position:absolute;bottom:36px;left:32px;right:32px;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);padding:26px 28px;border-left:4px solid var(--gold)}
+.hero-float h3{font-family:'Playfair Display',serif;font-size:17px;color:var(--navy);margin-bottom:5px}
+.hero-float p{font-size:12.5px;color:var(--mid);line-height:1.55}
+.hero-float-link{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-top:12px}
+.hero-float-link svg{width:13px;height:13px;stroke:var(--gold);fill:none;transition:transform .2s}
+.hero-float-link:hover svg{transform:translateX(4px)}
+
+/* PORTAL */
+.portal{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.portal-grid{display:grid;grid-template-columns:1fr 1fr}
+.pcrd{padding:44px 5vw;display:flex;align-items:center;justify-content:space-between;gap:24px;cursor:pointer;transition:background .2s}
+.pcrd:first-child{border-right:1px solid var(--border)}
+.pcrd:hover{background:var(--stone)}
+.pcrd-ico{width:52px;height:52px;flex-shrink:0;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center}
+.pcrd-ico svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.pcrd-body h3{font-family:'Playfair Display',serif;font-size:21px;color:var(--navy);margin-bottom:5px}
+.pcrd-body p{font-size:13px;color:var(--mid);line-height:1.5}
+.pcrd-arr{width:42px;height:42px;flex-shrink:0;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all .2s}
+.pcrd:hover .pcrd-arr{background:var(--navy);border-color:var(--navy)}
+.pcrd-arr svg{width:15px;height:15px;stroke:#bbb;fill:none;stroke-width:2;transition:stroke .2s}
+.pcrd:hover .pcrd-arr svg{stroke:#fff}
+
+/* SECTIONS */
+section{padding:88px 5vw}
+.s-eye{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.s-eye-line{width:26px;height:2px;background:var(--gold)}
+.s-eye span{font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+h2.s-title{font-family:'Playfair Display',serif;font-size:clamp(28px,2.8vw,46px);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:16px}
+.s-intro{font-size:14.5px;color:var(--mid);line-height:1.8;max-width:520px}
+
+/* SERVICES */
+.svc-section{background:#fff}
+.svc-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:24px}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+.sc{background:#fff;padding:40px 32px;transition:background .25s;position:relative;overflow:hidden}
+.sc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.sc:hover{background:var(--cream)}
+.sc:hover::after{transform:scaleX(1)}
+.sc-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);font-weight:500;letter-spacing:0.1em;margin-bottom:18px;display:block}
+.sc-ico{width:46px;height:46px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;background:#fff;margin-bottom:18px}
+.sc-ico svg{width:21px;height:21px;stroke:var(--navy);fill:none;stroke-width:1.5}
+.sc h3{font-family:'Playfair Display',serif;font-size:19px;color:var(--navy);margin-bottom:10px;font-weight:500}
+.sc p{font-size:13px;color:var(--mid);line-height:1.68}
+.sc-lnk{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-top:16px}
+.sc-lnk svg{width:11px;height:11px;stroke:var(--gold);fill:none;transition:transform .2s}
+.sc:hover .sc-lnk svg{transform:translateX(4px)}
+
+/* ABOUT SPLIT */
+.about-wrap{background:var(--cream);padding:0}
+.about-g{display:grid;grid-template-columns:1fr 1fr;min-height:540px}
+.about-img{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(14,30,46,.18) 0%,rgba(14,30,46,.04) 58%),url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1600&q=80') center 68%/cover no-repeat;background-color:var(--stone)}
+.about-img-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(14,30,46,.3) 0%,transparent 60%)}
+.about-badge{position:absolute;bottom:36px;left:36px;background:var(--gold);color:#fff;padding:18px 22px}
+.about-badge strong{font-family:'Playfair Display',serif;font-size:30px;display:block;line-height:1;font-weight:700}
+.about-badge span{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;opacity:.85}
+.about-cnt{padding:72px 5vw;display:flex;flex-direction:column;justify-content:center}
+.about-pts{list-style:none;margin-top:36px;display:flex;flex-direction:column;gap:0}
+.apt{display:flex;gap:14px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--border)}
+.apt:first-child{border-top:1px solid var(--border)}
+.apt-chk{width:26px;height:26px;flex-shrink:0;background:var(--navy);display:flex;align-items:center;justify-content:center;margin-top:2px}
+.apt-chk svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:2.5}
+.apt-txt h4{font-size:13px;font-weight:600;color:var(--navy);letter-spacing:0.04em;margin-bottom:2px}
+.apt-txt p{font-size:12.5px;color:var(--mid);line-height:1.55}
+
+/* PROCESS */
+.proc-section{background:#fff}
+.proc-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:60px;position:relative}
+.proc-steps::before{content:'';position:absolute;top:27px;left:12%;right:12%;height:1px;background:var(--border);z-index:0}
+.pstep{text-align:center;padding:0 20px;position:relative;z-index:1}
+.pstep-circle{width:54px;height:54px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;background:#fff;font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--gold)}
+.pstep h3{font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--navy);margin-bottom:9px}
+.pstep p{font-size:13px;color:var(--mid);line-height:1.62}
+
+/* TESTIMONIALS */
+.testi-section{background:var(--navy)}
+.testi-section .s-eye span{color:var(--gold-light)}
+.testi-section .s-eye-line{background:var(--gold-light)}
+.testi-section h2.s-title{color:#fff}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
+.tc{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);padding:34px;position:relative}
+.tc-qqq{font-size:46px;line-height:1;font-family:'Playfair Display',serif;color:rgba(184,149,42,.25);position:absolute;top:18px;right:26px}
+.tc-stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:16px}
+.tc blockquote{font-family:'Playfair Display',serif;font-size:16.5px;font-style:italic;color:rgba(255,255,255,.83);line-height:1.55;margin-bottom:22px}
+.tc-auth{display:flex;align-items:center;gap:11px;padding-top:18px;border-top:1px solid rgba(255,255,255,.07)}
+.tc-av{width:36px;height:36px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.tc-nm{font-size:12px;font-weight:600;color:#fff;letter-spacing:.04em}
+.tc-loc{font-size:11px;color:rgba(255,255,255,.4);margin-top:1px}
+
+/* CTA BAND */
+.cta-band{background:var(--gold);padding:72px 5vw;display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px}
+.cta-band h2{font-family:'Playfair Display',serif;font-size:clamp(24px,2.8vw,40px);font-weight:700;color:#fff;line-height:1.2}
+.cta-band p{font-size:14.5px;color:rgba(255,255,255,.8);margin-top:10px;max-width:540px}
+.cta-btns{display:flex;flex-direction:column;gap:11px;align-items:flex-end;flex-shrink:0}
+.cb-w{background:#fff;color:var(--gold);padding:13px 34px;font-size:11.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;transition:all .2s}
+.cb-w:hover{background:var(--navy);color:#fff}
+.cb-o{border:2px solid rgba(255,255,255,.5);color:#fff;padding:12px 34px;font-size:11.5px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;transition:all .2s}
+.cb-o:hover{border-color:#fff}
+
+/* CONTACT */
+.contact-section{background:var(--cream)}
+.contact-g{display:grid;grid-template-columns:1fr 1.35fr;gap:72px;margin-top:52px;align-items:start}
+.c-blocks{display:flex;flex-direction:column;gap:32px}
+.cblk{padding-bottom:26px;border-bottom:1px solid var(--border)}
+.cblk:last-child{border:none;padding-bottom:0}
+.cblk-lbl{font-size:9px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.cblk h4{font-family:'Playfair Display',serif;font-size:15px;color:var(--navy);margin-bottom:5px}
+.cblk p,.cblk a{font-size:13.5px;color:var(--mid);line-height:1.7}
+.cblk a:hover{color:var(--gold)}
+.map-wrap{width:100%;height:175px;overflow:hidden;border:1px solid var(--border);margin-top:11px}
+.map-wrap iframe{width:100%;height:100%;border:0}
+.c-form{display:flex;flex-direction:column;gap:0}
+.c-form-title{font-family:'Playfair Display',serif;font-size:21px;color:var(--navy);margin-bottom:26px;font-weight:500}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.fg label{font-size:9.5px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--navy)}
+.fg input,.fg select,.fg textarea{border:1.5px solid var(--border);background:#fff;padding:12px 15px;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--navy);outline:none;transition:border-color .2s;-webkit-appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold)}
+.fg textarea{resize:vertical;min-height:105px}
+.f-submit{background:var(--navy);color:#fff;border:none;padding:14px 38px;font-family:'DM Sans',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;cursor:pointer;align-self:flex-start;margin-top:6px;transition:background .2s}
+.f-submit:hover{background:var(--gold)}
+
+/* LANDLORD CALCULATOR */
+.calc-section{background:#fff}
+.calc-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:start;margin-top:48px}
+.calc-form-card,.calc-result-shell,.tenant-card,.portfolio-card,.trust-item,.viewing-panel{border:1px solid var(--border);background:#fff;box-shadow:0 18px 42px rgba(14,30,46,.06)}
+.calc-form-card{padding:34px}
+.calc-form-card h3,.tenant-card h3,.portfolio-card h3,.viewing-panel h3{font-family:'Playfair Display',serif;color:var(--navy);font-size:26px;line-height:1.15;margin-bottom:12px}
+.tool-note{font-size:13px;color:var(--mid);line-height:1.7;margin-bottom:24px}
+.calc-grid,.tenant-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.calc-field,.tenant-field{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.calc-field label,.tenant-field label{font-size:9.5px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--navy)}
+.calc-field input,.tenant-field input,.tenant-field select,.tenant-field textarea{border:1.5px solid var(--border);background:#fff;padding:13px 15px;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--navy);outline:none;transition:border-color .2s,box-shadow .2s}
+.calc-field input:focus,.tenant-field input:focus,.tenant-field select:focus,.tenant-field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(184,149,42,.1)}
+.calc-actions,.tenant-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:10px}
+.tool-btn{background:var(--navy);color:#fff;border:none;padding:14px 24px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.tool-btn:hover{background:var(--gold);transform:translateY(-1px)}
+.tool-pill{border:1px solid var(--border);padding:12px 15px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);background:var(--cream)}
+.calc-result-shell{padding:24px;background:linear-gradient(180deg,#fff 0%,#faf8f2 100%)}
+.result-kicker{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px}
+.result-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.result-meta div{border:1px solid rgba(184,149,42,.18);background:#fff;padding:14px}
+.result-meta strong{display:block;font-family:'Playfair Display',serif;font-size:26px;color:var(--navy);margin-top:6px}
+.result-meta span{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.result-summary{font-size:13px;color:var(--mid);line-height:1.7;margin-top:14px}
+
+/* PORTFOLIO ENGINE */
+.portfolio-section{background:var(--cream)}
+.portfolio-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.portfolio-card{overflow:hidden}
+.portfolio-media{height:260px;background:var(--stone);position:relative;overflow:hidden}
+.portfolio-media img{width:100%;height:100%;object-fit:cover;display:block}
+.portfolio-overlay{position:absolute;inset:auto 18px 18px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.portfolio-price{background:rgba(14,30,46,.88);color:#fff;padding:10px 14px;font-size:12px;font-weight:600;letter-spacing:.08em}
+.epc-badge{background:var(--gold);color:#fff;padding:9px 12px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.portfolio-body{padding:24px}
+.portfolio-meta{display:flex;gap:14px;flex-wrap:wrap;margin:12px 0 14px}
+.portfolio-meta span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid)}
+.portfolio-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.portfolio-btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid var(--navy);transition:all .2s}
+.portfolio-btn.primary{background:var(--navy);color:#fff}
+.portfolio-btn.primary:hover{background:var(--gold);border-color:var(--gold)}
+.portfolio-btn.secondary{background:#fff;color:var(--navy)}
+.portfolio-btn.secondary:hover{background:var(--cream);border-color:var(--gold);color:var(--gold)}
+
+/* TENANT DESK */
+.tenant-section{background:#fff}
+.tenant-wrap{display:grid;grid-template-columns:1fr .9fr;gap:28px;align-items:start;margin-top:48px}
+.tenant-card{padding:34px}
+.photo-upload-placeholder{border:1.5px dashed rgba(184,149,42,.45);background:var(--cream);padding:18px;text-align:center;color:var(--mid);font-size:13px;line-height:1.7}
+.photo-upload-placeholder strong{display:block;font-family:'Playfair Display',serif;color:var(--navy);font-size:19px;margin-bottom:6px}
+.tenant-field textarea{min-height:140px;resize:vertical}
+.ticket-box{background:var(--navy);color:#fff;padding:22px;border-left:4px solid var(--gold)}
+.ticket-box strong{display:block;font-family:'Playfair Display',serif;font-size:32px;color:var(--gold-light);margin:8px 0}
+.ticket-box span{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.tenant-list{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:24px}
+.tenant-list li{display:flex;gap:10px;font-size:13px;color:var(--mid);line-height:1.6}
+.tenant-list svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:2;flex-shrink:0;margin-top:4px}
+
+/* VIEWING MODAL */
+.viewing-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:24px;z-index:255}
+.viewing-modal.open{display:flex}
+.viewing-backdrop{position:absolute;inset:0;background:rgba(10,18,28,.58);backdrop-filter:blur(6px)}
+.viewing-panel{position:relative;max-width:580px;width:100%;padding:32px;background:#fff}
+.viewing-panel p{font-size:13px;color:var(--mid);line-height:1.7;margin-bottom:18px}
+.viewing-close{position:absolute;top:14px;right:14px;width:40px;height:40px;border:1px solid var(--border);background:#fff;color:var(--navy);font-size:22px;cursor:pointer}
+.viewing-close:hover{background:var(--navy);color:#fff}
+
+/* TRUST BAR */
+.trust-bar{background:linear-gradient(180deg,#f9f6ef 0%,#fff 100%);padding:30px 5vw 40px;border-top:1px solid var(--border)}
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.trust-item{padding:24px}
+.trust-logo{width:58px;height:58px;border:1px solid rgba(184,149,42,.32);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:'Playfair Display',serif;font-size:18px;margin-bottom:18px}
+.trust-item h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:8px}
+.trust-item p{font-size:13px;color:var(--mid);line-height:1.7;margin-bottom:14px}
+.trust-item a{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.trust-item a:hover{color:var(--navy)}
+
+/* LANDLORD DASHBOARD */
+.landlord-dashboard{display:none;background:#f8f5ef;padding:34px 5vw 24px;border-bottom:1px solid var(--border)}
+.landlord-dashboard.active{display:block}
+.dashboard-shell{border:1px solid rgba(14,30,46,.08);box-shadow:0 24px 60px rgba(14,30,46,.08)}
+
+/* FOOTER */
+footer{background:var(--navy);padding:60px 5vw 0}
+.f-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px;padding-bottom:52px;border-bottom:1px solid rgba(255,255,255,.07)}
+.f-brand-name{font-family:'Playfair Display',serif;font-size:20px;color:#fff;font-weight:700;margin-bottom:3px}
+.f-brand-sub{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.f-brand-desc{font-size:12.5px;color:rgba(255,255,255,.4);line-height:1.7;max-width:240px}
+.f-col h4{font-size:9.5px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.f-col ul a{font-size:12.5px;color:rgba(255,255,255,.45);transition:color .2s}
+.f-col ul a:hover{color:var(--gold-light)}
+.f-col address{font-style:normal;font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.8}
+.f-col address a{color:rgba(255,255,255,.45);transition:color .2s}
+.f-col address a:hover{color:var(--gold-light)}
+.f-bottom{padding:22px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.f-bottom p{font-size:11px;color:rgba(255,255,255,.22);letter-spacing:.04em}
+.f-btm-links{display:flex;gap:18px}
+.f-btm-links a{font-size:11px;color:rgba(255,255,255,.28);transition:color .2s}
+.f-btm-links a:hover{color:rgba(255,255,255,.55)}
+
+/* RESPONSIVE */
+@media(max-width:1100px){.svc-grid{grid-template-columns:repeat(2,1fr)}.f-grid{grid-template-columns:1fr 1fr;gap:32px}}
+@media(max-width:900px){
+  .topbar{padding:0 18px}
+  nav{padding:0 18px}
+  .mob-nav{top:118px;padding:16px 18px}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-l{padding:56px 5vw 48px}
+  .hero-r{height:360px}
+  .hero-float{left:20px;right:20px;bottom:20px;padding:22px}
+  .hero-stats{flex-wrap:wrap;gap:20px}
+  .portal-grid{grid-template-columns:1fr}
+  .pcrd:first-child{border-right:none;border-bottom:1px solid var(--border)}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .about-g{grid-template-columns:1fr}
+  .about-img{height:300px}
+  .proc-steps{grid-template-columns:repeat(2,1fr);gap:36px}
+  .proc-steps::before{display:none}
+  .testi-grid{grid-template-columns:1fr}
+  .cta-band{grid-template-columns:1fr;gap:24px}
+  .cta-btns{align-items:flex-start}
+  .contact-g{grid-template-columns:1fr;gap:36px}
+  .calc-wrap,.tenant-wrap{grid-template-columns:1fr}
+  .portfolio-grid,.trust-grid{grid-template-columns:1fr 1fr}
+  .nav-menu,.nav-btns{display:none}
+  .mob-auth{display:block}
+  .hbg{display:flex}
+}
+@media(max-width:700px){
+  .topbar{height:auto;min-height:42px;padding:10px 16px;align-items:flex-start}
+  .topbar-side{width:100%;gap:10px;flex-wrap:wrap}
+  .topbar-side:first-child{display:grid;grid-template-columns:1fr;gap:6px}
+  .topbar-side:first-child .tdiv{display:none}
+  .topbar a{font-size:10px;line-height:1.4}
+  .account-trigger{width:42px;height:42px}
+  nav{top:62px;height:68px;padding:0 16px}
+  .nav-brand-name{font-size:18px}
+  .nav-brand-sub{font-size:8.5px;letter-spacing:0.18em}
+  .mob-nav{top:130px;padding:14px 16px}
+  .hero{margin-top:130px}
+  .hero-l,.about-cnt,section,.cta-band,footer{padding-left:16px;padding-right:16px}
+  .pcrd{padding:28px 16px;align-items:flex-start}
+  .pcrd-body h3{font-size:18px}
+  .sc{padding:30px 22px}
+  .tc{padding:26px 22px}
+  .c-form-title{margin-bottom:18px}
+}
+@media(max-width:600px){
+  .auth-modal{padding:14px}
+  .auth-panel{grid-template-columns:1fr;max-height:min(92vh,760px);border-radius:22px}
+  .auth-aside{padding:30px 24px}
+  .auth-aside h3{font-size:28px}
+  .auth-main{padding:24px 20px 26px}
+  .auth-top{margin-bottom:22px}
+  .auth-top h2{font-size:26px}
+  .auth-close{width:42px;height:42px;border-radius:12px}
+  .auth-socials,.auth-grid{grid-template-columns:1fr}
+  .auth-meta{flex-direction:column;align-items:flex-start}
+  .svc-grid,.f-grid,.frow,.proc-steps{grid-template-columns:1fr}
+  .calc-grid,.tenant-grid,.result-meta,.portfolio-grid,.trust-grid{grid-template-columns:1fr}
+  .topbar-side:last-child{display:none}
+  .hero h1{font-size:32px}
+  .hero-desc,.s-intro,.cta-band p{font-size:14px}
+  .hero-stats{display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px;padding-top:24px}
+  .hero-r{height:320px}
+  .hero-float{left:16px;right:16px;bottom:16px;padding:18px}
+  .hero-float h3{font-size:16px}
+  .hero-float p{font-size:12px}
+  h2.s-title{font-size:26px}
+  .about-badge{left:16px;bottom:16px;padding:14px 18px}
+  .about-badge strong{font-size:24px}
+  .cta-btns{width:100%;align-items:stretch}
+  .cb-w,.cb-o,.f-submit{width:100%;text-align:center}
+  .f-bottom{align-items:flex-start}
+  .f-btm-links{flex-wrap:wrap;gap:12px}
+  .calc-form-card,.calc-result-shell,.tenant-card,.viewing-panel,.trust-item{padding:22px}
+}
+@media(max-width:420px){
+  .hero h1{font-size:28px}
+  .auth-modal{padding:10px}
+  .auth-tabs{display:flex;width:100%}
+  .auth-tab{flex:1;padding:11px 10px}
+  .hero-eyebrow span,.s-eye span{letter-spacing:0.16em}
+  .hcta-p,.hcta-s,.nbtn-outline,.nbtn-fill,.cb-w,.cb-o{width:100%;justify-content:center;text-align:center}
+  .hero-ctas{flex-direction:column}
+  .hs-num{font-size:30px}
+  .map-wrap{height:150px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-side">
+    <a href="tel:+442087729552" class="hot">+44 (0)20 8772 9552</a>
+    <div class="tdiv"></div>
+    <a href="/cdn-cgi/l/email-protection#fb92959d94bb8e89999a95888b9e988f898e968b96d59894d58e90"><span class="__cf_email__" data-cfemail="f0999e969fb0858292919e838095938482859d809dde939fde859b">[email&#160;protected]</span></a>
+    <div class="tdiv"></div>
+    <a>114 Balham High Rd, London SW12 9AA</a>
+  </div>
+  <div class="topbar-side">
+    <a href="#contact">Landlord Enquiry</a>
+    <div class="tdiv"></div>
+    <a href="#contact">Tenant Enquiry</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#top" class="nav-brand" aria-label="Go to top of page" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+    <div class="nav-brand-name">Urban Spectrum</div>
+    <div class="nav-brand-sub">Property Management Ltd</div>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="listings.html">Properties</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="nav-btns">
+      <a href="tel:+442087729552" class="nbtn-outline">Call Us</a>
+      <a href="#contact" class="nbtn-fill">Free Valuation</a>
+    </div>
+    <button class="account-trigger" id="accountTrigger" type="button" aria-label="Open account options" onclick="openAuthModal()">
+      <svg viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="8" r="4"/></svg>
+      <span class="account-name" id="accountName">Account</span>
+      <span class="account-status-dot"></span>
+    </button>
+    <div class="hbg" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <button class="mob-auth" type="button" onclick="openAuthModal();toggleMenu()">Sign In / Register</button>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#process" onclick="toggleMenu()">Process</a>
+  <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="listings.html" onclick="toggleMenu()">Properties</a>
+</div>
+
+<div class="auth-modal" id="authModal" aria-hidden="true">
+  <div class="auth-backdrop" onclick="closeAuthModal()"></div>
+  <div class="auth-panel" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="auth-aside">
+      <span class="auth-kicker">Resident Access</span>
+      <h3>Access your landlord or tenant profile.</h3>
+      <p>Save enquiries, track maintenance updates, and manage property conversations in one polished dashboard experience.</p>
+      <ul class="auth-points">
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Fast sign-in with trusted providers</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Use your email if you prefer</li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Designed for landlords and tenants</li>
+      </ul>
+    </div>
+    <div class="auth-main">
+      <div class="auth-top">
+        <div>
+          <h2 id="authTitle">Welcome back</h2>
+          <p>Choose a quick sign-in method or continue with your email address.</p>
+        </div>
+        <button class="auth-close" type="button" aria-label="Close account panel" onclick="closeAuthModal()">&times;</button>
+      </div>
+      <div class="auth-user-bar" id="authUserBar" style="display:none">
+        <div class="auth-user-copy">
+          <strong>Signed In</strong>
+          <span id="authUserText">You are signed in.</span>
+        </div>
+        <button class="auth-logout" type="button" onclick="logoutUser()">Log Out</button>
+      </div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" type="button" data-mode="login" onclick="switchAuthMode('login')">Log In</button>
+        <button class="auth-tab" type="button" data-mode="register" onclick="switchAuthMode('register')">Register</button>
+      </div>
+      <div class="auth-socials">
+        <button class="auth-social" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#EA4335" d="M12 10.2v3.9h5.5c-.2 1.3-1.6 3.8-5.5 3.8-3.4 0-6.1-2.8-6.1-6.2S8.6 5.5 12 5.5c1.9 0 3.2.8 3.9 1.5l2.8-2.7C17 2.8 14.8 2 12 2 6.8 2 2.6 6.2 2.6 11.5S6.8 21 12 21c5.5 0 9.4-3.9 9.4-9.4 0-.6-.1-1.1-.2-1.4H12Z"/>
+            <path fill="#4285F4" d="M21.4 11.6c0-.6-.1-1.1-.2-1.4H12v3.9h5.5c-.2 1.1-.9 2-1.8 2.7l2.9 2.2c1.7-1.6 2.8-4 2.8-7.4Z"/>
+            <path fill="#34A853" d="M12 21c2.7 0 5-1 6.6-2.7l-2.9-2.2c-.8.6-1.9 1.1-3.7 1.1-2.8 0-5.2-1.9-6-4.5l-3 2.3C4.6 18.5 8 21 12 21Z"/>
+            <path fill="#FBBC05" d="M6 12.7c-.2-.6-.3-1.2-.3-1.9s.1-1.3.3-1.9l-3-2.3C2.3 7.8 2 9.1 2 10.8s.3 3 1 4.2l3-2.3Z"/>
+          </svg>
+          Continue with Google
+        </button>
+        <button class="auth-social" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#111" d="M16.7 13.2c0-2 1.6-3 1.7-3.1-.9-1.3-2.3-1.5-2.8-1.5-1.2-.1-2.3.7-2.9.7-.6 0-1.5-.7-2.5-.7-1.3 0-2.5.8-3.1 2-1.3 2.2-.3 5.4.9 7.2.6.9 1.3 1.9 2.3 1.9.9 0 1.3-.6 2.4-.6 1.1 0 1.4.6 2.4.6 1 0 1.6-.9 2.2-1.8.7-1 1-2 1-2.1-.1 0-1.9-.8-1.9-3.2ZM14.8 6.5c.5-.7.9-1.6.8-2.5-.8.1-1.7.6-2.3 1.3-.5.6-.9 1.6-.8 2.5.9.1 1.8-.5 2.3-1.3Z"/>
+          </svg>
+          Continue with Apple
+        </button>
+        <button class="auth-social" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="11" fill="#1877F2"/>
+            <path fill="#fff" d="M13.7 20v-6h2l.3-2.3h-2.3V10.2c0-.7.2-1.1 1.2-1.1H16V7c-.2 0-1-.1-1.9-.1-1.8 0-3.1 1.1-3.1 3.2v1.6H9v2.3h2.1V20h2.6Z"/>
+          </svg>
+          Continue with Facebook
+        </button>
+        <button class="auth-social" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="1.5" y="1.5" width="9.5" height="9.5" fill="#F35325"/>
+            <rect x="13" y="1.5" width="9.5" height="9.5" fill="#81BC06"/>
+            <rect x="1.5" y="13" width="9.5" height="9.5" fill="#05A6F0"/>
+            <rect x="13" y="13" width="9.5" height="9.5" fill="#FFBA08"/>
+          </svg>
+          Continue with Microsoft
+        </button>
+      </div>
+      <div class="auth-divider">or use email</div>
+      <div class="auth-feedback" id="authFeedback"></div>
+      <form class="auth-form active" id="loginForm" onsubmit="handleAuthSubmit(event,'Log In')">
+        <div class="auth-field">
+          <label>Email Address</label>
+          <input type="email" name="email" autocomplete="email" placeholder="name@email.com" required>
+        </div>
+        <div class="auth-field">
+          <label>Password</label>
+          <input type="password" name="password" autocomplete="current-password" placeholder="Enter your password" required>
+        </div>
+        <div class="auth-meta">
+          <label class="auth-check"><input type="checkbox"> Keep me signed in</label>
+          <button type="button" class="auth-link" onclick="requestPasswordReset()">Forgot password?</button>
+        </div>
+        <button class="auth-submit" type="submit">Log In</button>
+        <div class="auth-foot">New here?<button type="button" onclick="switchAuthMode('register')">Create an account</button></div>
+      </form>
+      <form class="auth-form auth-form-register" id="registerForm" onsubmit="handleAuthSubmit(event,'Register')">
+        <div class="auth-grid">
+          <div class="auth-field">
+            <label>First Name</label>
+            <input type="text" name="firstName" autocomplete="given-name" placeholder="Jane" required>
+          </div>
+          <div class="auth-field">
+            <label>Last Name</label>
+            <input type="text" name="lastName" autocomplete="family-name" placeholder="Smith" required>
+          </div>
+        </div>
+        <div class="auth-grid">
+          <div class="auth-field">
+            <label>Email Address</label>
+            <input type="email" name="email" autocomplete="email" placeholder="name@email.com" required>
+          </div>
+          <div class="auth-field">
+            <label>Account Type</label>
+            <select name="accountType" required>
+              <option value="" disabled selected>Please select…</option>
+              <option>Landlord</option>
+              <option>Tenant</option>
+            </select>
+          </div>
+        </div>
+        <div class="auth-grid">
+          <div class="auth-field">
+            <label>Password</label>
+            <input type="password" name="password" autocomplete="new-password" placeholder="Create a password" required>
+          </div>
+          <div class="auth-field">
+            <label>Confirm Password</label>
+            <input type="password" name="confirmPassword" autocomplete="new-password" placeholder="Repeat password" required>
+          </div>
+        </div>
+        <div class="auth-meta">
+          <label class="auth-check"><input type="checkbox" required> I agree to the privacy policy</label>
+          <span class="auth-link">Secure sign-up</span>
+        </div>
+        <button class="auth-submit" type="submit">Create Account</button>
+        <div class="auth-foot">Already have an account?<button type="button" onclick="switchAuthMode('login')">Sign in</button></div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="auth-toast" id="authToast"></div>
+
+<section class="landlord-dashboard" id="landlordDashboard">
+  <div class="dashboard-shell rounded-[28px] bg-white p-6 md:p-8">
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+      <div>
+        <div class="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-amber-700">
+          <i data-lucide="trending-up" class="h-4 w-4"></i>
+          Landlord Analytics Dashboard
+        </div>
+        <h2 class="mt-4 font-['Playfair_Display'] text-4xl leading-tight text-slate-900">Portfolio performance at a glance.</h2>
+        <p class="mt-3 max-w-2xl text-sm leading-7 text-stone-600">This landlord-only workspace shows rental performance, property-level switching, maintenance exposure, and downloadable reporting in one ultra-clean control layer.</p>
+      </div>
+      <div class="min-w-[260px]">
+        <label for="dashboardPropertySwitcher" class="mb-3 block text-[10px] font-bold uppercase tracking-[0.24em] text-slate-500">Managed Property</label>
+        <select id="dashboardPropertySwitcher" class="w-full rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 font-['DM_Sans'] text-sm text-slate-900 outline-none transition focus:border-amber-400 focus:bg-white">
+        </select>
+      </div>
+    </div>
+
+    <div class="mt-8 grid gap-4 md:grid-cols-3">
+      <div class="rounded-3xl border border-stone-200 bg-stone-50 p-5">
+        <div class="flex items-center justify-between gap-4">
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Total Portfolio Value</p>
+            <strong id="dashboardPortfolioValue" class="mt-3 block font-['Playfair_Display'] text-4xl text-slate-900">£2.4M</strong>
+          </div>
+          <div class="rounded-full border border-amber-300 bg-white p-3 text-amber-700">
+            <i data-lucide="home" class="h-5 w-5"></i>
+          </div>
+        </div>
+      </div>
+      <div class="rounded-3xl border border-stone-200 bg-stone-50 p-5">
+        <div class="flex items-center justify-between gap-4">
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Occupancy Rate</p>
+            <strong id="dashboardOccupancyRate" class="mt-3 block font-['Playfair_Display'] text-4xl text-slate-900">94%</strong>
+          </div>
+          <div class="rounded-full border border-amber-300 bg-white p-3 text-amber-700">
+            <i data-lucide="trending-up" class="h-5 w-5"></i>
+          </div>
+        </div>
+      </div>
+      <div class="rounded-3xl border border-stone-200 bg-stone-50 p-5">
+        <div class="flex items-center justify-between gap-4">
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Active Maintenance</p>
+            <strong id="dashboardMaintenanceCount" class="mt-3 block font-['Playfair_Display'] text-4xl text-slate-900">2 Open Tickets</strong>
+          </div>
+          <div class="rounded-full border border-amber-300 bg-white p-3 text-amber-700">
+            <i data-lucide="file-text" class="h-5 w-5"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 grid gap-6 xl:grid-cols-[1.5fr_.9fr]">
+      <div class="rounded-[26px] border border-stone-200 bg-white p-5">
+        <div class="flex items-center justify-between gap-4 flex-wrap">
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Financial Overview</p>
+            <h3 class="mt-2 font-['Playfair_Display'] text-3xl text-slate-900">Monthly Rental Income</h3>
+          </div>
+          <div class="rounded-full bg-amber-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-700">Last 6 Months</div>
+        </div>
+        <div class="mt-6 h-[320px]">
+          <canvas id="landlordIncomeChart"></canvas>
+        </div>
+      </div>
+      <div class="rounded-[26px] border border-stone-200 bg-stone-50 p-5">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Document Vault</p>
+        <h3 class="mt-2 font-['Playfair_Display'] text-3xl text-slate-900">Essential Downloads</h3>
+        <div class="mt-5 overflow-hidden rounded-2xl border border-stone-200 bg-white">
+          <table class="min-w-full text-left">
+            <thead class="bg-stone-50">
+              <tr>
+                <th class="px-4 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-500">Document</th>
+                <th class="px-4 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-500">Type</th>
+                <th class="px-4 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-500 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="documentVaultTable" class="divide-y divide-stone-200"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-l">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>South London's Property Experts</span>
+    </div>
+    <h1>Your Property.<br><em>Our Expertise.</em><br>Your Peace of Mind.</h1>
+    <p class="hero-desc">Urban Spectrum Property Management Ltd provides complete lettings and management services for landlords, investors and developers across London and the South East.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="hcta-p">Get a Free Valuation</a>
+      <a href="#services" class="hcta-s">Our Services</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hs-num">15+</div><div class="hs-lbl">Years Experience</div></div>
+      <div><div class="hs-num">500+</div><div class="hs-lbl">Properties Managed</div></div>
+      <div><div class="hs-num">98%</div><div class="hs-lbl">Client Retention</div></div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="hero-r-bg"></div>
+    <div class="hero-float">
+      <h3>Balham &amp; South London Specialists</h3>
+      <p>Expert knowledge of the SW12 and wider South London rental market — giving your property the best possible positioning.</p>
+      <a href="#contact" class="hero-float-link">Speak to our team <svg viewBox="0 0 24 24" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- PORTAL -->
+<div class="portal">
+  <div class="portal-grid">
+    <a href="#contact" class="pcrd">
+      <div class="pcrd-ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="pcrd-body">
+        <h3>I'm a Landlord</h3>
+        <p>Find out how we can manage your property and maximise your rental income.</p>
+      </div>
+      <div class="pcrd-arr"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+    </a>
+    <a href="#contact" class="pcrd">
+      <div class="pcrd-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <div class="pcrd-body">
+        <h3>I'm a Tenant</h3>
+        <p>Browse available properties or get help with a maintenance request or tenancy query.</p>
+      </div>
+      <div class="pcrd-arr"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+    </a>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="svc-section" id="services">
+  <div class="svc-hd">
+    <div>
+      <div class="s-eye"><div class="s-eye-line"></div><span>What We Offer</span></div>
+      <h2 class="s-title">Complete Property<br>Management Services</h2>
+    </div>
+    <p class="s-intro">From finding the right tenant to compliance, maintenance and rent collection — we handle everything so you can simply enjoy the returns.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="sc">
+      <span class="sc-num">01</span>
+      <div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <h3>Residential Lettings</h3>
+      <p>Professional tenant sourcing, thorough referencing, deposit protection and fully compliant tenancy agreements to ARLA standards.</p>
+      <a href="#contact" class="sc-lnk">Enquire <svg viewBox="0 0 24 24" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+    <div class="sc">
+      <span class="sc-num">02</span>
+      <div class="sc-ico"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+      <h3>Commercial Property</h3>
+      <p>Full management of commercial premises including lease negotiations, service charge management and ongoing compliance oversight.</p>
+      <a href="#contact" class="sc-lnk">Enquire <svg viewBox="0 0 24 24" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+    <div class="sc">
+      <span class="sc-num">03</span>
+      <div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+      <h3>Maintenance &amp; Repairs</h3>
+      <p>24/7 emergency response, planned maintenance schedules and a vetted contractor network at competitive rates.</p>
+      <a href="#contact" class="sc-lnk">Enquire <svg viewBox="0 0 24 24" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+    <div class="sc">
+      <span class="sc-num">04</span>
+      <div class="sc-ico"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+      <h3>Rent Collection</h3>
+      <p>Automated rent collection, arrears management, monthly statements and year-end financial summaries for your accountant.</p>
+      <a href="#contact" class="sc-lnk">Enquire <svg viewBox="0 0 24 24" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+    <div class="sc">
+      <span class="sc-num">05</span>
+      <div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+      <h3>Legal &amp; Compliance</h3>
+      <p>Gas safety, electrical certification, EPC management, right-to-rent checks and full legislative compliance across every tenancy.</p>
+      <a href="#contact" class="sc-lnk">Enquire <svg viewBox="0 0 24 24" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+    <div class="sc">
+      <span class="sc-num">06</span>
+      <div class="sc-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <h3>Block Management</h3>
+      <p>Comprehensive block and leasehold management including service charges, major works and section 20 consultation.</p>
+      <a href="#contact" class="sc-lnk">Enquire <svg viewBox="0 0 24 24" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SPLIT -->
+<div class="about-wrap" id="about">
+  <div class="about-g">
+    <div class="about-img">
+      <div class="about-img-ov"></div>
+      <div class="about-badge"><strong>25+</strong><span>Years Serving London</span></div>
+    </div>
+    <div class="about-cnt">
+      <div class="s-eye"><div class="s-eye-line"></div><span>Why Choose Us</span></div>
+      <h2 class="s-title">Local Expertise.<br>Personal Service.</h2>
+      <p class="s-intro">Based right here in Balham, we know South London's rental market inside out. Our clients stay with us because we treat their property like our own.</p>
+      <ul class="about-pts">
+        <li class="apt"><div class="apt-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="apt-txt"><h4>Dedicated Property Manager</h4><p>One consistent point of contact who knows your portfolio and tenants personally.</p></div></li>
+        <li class="apt"><div class="apt-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="apt-txt"><h4>Transparent Financial Reporting</h4><p>Monthly statements, real-time updates and clear fees — no surprises, ever.</p></div></li>
+        <li class="apt"><div class="apt-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="apt-txt"><h4>Minimal Void Periods</h4><p>Premium multi-portal listings and a large applicant database to fill your property fast.</p></div></li>
+        <li class="apt"><div class="apt-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="apt-txt"><h4>Fully Regulated &amp; Insured</h4><p>Client money protection, professional indemnity insurance and full deposit compliance.</p></div></li>
+        <li class="apt"><div class="apt-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="apt-txt"><h4>24/7 Emergency Response</h4><p>Round-the-clock emergency maintenance so urgent issues are always resolved promptly.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section class="proc-section" id="process">
+  <div style="text-align:center">
+    <div class="s-eye" style="justify-content:center"><div class="s-eye-line"></div><span>How It Works</span></div>
+    <h2 class="s-title" style="text-align:center">Simple. Structured. Stress-Free.</h2>
+    <p class="s-intro" style="margin:0 auto;text-align:center">Our proven four-step process gets your property managed quickly and professionally.</p>
+  </div>
+  <div class="proc-steps">
+    <div class="pstep"><div class="pstep-circle">1</div><h3>Free Appraisal</h3><p>We visit your property, advise on rental valuation and explain all fees with complete transparency.</p></div>
+    <div class="pstep"><div class="pstep-circle">2</div><h3>Marketing &amp; Letting</h3><p>Professional photography, premium portal listings and accompanied viewings to find the right tenant fast.</p></div>
+    <div class="pstep"><div class="pstep-circle">3</div><h3>Tenancy Set-Up</h3><p>Full referencing, right-to-rent, tenancy agreements, inventory and deposit registration — all handled for you.</p></div>
+    <div class="pstep"><div class="pstep-circle">4</div><h3>Ongoing Management</h3><p>Rent collection, maintenance, inspections and renewals — we handle it all so you can enjoy the returns.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section" id="testimonials">
+  <div class="s-eye"><div class="s-eye-line"></div><span>Client Reviews</span></div>
+  <h2 class="s-title">Trusted By London<br>Landlords &amp; Investors</h2>
+  <div class="testi-grid">
+    <div class="tc"><div class="tc-qqq">"</div><div class="tc-stars">★★★★★</div><blockquote>Urban Spectrum transformed how I manage my portfolio. My dedicated manager is always reachable and handles everything with total professionalism.</blockquote><div class="tc-auth"><div class="tc-av">JR</div><div><div class="tc-nm">James R.</div><div class="tc-loc">Landlord · Balham</div></div></div></div>
+    <div class="tc"><div class="tc-qqq">"</div><div class="tc-stars">★★★★★</div><blockquote>They found excellent tenants within two weeks and the onboarding was seamless. I haven't had a void period since switching three years ago.</blockquote><div class="tc-auth"><div class="tc-av">PM</div><div><div class="tc-nm">Priya M.</div><div class="tc-loc">Property Investor · Clapham</div></div></div></div>
+    <div class="tc"><div class="tc-qqq">"</div><div class="tc-stars">★★★★★</div><blockquote>The block management service has been outstanding. Service charges are transparent, contractors are reliable and communication is first-class.</blockquote><div class="tc-auth"><div class="tc-av">DK</div><div><div class="tc-nm">David K.</div><div class="tc-loc">Leaseholder · Tooting</div></div></div></div>
+  </div>
+</section>
+
+<!-- PORTFOLIO ENGINE -->
+<section class="portfolio-section" id="portfolio">
+  <div class="portfolio-head">
+    <div>
+      <div class="s-eye"><div class="s-eye-line"></div><span>Managed Portfolio</span></div>
+      <h2 class="s-title">Investment-Ready Properties,<br>Rendered Live From Our Engine</h2>
+    </div>
+    <p class="s-intro">A scalable portfolio module for showcasing compliant listings with EPC detail, virtual tour access, and instant viewing requests.</p>
+  </div>
+  <div class="portfolio-grid" id="portfolioGrid"></div>
+</section>
+
+<!-- LANDLORD CALCULATOR -->
+<section class="calc-section" id="landlord-tools">
+  <div class="s-eye"><div class="s-eye-line"></div><span>Landlord Calculator</span></div>
+  <h2 class="s-title">See Your Net Annual Income<br>Before You Instruct Us</h2>
+  <div class="calc-wrap">
+    <div class="calc-form-card">
+      <h3>Profit &amp; Yield Forecast</h3>
+      <p class="tool-note">A lead-generation tool for landlords evaluating whether to switch agents, expand a portfolio, or improve returns.</p>
+      <form id="yieldCalculatorForm">
+        <div class="calc-grid">
+          <div class="calc-field">
+            <label>Monthly Rent</label>
+            <input type="number" id="monthlyRent" placeholder="e.g. 2450" min="0" step="0.01" required>
+          </div>
+          <div class="calc-field">
+            <label>Management Fee %</label>
+            <input type="number" id="managementFee" placeholder="e.g. 10" min="0" max="100" step="0.1" required>
+          </div>
+        </div>
+        <div class="calc-field">
+          <label>Estimated Annual Maintenance</label>
+          <input type="number" id="maintenanceCost" placeholder="e.g. 1800" min="0" step="0.01" required>
+        </div>
+        <div class="calc-field">
+          <label>Property Value For Yield</label>
+          <input type="number" id="propertyValue" placeholder="e.g. 575000" min="1" step="0.01" required>
+        </div>
+        <div class="calc-actions">
+          <button type="submit" class="tool-btn">Calculate Yield</button>
+          <span class="tool-pill">Luxury Reporting, Real Numbers</span>
+        </div>
+      </form>
+    </div>
+    <div class="calc-result-shell">
+      <div class="result-kicker">Projected Return</div>
+      <div id="yieldResultCard" class="hidden transform translate-y-4 opacity-0 transition-all duration-500 ease-out bg-white rounded-2xl border border-stone-200 p-6 shadow-xl">
+        <div class="flex items-center justify-between gap-4 flex-wrap">
+          <div>
+            <p class="text-xs uppercase tracking-[0.28em] text-stone-500 font-semibold">Annual Net Income</p>
+            <h3 id="annualNetIncome" class="mt-3 font-['Playfair_Display'] text-5xl text-slate-900">£0</h3>
+          </div>
+          <div class="rounded-full border border-amber-300 bg-amber-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-amber-700">
+            Net Yield <span id="netYieldPill">0.00%</span>
+          </div>
+        </div>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div class="rounded-xl border border-stone-200 bg-stone-50 p-4">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-stone-500 font-semibold">Gross Annual Rent</p>
+            <strong id="grossAnnualRent" class="mt-2 block font-['Playfair_Display'] text-3xl text-slate-900">£0</strong>
+          </div>
+          <div class="rounded-xl border border-stone-200 bg-stone-50 p-4">
+            <p class="text-[11px] uppercase tracking-[0.18em] text-stone-500 font-semibold">Management + Maintenance</p>
+            <strong id="annualCosts" class="mt-2 block font-['Playfair_Display'] text-3xl text-slate-900">£0</strong>
+          </div>
+        </div>
+        <p id="yieldSummary" class="mt-5 text-sm leading-7 text-stone-600">Enter your figures to generate an instant landlord forecast card.</p>
+      </div>
+      <div id="yieldEmptyState" class="result-summary">Your result card will animate in here with annual income, blended costs, and net yield once the inputs are submitted.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TENANT MAINTENANCE -->
+<section class="tenant-section" id="tenant-desk">
+  <div class="s-eye"><div class="s-eye-line"></div><span>Tenant Area</span></div>
+  <h2 class="s-title">Automated Maintenance Request<br>Desk With Ticket Reference</h2>
+  <div class="tenant-wrap">
+    <div class="tenant-card">
+      <h3>Report an Issue</h3>
+      <p class="tool-note">A structured request flow helps tenants communicate clearly while giving your management team a professional, trackable intake process.</p>
+      <form id="maintenanceForm">
+        <div class="tenant-grid">
+          <div class="tenant-field">
+            <label>Issue Category</label>
+            <select id="issueCategory" required>
+              <option value="" disabled selected>Please select…</option>
+              <option>Plumbing</option>
+              <option>Electrical</option>
+              <option>Heating</option>
+              <option>Appliance</option>
+              <option>Locks &amp; Security</option>
+              <option>Damp / Leak</option>
+            </select>
+          </div>
+          <div class="tenant-field">
+            <label>Urgency Level</label>
+            <select id="issueUrgency" required>
+              <option value="" disabled selected>Please select…</option>
+              <option>Emergency</option>
+              <option>Urgent</option>
+              <option>Standard</option>
+            </select>
+          </div>
+        </div>
+        <div class="tenant-field">
+          <label>Photo Upload</label>
+          <div class="photo-upload-placeholder">
+            <strong>Upload Placeholder</strong>
+            Add image support here later for leak damage, appliance faults, or access issues. The UI is ready for a backend file endpoint.
+          </div>
+        </div>
+        <div class="tenant-field">
+          <label>Description</label>
+          <textarea id="issueDescription" placeholder="Describe the issue, where it is located, and whether access is safe right now." required></textarea>
+        </div>
+        <div class="tenant-actions">
+          <button type="submit" class="tool-btn">Submit Request</button>
+          <span class="tool-pill">Official Ticket Generated On Submit</span>
+        </div>
+      </form>
+    </div>
+    <div class="tenant-card">
+      <div class="ticket-box">
+        <span>Maintenance Reference</span>
+        <strong id="ticketIdDisplay">US-0000</strong>
+        <p id="ticketStatusText">Once submitted, your tenant request receives a formal reference number for follow-up and auditability.</p>
+      </div>
+      <ul class="tenant-list">
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Emergency tickets can be visually prioritized for internal dispatch.</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Category routing helps the right contractor or manager receive the job faster.</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Reference IDs make the experience feel credible, trackable, and operationally mature.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div>
+    <h2>Ready to Let Your Property<br>Without the Hassle?</h2>
+    <p>Get a free, no-obligation rental valuation from our South London property experts. We'll tell you exactly what your property is worth on today's market.</p>
+  </div>
+  <div class="cta-btns">
+    <a href="#contact" class="cb-w">Book a Free Valuation</a>
+    <a href="tel:+442087729552" class="cb-o">Call +44 (0)20 8772 9552</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="s-eye"><div class="s-eye-line"></div><span>Get In Touch</span></div>
+  <h2 class="s-title">Speak With Our<br>Property Specialists</h2>
+  <div class="contact-g">
+    <div class="c-blocks">
+      <div class="cblk">
+        <div class="cblk-lbl">Our Office</div>
+        <h4>Visit Us in Balham</h4>
+        <p>114 Balham High Road<br>London SW12 9AA<br>United Kingdom</p>
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2487.9!2d-0.153!3d51.4428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604c1e8b89ef7%3A0x0!2s114+Balham+High+Rd%2C+London+SW12+9AA!5e0!3m2!1sen!2suk!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+      <div class="cblk">
+        <div class="cblk-lbl">Telephone</div>
+        <h4><a href="tel:+442087729552">+44 (0)20 8772 9552</a></h4>
+      </div>
+      <div class="cblk">
+        <div class="cblk-lbl">Email</div>
+        <h4><a href="/cdn-cgi/l/email-protection#7e171018113e0b0c1c1f100d0e1b1d0a0c0b130e13501d11500b15"><span class="__cf_email__" data-cfemail="f990979f96b98c8b9b98978a899c9a8d8b8c948994d79a96d78c92">[email&#160;protected]</span></a></h4>
+      </div>
+      <div class="cblk">
+        <div class="cblk-lbl">Office Hours</div>
+        <p>Mon–Fri: 9:00am – 5:30pm<br>Saturday: 10:00am – 2:00pm<br>Sunday &amp; Bank Holidays: Closed<br><br><em style="font-size:12px;color:#aaa">24/7 emergency line for existing tenants</em></p>
+      </div>
+    </div>
+    <form class="c-form" id="contactForm" onsubmit="handleSubmit(event)">
+      <div class="c-form-title">Send Us an Enquiry</div>
+      <div class="frow">
+        <div class="fg"><label>First Name</label><input type="text" name="firstName" placeholder="John" required></div>
+        <div class="fg"><label>Last Name</label><input type="text" name="lastName" placeholder="Smith" required></div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label>Email Address</label><input type="email" name="email" placeholder="john@example.com" required></div>
+        <div class="fg"><label>Phone Number</label><input type="tel" name="phone" placeholder="+44 7700 000000"></div>
+      </div>
+      <div class="fg">
+        <label>I Am A</label>
+        <select name="enquiryType">
+          <option value="" disabled selected>Please select…</option>
+          <option>Landlord — looking to let my property</option>
+          <option>Landlord — already let, need management</option>
+          <option>Property Investor</option>
+          <option>Tenant — looking for a property</option>
+          <option>Tenant — existing tenancy query</option>
+          <option>Other enquiry</option>
+        </select>
+      </div>
+      <div class="fg"><label>Property Address (if applicable)</label><input type="text" name="propertyAddress" placeholder="e.g. 12 Example Street, London SW12"></div>
+      <div class="fg"><label>Message</label><textarea name="message" placeholder="Please describe your requirements or any questions you have…"></textarea></div>
+      <button type="submit" class="f-submit" id="submitBtn">Send Enquiry</button>
+    </form>
+  </div>
+</section>
+
+<div class="viewing-modal" id="viewingModal">
+  <div class="viewing-backdrop" onclick="closeViewingModal()"></div>
+  <div class="viewing-panel">
+    <button type="button" class="viewing-close" aria-label="Close viewing request" onclick="closeViewingModal()">&times;</button>
+    <h3>Book a Viewing</h3>
+    <p>Use this enquiry shortcut to capture a viewing request against the exact listing the prospect selected.</p>
+    <form id="viewingForm">
+      <div class="tenant-field">
+        <label>Selected Property</label>
+        <input type="text" id="viewingProperty" readonly>
+      </div>
+      <div class="tenant-grid">
+        <div class="tenant-field">
+          <label>Your Name</label>
+          <input type="text" id="viewingName" placeholder="Full name" required>
+        </div>
+        <div class="tenant-field">
+          <label>Email Address</label>
+          <input type="email" id="viewingEmail" placeholder="name@email.com" required>
+        </div>
+        <div class="tenant-field">
+          <label>Phone Number</label>
+          <input type="tel" id="viewingPhone" placeholder="+44 7700 000000">
+        </div>
+        <div class="tenant-field">
+          <label>Preferred Date</label>
+          <input type="date" id="viewingDate">
+        </div>
+      </div>
+      <div class="tenant-field">
+        <label>Preferred Viewing Note</label>
+        <textarea id="viewingMessage" placeholder="Share preferred days, time windows, or any application context." required></textarea>
+      </div>
+      <div class="tenant-actions">
+        <button type="submit" class="tool-btn">Send Viewing Request</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<section class="trust-bar">
+  <div class="s-eye"><div class="s-eye-line"></div><span>Compliance &amp; Trust</span></div>
+  <div class="trust-grid">
+    <div class="trust-item">
+      <div class="trust-logo">AP</div>
+      <h3>ARLA Propertymark</h3>
+      <p>Professional membership signalling regulated lettings practice, compliance standards, and sector-recognised credibility.</p>
+      <a href="#" aria-label="Verify ARLA Propertymark membership">Verify our Membership</a>
+    </div>
+    <div class="trust-item">
+      <div class="trust-logo">PO</div>
+      <h3>The Property Ombudsman</h3>
+      <p>Independent redress scheme participation that helps reassure landlords and tenants they are dealing with a transparent firm.</p>
+      <a href="#" aria-label="Verify The Property Ombudsman membership">Verify our Membership</a>
+    </div>
+    <div class="trust-item">
+      <div class="trust-logo">SA</div>
+      <h3>SafeAgent</h3>
+      <p>Client money protection and membership visibility presented in a premium trust bar just above the footer, where buyers look for reassurance.</p>
+      <a href="#" aria-label="Verify SafeAgent membership">Verify our Membership</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-grid">
+    <div>
+      <div class="f-brand-name">Urban Spectrum</div>
+      <div class="f-brand-sub">Property Management Ltd</div>
+      <p class="f-brand-desc">South London's trusted property management specialists. Serving landlords, investors and tenants across Balham, Clapham, Tooting and the wider SW postcode area.</p>
+    </div>
+    <div class="f-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Residential Lettings</a></li>
+        <li><a href="#services">Commercial Property</a></li>
+        <li><a href="#services">Block Management</a></li>
+        <li><a href="#services">Rent Collection</a></li>
+        <li><a href="#services">Maintenance</a></li>
+        <li><a href="#services">Compliance</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#process">Our Process</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Contact</h4>
+      <address>114 Balham High Road<br>London SW12 9AA<br>United Kingdom<br><br><a href="tel:+442087729552">+44 (0)20 8772 9552</a><br><a href="/cdn-cgi/l/email-protection#cca5a2aaa38cb9beaeada2bfbca9afb8beb9a1bca1e2afa3e2b9a7"><span class="__cf_email__" data-cfemail="e0898e868fa0959282818e939085839492958d908dce838fce958b">[email&#160;protected]</span></a></address>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <p>© 2025 Urban Spectrum Property Management Ltd. Registered in England &amp; Wales. All rights reserved.</p>
+    <div class="f-btm-links"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Complaints</a></div>
+  </div>
+</footer>
+
+<script>
+const API_URL=(window.API_URL||'https://urban-spectrum-backend-production.up.railway.app').replace(/\/$/,'');
+const GOOGLE_AUTH_URL=(window.GOOGLE_AUTH_URL||'').trim();
+const AUTH_TOKEN_KEY='urbanSpectrumAuthToken';
+const AUTH_SESSION_KEY='urbanSpectrumCurrentUser';
+let landlordIncomeChart;
+let landlordDashboardState={properties:[],selectedProperty:null};
+
+function getAuthToken(){return localStorage.getItem(AUTH_TOKEN_KEY)||''}
+function setAuthToken(token){if(token){localStorage.setItem(AUTH_TOKEN_KEY,token)}else{localStorage.removeItem(AUTH_TOKEN_KEY)}}
+function getCurrentUser(){return JSON.parse(localStorage.getItem(AUTH_SESSION_KEY)||'null')}
+function setCurrentUser(user){if(user){localStorage.setItem(AUTH_SESSION_KEY,JSON.stringify(user))}else{localStorage.removeItem(AUTH_SESSION_KEY)}}
+function normalizeEmail(value){return value.trim().toLowerCase()}
+function formatAccountType(value){const text=String(value||'Tenant').toLowerCase();return text.charAt(0).toUpperCase()+text.slice(1)}
+function getDisplayName(user){return [user.firstName,user.lastName].filter(Boolean).join(' ').trim()||user.email}
+function toggleMenu(){document.getElementById('mobNav').classList.toggle('open')}
+function openAuthModal(){document.getElementById('authModal').classList.add('open');document.getElementById('authModal').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';renderAuthState()}
+function closeAuthModal(){document.getElementById('authModal').classList.remove('open');document.getElementById('authModal').setAttribute('aria-hidden','true');document.body.style.overflow='';clearAuthMessage()}
+function clearFieldErrors(){document.querySelectorAll('.auth-field input,.auth-field select').forEach(field=>field.classList.remove('invalid'))}
+function showAuthMessage(message,type='error'){const box=document.getElementById('authFeedback');box.textContent=message;box.className='auth-feedback show '+type}
+function clearAuthMessage(){const box=document.getElementById('authFeedback');if(box){box.textContent='';box.className='auth-feedback'}}
+function showToast(message){const toast=document.getElementById('authToast');toast.textContent=message;toast.classList.add('show');clearTimeout(window.authToastTimer);window.authToastTimer=setTimeout(()=>toast.classList.remove('show'),2600)}
+function setFieldError(input,message){if(input)input.classList.add('invalid');showAuthMessage(message,'error')}
+function setSession(token,user){setAuthToken(token);setCurrentUser(user)}
+function clearSession(){setAuthToken('');setCurrentUser(null)}
+function isLandlord(user){return String(user?.accountType||'').toLowerCase()==='landlord'}
+
+async function apiFetch(path,{method='GET',body,auth=false,headers={}}={}){
+  const requestHeaders={...headers};
+  if(body!==undefined)requestHeaders['Content-Type']='application/json';
+  if(auth&&getAuthToken())requestHeaders.Authorization=`Bearer ${getAuthToken()}`;
+  const response=await fetch(`${API_URL}${path}`,{
+    method,
+    headers:requestHeaders,
+    body:body!==undefined?JSON.stringify(body):undefined
+  });
+  const text=await response.text();
+  let data={};
+  if(text){
+    try{data=JSON.parse(text)}catch(error){data={message:text}}
+  }
+  if(!response.ok){
+    throw new Error(data.message||'Something went wrong while contacting the Urban Spectrum API.');
+  }
+  return data;
+}
+
+function switchAuthMode(mode){
+  const loginMode=mode==='login';
+  document.querySelectorAll('.auth-tab').forEach(btn=>btn.classList.toggle('active',btn.dataset.mode===mode));
+  document.getElementById('loginForm').classList.toggle('active',loginMode);
+  document.getElementById('registerForm').classList.toggle('active',!loginMode);
+  document.getElementById('authTitle').textContent=loginMode?'Welcome back':'Create your account';
+  document.querySelector('.auth-top p').textContent=loginMode?'Choose a quick sign-in method or continue with your email address.':'Register in seconds with your email, then come back any time from the profile button.';
+  clearAuthMessage();
+  clearFieldErrors();
+}
+
+function prefillUserFacingForms(user){
+  if(!user)return;
+  const contactForm=document.getElementById('contactForm');
+  if(contactForm){
+    const firstNameInput=contactForm.querySelector('input[name="firstName"]');
+    const lastNameInput=contactForm.querySelector('input[name="lastName"]');
+    const emailInput=contactForm.querySelector('input[name="email"]');
+    if(firstNameInput)firstNameInput.value=user.firstName||'';
+    if(lastNameInput)lastNameInput.value=user.lastName||'';
+    if(emailInput)emailInput.value=user.email||'';
+  }
+  const viewingName=document.getElementById('viewingName');
+  const viewingEmail=document.getElementById('viewingEmail');
+  if(viewingName)viewingName.value=getDisplayName(user);
+  if(viewingEmail)viewingEmail.value=user.email||'';
+}
+
+async function renderAuthState(){
+  const user=getCurrentUser();
+  const trigger=document.getElementById('accountTrigger');
+  const userBar=document.getElementById('authUserBar');
+  const name=document.getElementById('accountName');
+  const userText=document.getElementById('authUserText');
+  const dashboard=document.getElementById('landlordDashboard');
+  if(user){
+    trigger.classList.add('logged-in');
+    trigger.setAttribute('aria-label','Open account for '+getDisplayName(user));
+    name.textContent=getDisplayName(user);
+    userBar.style.display='flex';
+    userText.textContent=`${getDisplayName(user)} is signed in as ${formatAccountType(user.accountType)} with ${user.email}`;
+    prefillUserFacingForms(user);
+    if(isLandlord(user)){
+      dashboard.classList.add('active');
+      await loadLandlordDashboard();
+    }else{
+      dashboard.classList.remove('active');
+      await hydrateLatestTicket();
+    }
+  }else{
+    trigger.classList.remove('logged-in');
+    trigger.setAttribute('aria-label','Open account options');
+    name.textContent='Account';
+    userBar.style.display='none';
+    dashboard.classList.remove('active');
+  }
+}
+
+function logoutUser(){
+  clearSession();
+  renderAuthState();
+  switchAuthMode('login');
+  showToast('You have been logged out.');
+}
+
+function getOAuthReturnUrl(){
+  return `${window.location.origin}${window.location.pathname}`;
+}
+
+async function consumeOAuthCallback(){
+  const params=new URLSearchParams(window.location.search);
+  const hasOauthParams=params.has('token')||params.has('authToken')||params.has('error')||params.has('oauth');
+  if(!hasOauthParams)return;
+  const token=params.get('token')||params.get('authToken')||'';
+  const error=params.get('error');
+  const provider=(params.get('provider')||'Google').trim()||'Google';
+  const userPayload=params.get('user');
+  if(error){
+    showToast(`${provider} sign-in failed. Please try again.`);
+    history.replaceState({},document.title,getOAuthReturnUrl());
+    return;
+  }
+  if(token){
+    let user=null;
+    if(userPayload){
+      try{user=JSON.parse(userPayload)}catch(parseError){}
+    }
+    setSession(token,user);
+    await renderAuthState();
+    showToast(`${provider} sign-in successful.`);
+    history.replaceState({},document.title,getOAuthReturnUrl());
+    return;
+  }
+  history.replaceState({},document.title,getOAuthReturnUrl());
+}
+
+function handleSocialAuth(provider){
+  if(provider==='Google'){
+    if(!GOOGLE_AUTH_URL){
+      showAuthMessage('Google sign-in is not configured on the backend yet. Please continue with email/password for now.','error');
+      return;
+    }
+    const oauthUrl=new URL(GOOGLE_AUTH_URL,API_URL);
+    const returnUrl=getOAuthReturnUrl();
+    oauthUrl.searchParams.set('redirectUri',returnUrl);
+    oauthUrl.searchParams.set('redirect',returnUrl);
+    window.location.href=oauthUrl.toString();
+    return;
+  }
+  clearAuthMessage();
+  showToast(`${provider} sign-in is coming soon.`);
+}
+
+async function bootstrapSession(){
+  const token=getAuthToken();
+  if(!token){
+    clearSession();
+    renderAuthState();
+    return;
+  }
+  try{
+    const data=await apiFetch('/api/auth/me',{auth:true});
+    setCurrentUser(data.user);
+  }catch(error){
+    clearSession();
+    showToast('Your session expired. Please sign in again.');
+  }
+  await renderAuthState();
+}
+
+async function handleAuthSubmit(e,label){
+  e.preventDefault();
+  clearAuthMessage();
+  clearFieldErrors();
+  const form=e.target;
+  const btn=form.querySelector('.auth-submit');
+  const original=btn.textContent;
+  const data=new FormData(form);
+  const email=normalizeEmail((data.get('email')||'').toString());
+  const password=(data.get('password')||'').toString();
+  btn.disabled=true;
+  btn.textContent=label==='Register'?'Creating Account...':'Signing In...';
+  try{
+    if(label==='Register'){
+      const firstName=(data.get('firstName')||'').toString().trim();
+      const lastName=(data.get('lastName')||'').toString().trim();
+      const accountType=(data.get('accountType')||'').toString().trim();
+      const confirmPassword=(data.get('confirmPassword')||'').toString();
+      if(password.length<6){throw new Error('Use at least 6 characters for the password.')}
+      if(password!==confirmPassword){throw new Error('Passwords do not match yet.')}
+      const response=await apiFetch('/api/auth/register',{
+        method:'POST',
+        body:{firstName,lastName,email,password,accountType}
+      });
+      setSession(response.token,response.user);
+      await renderAuthState();
+      showAuthMessage('Your account is ready. You are now signed in.','success');
+      showToast('Account created successfully.');
+      form.reset();
+      closeAuthModal();
+      switchAuthMode('login');
+      return;
+    }
+    const response=await apiFetch('/api/auth/login',{
+      method:'POST',
+      body:{email,password}
+    });
+    setSession(response.token,response.user);
+    await renderAuthState();
+    showAuthMessage('Welcome back. Your profile is ready.','success');
+    showToast('Signed in successfully.');
+    form.reset();
+    closeAuthModal();
+  }catch(error){
+    if(label==='Register'&&String(error.message).toLowerCase().includes('passwords do not match')){
+      setFieldError(form.querySelector('input[name="confirmPassword"]'),error.message);
+      return;
+    }
+    if(String(error.message).toLowerCase().includes('password')){
+      setFieldError(form.querySelector('input[name="password"]'),error.message);
+      return;
+    }
+    if(String(error.message).toLowerCase().includes('email')||String(error.message).toLowerCase().includes('account')){
+      setFieldError(form.querySelector('input[name="email"]'),error.message);
+      return;
+    }
+    showAuthMessage(error.message,'error');
+  }finally{
+    btn.disabled=false;
+    btn.textContent=original;
+  }
+}
+
+async function requestPasswordReset(){
+  clearAuthMessage();
+  const emailInput=document.querySelector('#loginForm input[name="email"]');
+  const email=normalizeEmail(emailInput?.value||'');
+  if(!email){
+    setFieldError(emailInput,'Enter your email address first so we can send the reset link.');
+    return;
+  }
+  try{
+    const response=await apiFetch('/api/auth/forgot-password',{
+      method:'POST',
+      body:{email}
+    });
+    const preview=response.preview?` Dev preview: ${response.preview}`:'';
+    showAuthMessage(response.message+preview,'success');
+    showToast('Password reset request sent.');
+  }catch(error){
+    showAuthMessage(error.message,'error');
+  }
+}
+
+async function handleSubmit(e){
+  e.preventDefault();
+  const form=e.target;
+  const submitBtn=document.getElementById('submitBtn');
+  const original=submitBtn.textContent;
+  submitBtn.textContent='Sending...';
+  submitBtn.disabled=true;
+  try{
+    const firstName=form.querySelector('input[name="firstName"]').value.trim();
+    const lastName=form.querySelector('input[name="lastName"]').value.trim();
+    const email=form.querySelector('input[name="email"]').value.trim();
+    const phone=form.querySelector('input[name="phone"]').value.trim();
+    const enquiryType=form.querySelector('select[name="enquiryType"]').value;
+    const propertyAddress=form.querySelector('input[name="propertyAddress"]').value.trim();
+    const message=form.querySelector('textarea[name="message"]').value.trim();
+    await apiFetch('/api/contact',{
+      method:'POST',
+      body:{
+        name:[firstName,lastName].filter(Boolean).join(' '),
+        email,
+        phone,
+        enquiryType,
+        propertyAddress,
+        message
+      }
+    });
+    submitBtn.textContent='Enquiry Sent ✓';
+    submitBtn.style.background='#2d7a4f';
+    showToast('Your enquiry has been sent.');
+    form.reset();
+    prefillUserFacingForms(getCurrentUser());
+  }catch(error){
+    showToast(error.message);
+  }finally{
+    setTimeout(()=>{
+      submitBtn.textContent=original;
+      submitBtn.style.background='';
+      submitBtn.disabled=false;
+    },2400);
+  }
+}
+const propertyData=[
+  {
+    title:'Balham High Road Apartment',
+    area:'Balham, SW12',
+    beds:'2 Beds',
+    baths:'2 Baths',
+    price:'£2,450 pcm',
+    epc:'B',
+    image:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1200&q=80',
+    tour:'#'
+  },
+  {
+    title:'Clapham Investment Townhouse',
+    area:'Clapham, SW4',
+    beds:'4 Beds',
+    baths:'3 Baths',
+    price:'£4,900 pcm',
+    epc:'C',
+    image:'https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200&q=80',
+    tour:'#'
+  },
+  {
+    title:'Riverside Canary Wharf Let',
+    area:'Canary Wharf, E14',
+    beds:'3 Beds',
+    baths:'2 Baths',
+    price:'£3,850 pcm',
+    epc:'B',
+    image:'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1200&q=80',
+    tour:'#'
+  }
+];
+function renderPropertyCards(){
+  const grid=document.getElementById('portfolioGrid');
+  if(!grid)return;
+  grid.innerHTML=propertyData.map(property=>`
+    <article class="portfolio-card">
+      <div class="portfolio-media">
+        <img src="${property.image}" alt="${property.title}">
+        <div class="portfolio-overlay">
+          <div class="portfolio-price">${property.price}</div>
+          <div class="epc-badge">EPC ${property.epc}</div>
+        </div>
+      </div>
+      <div class="portfolio-body">
+        <h3>${property.title}</h3>
+        <p class="tool-note">${property.area} managed by Urban Spectrum with compliance-ready documentation and premium presentation.</p>
+        <div class="portfolio-meta">
+          <span>${property.beds}</span>
+          <span>${property.baths}</span>
+          <span>UK Compliant Listing</span>
+        </div>
+        <div class="portfolio-actions">
+          <a class="portfolio-btn secondary" href="${property.tour}">Virtual Tour</a>
+          <button class="portfolio-btn primary" type="button" onclick="openViewingModal('${property.title.replace(/'/g,"&#39;")}')">Book Viewing</button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+function formatCurrency(value){
+  return new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP',maximumFractionDigits:0}).format(value);
+}
+function handleYieldCalculator(e){
+  e.preventDefault();
+  const monthlyRent=Number(document.getElementById('monthlyRent').value||0);
+  const managementFee=Number(document.getElementById('managementFee').value||0);
+  const maintenanceCost=Number(document.getElementById('maintenanceCost').value||0);
+  const propertyValue=Number(document.getElementById('propertyValue').value||0);
+  const grossAnnual=monthlyRent*12;
+  const managementAnnual=grossAnnual*(managementFee/100);
+  const totalCosts=managementAnnual+maintenanceCost;
+  const netAnnual=grossAnnual-totalCosts;
+  const netYield=propertyValue>0?(netAnnual/propertyValue)*100:0;
+  document.getElementById('grossAnnualRent').textContent=formatCurrency(grossAnnual);
+  document.getElementById('annualCosts').textContent=formatCurrency(totalCosts);
+  document.getElementById('annualNetIncome').textContent=formatCurrency(netAnnual);
+  document.getElementById('netYieldPill').textContent=`${netYield.toFixed(2)}%`;
+  document.getElementById('yieldSummary').textContent=`Projected annual net income after a ${managementFee.toFixed(1)}% management fee and ${formatCurrency(maintenanceCost)} maintenance allowance.`;
+  document.getElementById('yieldEmptyState').classList.add('hidden');
+  const card=document.getElementById('yieldResultCard');
+  card.classList.remove('hidden','translate-y-4','opacity-0');
+}
+function generateTicketId(){
+  return `US-${Math.floor(1000+Math.random()*9000)}`;
+}
+async function hydrateLatestTicket(){
+  if(!getAuthToken())return;
+  try{
+    const response=await apiFetch('/api/maintenance',{auth:true});
+    if(response.tickets&&response.tickets.length){
+      const latest=response.tickets[0];
+      document.getElementById('ticketIdDisplay').textContent=latest.ticketId;
+      document.getElementById('ticketStatusText').textContent=`${formatAccountType(latest.urgency)} ${latest.category.toLowerCase()} request logged on ${new Date(latest.createdAt).toLocaleDateString('en-GB')}.`;
+    }
+  }catch(error){}
+}
+async function handleMaintenanceRequest(e){
+  e.preventDefault();
+  if(!getAuthToken()){
+    openAuthModal();
+    switchAuthMode('login');
+    showAuthMessage('Please sign in as a tenant before submitting a maintenance request.','error');
+    return;
+  }
+  const form=e.target;
+  const category=document.getElementById('issueCategory').value;
+  const urgency=document.getElementById('issueUrgency').value;
+  const description=document.getElementById('issueDescription').value.trim();
+  try{
+    const response=await apiFetch('/api/maintenance',{
+      method:'POST',
+      auth:true,
+      body:{category,urgency,description}
+    });
+    const ticket=response.ticket?.ticketId||generateTicketId();
+    document.getElementById('ticketIdDisplay').textContent=ticket;
+    document.getElementById('ticketStatusText').textContent=`${urgency} ${category.toLowerCase()} request received. Reference ${ticket} is ready for your records and contractor coordination.`;
+    form.reset();
+    showToast(`Maintenance ticket created: ${ticket}`);
+  }catch(error){
+    showToast(error.message);
+  }
+}
+function openViewingModal(propertyTitle){
+  document.getElementById('viewingProperty').value=propertyTitle;
+  document.getElementById('viewingMessage').value=`I would like to arrange a viewing for ${propertyTitle}.`;
+  prefillUserFacingForms(getCurrentUser());
+  document.getElementById('viewingModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeViewingModal(){
+  document.getElementById('viewingModal').classList.remove('open');
+  if(!document.getElementById('authModal').classList.contains('open'))document.body.style.overflow='';
+}
+function populatePropertySwitcher(properties,selectedPropertyId){
+  const switcher=document.getElementById('dashboardPropertySwitcher');
+  switcher.innerHTML=properties.map(property=>`<option value="${property.id}" ${property.id===selectedPropertyId?'selected':''}>${property.title}</option>`).join('');
+}
+function renderDocumentVault(items){
+  const table=document.getElementById('documentVaultTable');
+  table.innerHTML=items.map(item=>`
+    <tr>
+      <td class="px-4 py-4">
+        <div class="flex items-center gap-3">
+          <span class="rounded-full bg-amber-50 p-2 text-amber-700"><i data-lucide="file-text" class="h-4 w-4"></i></span>
+          <span class="font-['DM_Sans'] text-sm text-slate-800">${item.name}</span>
+        </div>
+      </td>
+      <td class="px-4 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">PDF</td>
+      <td class="px-4 py-4 text-right">
+        <button type="button" class="text-[11px] font-bold uppercase tracking-[0.16em] text-amber-700" onclick="downloadDashboardDocument('${item.fileUrl}','${item.name.replace(/'/g,"&#39;")}')">Download</button>
+      </td>
+    </tr>
+  `).join('');
+}
+async function downloadDashboardDocument(fileUrl,documentName){
+  try{
+    const response=await fetch(fileUrl,{
+      headers:{Authorization:`Bearer ${getAuthToken()}`}
+    });
+    if(!response.ok)throw new Error('Unable to download that document right now.');
+    const blob=await response.blob();
+    const objectUrl=URL.createObjectURL(blob);
+    const link=document.createElement('a');
+    link.href=objectUrl;
+    link.download=`${documentName}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(objectUrl);
+  }catch(error){
+    showToast(error.message);
+  }
+}
+function renderLandlordChart(incomeSeries){
+  const ctx=document.getElementById('landlordIncomeChart');
+  if(!ctx)return;
+  const labels=incomeSeries.map(entry=>entry.monthLabel);
+  if(landlordIncomeChart)landlordIncomeChart.destroy();
+  landlordIncomeChart=new Chart(ctx,{
+    type:'line',
+    data:{
+      labels,
+      datasets:[{
+        label:'Monthly Rental Income',
+        data:incomeSeries.map(entry=>entry.income),
+        borderColor:getComputedStyle(document.documentElement).getPropertyValue('--navy').trim(),
+        backgroundColor:'rgba(14,30,46,.08)',
+        pointBackgroundColor:getComputedStyle(document.documentElement).getPropertyValue('--gold').trim(),
+        pointBorderColor:'#fff',
+        pointRadius:5,
+        pointHoverRadius:6,
+        borderWidth:3,
+        tension:.35,
+        fill:true
+      }]
+    },
+    options:{
+      maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        y:{
+          ticks:{callback:value=>`£${value.toLocaleString('en-GB')}`,font:{family:'DM Sans'}},
+          grid:{color:'rgba(14,30,46,.08)'}
+        },
+        x:{
+          ticks:{font:{family:'DM Sans'}},
+          grid:{display:false}
+        }
+      }
+    }
+  });
+}
+function updateLandlordDashboard(selectedProperty){
+  if(!selectedProperty)return;
+  document.getElementById('dashboardPortfolioValue').textContent=formatCurrency(selectedProperty.portfolioValue);
+  document.getElementById('dashboardOccupancyRate').textContent=`${selectedProperty.occupancyRate}%`;
+  document.getElementById('dashboardMaintenanceCount').textContent=`${selectedProperty.activeMaintenance} Open ${selectedProperty.activeMaintenance===1?'Ticket':'Tickets'}`;
+  renderDocumentVault(selectedProperty.documents||[]);
+  renderLandlordChart(selectedProperty.monthlyIncome||[]);
+  if(window.lucide)lucide.createIcons();
+}
+async function loadLandlordDashboard(propertyId=''){
+  if(!getAuthToken())return;
+  try{
+    const query=propertyId?`?propertyId=${encodeURIComponent(propertyId)}`:'';
+    const data=await apiFetch(`/api/dashboard/landlord${query}`,{auth:true});
+    landlordDashboardState=data;
+    if(!data.properties.length){
+      document.getElementById('dashboardPortfolioValue').textContent='£0';
+      document.getElementById('dashboardOccupancyRate').textContent='0%';
+      document.getElementById('dashboardMaintenanceCount').textContent='0 Open Tickets';
+      document.getElementById('documentVaultTable').innerHTML='<tr><td colspan="3" class="px-4 py-5 text-sm text-stone-500">No landlord portfolio data is available yet.</td></tr>';
+      if(landlordIncomeChart)landlordIncomeChart.destroy();
+      return;
+    }
+    populatePropertySwitcher(data.properties,data.selectedProperty?.id);
+    updateLandlordDashboard(data.selectedProperty);
+  }catch(error){
+    showToast(error.message);
+  }
+}
+function initializeLandlordDashboard(user){
+  const switcher=document.getElementById('dashboardPropertySwitcher');
+  const preferred=(user&&user.dashboardProperty)||landlordDashboardState.selectedProperty?.id||switcher.value||'';
+  loadLandlordDashboard(preferred);
+}
+async function handleViewingRequest(e){
+  e.preventDefault();
+  const propertyTitle=document.getElementById('viewingProperty').value;
+  try{
+    await apiFetch('/api/viewings',{
+      method:'POST',
+      body:{
+        propertyTitle,
+        preferredDate:document.getElementById('viewingDate').value,
+        name:document.getElementById('viewingName').value.trim(),
+        email:document.getElementById('viewingEmail').value.trim(),
+        phone:document.getElementById('viewingPhone').value.trim(),
+        message:document.getElementById('viewingMessage').value.trim()
+      }
+    });
+    e.target.reset();
+    closeViewingModal();
+    showToast(`Viewing request sent for ${propertyTitle}`);
+    const contactForm=document.getElementById('contactForm');
+    if(contactForm){
+      const enquiryType=contactForm.querySelector('select[name="enquiryType"]');
+      const propertyAddressField=contactForm.querySelector('input[name="propertyAddress"]');
+      const messageField=contactForm.querySelector('textarea[name="message"]');
+      if(enquiryType)enquiryType.value='Tenant — looking for a property';
+      if(propertyAddressField)propertyAddressField.value=propertyTitle;
+      if(messageField)messageField.value=`Viewing request submitted for ${propertyTitle}. Please confirm the next available appointment options.`;
+    }
+  }catch(error){
+    showToast(error.message);
+  }
+}
+const secs=document.querySelectorAll('[id]');
+const lnks=document.querySelectorAll('.nav-menu a');
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAuthModal();closeViewingModal()}});
+document.getElementById('authModal').addEventListener('click',e=>{if(e.target.id==='authModal')closeAuthModal()});
+document.querySelectorAll('.auth-social').forEach(btn=>btn.addEventListener('click',()=>handleSocialAuth(btn.textContent.replace('Continue with ','').trim())));
+document.getElementById('yieldCalculatorForm').addEventListener('submit',handleYieldCalculator);
+document.getElementById('maintenanceForm').addEventListener('submit',handleMaintenanceRequest);
+document.getElementById('viewingForm').addEventListener('submit',handleViewingRequest);
+if(window.lucide)lucide.createIcons();
+consumeOAuthCallback();
+bootstrapSession();
+</script>
+</body>
+</html>
