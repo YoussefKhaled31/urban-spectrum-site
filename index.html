@@ -79,10 +79,10 @@ nav{
 .nav-brand{line-height:1.2}
 .nav-brand-name{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--navy)}
 .nav-brand-sub{font-size:9.5px;font-weight:600;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase}
-.nav-menu{display:flex;list-style:none;gap:30px}
+.nav-menu{display:flex;flex:1;justify-content:center;list-style:none;gap:30px;min-width:0}
 .nav-menu a{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:#555;transition:color .2s}
 .nav-menu a:hover{color:var(--gold)}
-.nav-actions{display:flex;align-items:center;gap:12px}
+.nav-actions{display:flex;align-items:center;gap:12px;flex-shrink:0;position:relative;z-index:1}
 .nav-btns{display:flex;gap:10px;align-items:center}
 .account-trigger{width:46px;height:46px;border:1.5px solid var(--border);border-radius:50%;background:linear-gradient(180deg,#fff 0%,var(--cream) 100%);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;box-shadow:0 8px 18px rgba(14,30,46,.06);position:relative}
 .account-trigger svg{width:18px;height:18px;stroke:var(--navy);fill:none;stroke-width:1.8}
@@ -1848,14 +1848,16 @@ window.addEventListener('scroll', () => { bttBtn.classList.toggle('show', window
 const pageFade = document.getElementById('pageFade');
 document.querySelectorAll('a[href]').forEach(link => {
   const href = link.getAttribute('href');
-  if(!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('http') || href.startsWith('https')) return;
+  if(!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('http') || href.startsWith('https') || href.includes('#')) return;
   link.addEventListener('click', e => {
     e.preventDefault();
     pageFade.classList.add('out');
     setTimeout(() => window.location.href = href, 350);
   });
 });
+pageFade.classList.remove('out');
 window.addEventListener('pageshow', () => pageFade.classList.remove('out'));
+window.addEventListener('load', () => pageFade.classList.remove('out'));
 
 </script>
 
