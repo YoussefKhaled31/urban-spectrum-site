@@ -36,15 +36,16 @@ a{text-decoration:none;color:inherit}
 .tdiv{width:1px;height:13px;background:rgba(255,255,255,0.18)}
 
 /* NAV */
-nav{position:fixed;top:42px;left:0;right:0;z-index:199;background:#fff;border-bottom:2px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:76px;gap:20px}
-.nav-brand{line-height:1.2;flex-shrink:0;min-width:170px}
+nav{position:fixed;top:42px;left:0;right:0;z-index:199;background:#fff;border-bottom:2px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:76px}
+.nav-brand{line-height:1.2}
 .nav-brand-name{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--navy)}
 .nav-brand-sub{font-size:9.5px;font-weight:600;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase}
-.nav-menu{display:flex;flex:1;justify-content:center;list-style:none;gap:22px;min-width:0}
+.nav-menu{display:flex;flex:1;justify-content:center;list-style:none;gap:30px;min-width:0}
 .nav-menu a{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:#555;transition:color .2s}
 .nav-menu a:hover,.nav-menu a.active{color:var(--gold)}
 .nav-actions{display:flex;align-items:center;gap:12px;flex-shrink:0;position:relative;z-index:1}
 .nav-btns{display:flex;gap:10px;align-items:center}
+.nav-spacer{width:46px;height:46px;flex-shrink:0;visibility:hidden}
 .nbtn-outline{border:1.5px solid var(--navy);color:var(--navy);padding:9px 20px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;transition:all .2s}
 .nbtn-outline:hover{background:var(--navy);color:#fff}
 .nbtn-fill{background:var(--gold);color:#fff;padding:10px 22px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:1.5px solid var(--gold);transition:all .2s}
@@ -279,6 +280,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
       <a href="tel:+442087729552" class="nbtn-outline">Call Us</a>
       <a href="index.html#contact" class="nbtn-fill">Free Valuation</a>
     </div>
+    <div class="nav-spacer" aria-hidden="true"></div>
     <div class="hbg" onclick="document.getElementById('mobNav').classList.toggle('open')"><span></span><span></span><span></span></div>
   </div>
 </nav>
