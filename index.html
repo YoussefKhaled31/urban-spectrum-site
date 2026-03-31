@@ -43,7 +43,9 @@ a{text-decoration:none;color:inherit}
 
 
 /* PAGE TRANSITION */
-[data-barba="container"]{opacity:1;transform:translateY(0)}
+[data-barba="wrapper"]{position:relative}
+[data-barba="container"]{width:100%;opacity:1;transform:translateY(0)}
+[data-barba="container"].is-transitioning{position:absolute;inset:0;width:100%}
 .fade-out{animation:fadeOut .26s ease forwards}
 .fade-in{animation:fadeIn .32s ease forwards}
 @keyframes fadeOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(12px)}}
