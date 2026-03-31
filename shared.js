@@ -69,36 +69,21 @@
       },
       transitions: [{
         name: 'urban-cross-fade',
-        beforeLeave(data) {
-          const wrapper = data.current.container.parentNode;
-          if (wrapper) wrapper.style.height = `${data.current.container.offsetHeight}px`;
-        },
         async leave(data) {
-          data.current.container.classList.add('is-transitioning', 'fade-out');
+          data.current.container.classList.add('fade-out');
           await new Promise(resolve => setTimeout(resolve, 260));
         },
         enter(data) {
-          window.scrollTo(0, 0);
           data.next.container.classList.add('fade-in');
+          window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         },
         once(data) {
-          window.scrollTo(0, 0);
           data.next.container.classList.add('fade-in');
-        },
-        afterEnter(data) {
-          data.next.container.classList.remove('is-transitioning');
-          const wrapper = data.next.container.parentNode;
-          if (wrapper) wrapper.style.height = '';
         }
       }]
     });
 
-    window.barba.hooks.enter(() => {
-      window.scrollTo(0, 0);
-    });
-
     window.barba.hooks.afterEnter((data) => {
-      data.current?.container?.classList.remove('is-transitioning', 'fade-out');
       window.UrbanBarba.closeMobileNav();
       runPageInit(data.next.namespace);
     });
