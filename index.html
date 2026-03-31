@@ -39,6 +39,24 @@ a{text-decoration:none;color:inherit}
 .cookie-decline{background:transparent;color:rgba(255,255,255,.5);border:1.5px solid rgba(255,255,255,.2);padding:11px 20px;font:600 11px 'DM Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s}
 .cookie-decline:hover{border-color:rgba(255,255,255,.5);color:rgba(255,255,255,.8)}
 
+
+/* PAGE TRANSITION */
+.page-fade{position:fixed;inset:0;background:#fff;z-index:9999;pointer-events:none;opacity:0;transition:opacity .35s ease}
+.page-fade.out{opacity:1;pointer-events:auto}
+
+/* WHATSAPP BUTTON */
+.wa-btn{position:fixed;bottom:24px;left:24px;z-index:250;width:56px;height:56px;border-radius:50%;background:#25D366;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(37,211,102,.4);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;text-decoration:none}
+.wa-btn:hover{transform:scale(1.08);box-shadow:0 12px 32px rgba(37,211,102,.5)}
+.wa-btn svg{width:28px;height:28px;fill:#fff}
+.wa-tooltip{position:absolute;left:68px;background:var(--navy);color:#fff;padding:8px 14px;font-size:12px;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border-radius:4px}
+.wa-btn:hover .wa-tooltip{opacity:1}
+
+/* BACK TO TOP */
+.btt{position:fixed;bottom:24px;right:24px;z-index:250;width:46px;height:46px;background:var(--navy);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:0 8px 24px rgba(14,30,46,.25)}
+.btt.show{opacity:1;pointer-events:auto}
+.btt:hover{background:var(--gold);transform:translateY(-3px)}
+.btt svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.5}
+
 /* TOP BAR */
 .topbar{
   background:var(--navy);padding:0 5vw;
@@ -491,13 +509,14 @@ footer{background:var(--navy);padding:60px 5vw 0}
 </style>
 </head>
 <body>
+<div class="page-fade" id="pageFade"></div>
 
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-side">
     <a href="tel:+442087729552" class="hot">+44 (0)20 8772 9552</a>
     <div class="tdiv"></div>
-    <a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a>
+    <a href="/cdn-cgi/l/email-protection#4c25222a230c393e2e2d223f3c292f383e3921622f23623927"><span class="__cf_email__" data-cfemail="650c0b030a25101707040b16150006111710084b060a4b100e">[email&#160;protected]</span></a>
     <div class="tdiv"></div>
     <a>114 Balham High Rd, London SW12 9AA</a>
   </div>
@@ -1088,7 +1107,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
       </div>
       <div class="cblk">
         <div class="cblk-lbl">Email</div>
-        <h4><a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a></h4>
+        <h4><a href="/cdn-cgi/l/email-protection#fe97909891be8b8c9c9f908d8e9b9d8a8c8b93d09d91d08b95"><span class="__cf_email__" data-cfemail="553c3b333a15202737343b26253036212720387b363a7b203e">[email&#160;protected]</span></a></h4>
       </div>
       <div class="cblk">
         <div class="cblk-lbl">Office Hours</div>
@@ -1220,7 +1239,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
     </div>
     <div class="f-col">
       <h4>Contact</h4>
-      <address>114 Balham High Road<br>London SW12 9AA<br>United Kingdom<br><br><a href="tel:+442087729552">+44 (0)20 8772 9552</a><br><a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a></address>
+      <address>114 Balham High Road<br>London SW12 9AA<br>United Kingdom<br><br><a href="tel:+442087729552">+44 (0)20 8772 9552</a><br><a href="/cdn-cgi/l/email-protection#7c15121a133c090e1e1d120f0c191f080e0911521f13520917"><span class="__cf_email__" data-cfemail="bdd4d3dbd2fdc8cfdfdcd3cecdd8dec9cfc8d093ded293c8d6">[email&#160;protected]</span></a></address>
     </div>
   </div>
   <div class="f-bottom">
@@ -1229,7 +1248,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const API_URL=(window.API_URL||'https://urban-spectrum-backend-production.up.railway.app').replace(/\/$/,'');
 const GOOGLE_AUTH_URL=(window.GOOGLE_AUTH_URL||'').trim();
 const AUTH_TOKEN_KEY='urbanSpectrumAuthToken';
@@ -1821,18 +1840,24 @@ document.getElementById('viewingForm').addEventListener('submit',handleViewingRe
 if(window.lucide)lucide.createIcons();
 consumeOAuthCallback();
 bootstrapSession();
+
+const bttBtn = document.getElementById('btt');
+window.addEventListener('scroll', () => { bttBtn.classList.toggle('show', window.scrollY > 400); });
+
+// Page transition
+const pageFade = document.getElementById('pageFade');
+document.querySelectorAll('a[href]').forEach(link => {
+  const href = link.getAttribute('href');
+  if(!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('http') || href.startsWith('https')) return;
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    pageFade.classList.add('out');
+    setTimeout(() => window.location.href = href, 350);
+  });
+});
+window.addEventListener('pageshow', () => pageFade.classList.remove('out'));
+
 </script>
 
 <!-- COOKIE BANNER -->
-<div class="cookie-banner" id="cookieBanner">
-  <div class="cookie-text">
-    <p><strong>We use cookies</strong> to enhance your experience on our website. By continuing to browse, you agree to our use of cookies in accordance with our <a href="#">Privacy Policy</a>. We do not sell your personal data.</p>
-  </div>
-  <div class="cookie-actions">
-    <button class="cookie-accept" onclick="acceptCookies()">Accept All</button>
-    <button class="cookie-decline" onclick="declineCookies()">Essential Only</button>
-  </div>
-</div>
-
-</body>
-</html>
+<di
