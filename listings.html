@@ -783,17 +783,20 @@ const bttBtn = document.getElementById('btt');
 window.addEventListener('scroll', () => { bttBtn.classList.toggle('show', window.scrollY > 400); });
 
 // Page transition
-const pageFade = document.getElementById('pageFade');
-document.querySelectorAll('a[href]').forEach(link => {
-  const href = link.getAttribute('href');
-  if(!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('http') || href.startsWith('https')) return;
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    pageFade.classList.add('out');
-    setTimeout(() => window.location.href = href, 350);
+window.addEventListener('DOMContentLoaded', () => {
+  const pageFade = document.getElementById('pageFade');
+  if (!pageFade) return;
+  document.querySelectorAll('a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    if(!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('http') || href.startsWith('https') || href.includes('#')) return;
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      pageFade.classList.add('out');
+      setTimeout(() => window.location.href = href, 350);
+    });
   });
+  window.addEventListener('pageshow', () => pageFade.classList.remove('out'));
 });
-window.addEventListener('pageshow', () => pageFade.classList.remove('out'));
 
 
 function acceptCookies(){localStorage.setItem('cookieConsent','accepted');document.getElementById('cookieBanner').classList.remove('show')}
