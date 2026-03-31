@@ -93,13 +93,25 @@
         afterEnter(data) {
           data.current.container.classList.remove('is-transitioning', 'fade-out');
           data.current.container.style.position = '';
+          data.current.container.style.top = '';
+          data.current.container.style.left = '';
+          data.current.container.style.right = '';
+          data.current.container.style.bottom = '';
           data.current.container.style.inset = '';
           data.current.container.style.width = '';
+          data.current.container.style.height = '';
+          data.current.container.style.display = '';
 
           data.next.container.classList.remove('is-transitioning');
           data.next.container.style.position = '';
+          data.next.container.style.top = '';
+          data.next.container.style.left = '';
+          data.next.container.style.right = '';
+          data.next.container.style.bottom = '';
           data.next.container.style.inset = '';
           data.next.container.style.width = '';
+          data.next.container.style.height = '';
+          data.next.container.style.display = '';
 
           const wrapper = data.next.container.parentNode;
           if (wrapper) {
