@@ -4,31 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Urban Spectrum Property Management Ltd — London</title>
-<meta name="description" content="Urban Spectrum Property Management delivers premium London property management, landlord reporting, and investment-grade rental services.">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "RealEstateAgent",
-  "name": "Urban Spectrum Property Management Ltd",
-  "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80",
-  "url": "https://www.urbanspectrum.co.uk/",
-  "telephone": "+44 20 8772 9552",
-  "priceRange": "GBP GBP",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "114 Balham High Road",
-    "addressLocality": "London",
-    "postalCode": "SW12 9AA",
-    "addressCountry": "GB"
-  },
-  "areaServed": "London"
-}
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@sanity/client@6.12.0/dist/index.browser.min.js"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -66,7 +45,7 @@ a{text-decoration:none;color:inherit}
 .page-fade.out{opacity:1;pointer-events:auto}
 
 /* WHATSAPP BUTTON */
-.wa-btn{position:fixed;bottom:44px;left:44px;z-index:250;width:56px;height:56px;border-radius:50%;background:#25D366;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(37,211,102,.4);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;text-decoration:none}
+.wa-btn{position:fixed;bottom:24px;left:24px;z-index:250;width:56px;height:56px;border-radius:50%;background:#25D366;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(37,211,102,.4);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;text-decoration:none}
 .wa-btn:hover{transform:scale(1.08);box-shadow:0 12px 32px rgba(37,211,102,.5)}
 .wa-btn svg{width:28px;height:28px;fill:#fff}
 .wa-tooltip{position:absolute;left:68px;background:var(--navy);color:#fff;padding:8px 14px;font-size:12px;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border-radius:4px}
@@ -82,7 +61,7 @@ a{text-decoration:none;color:inherit}
 .topbar{
   background:var(--navy);padding:0 5vw;
   display:flex;justify-content:space-between;align-items:center;
-  position:fixed;top:0;left:0;right:0;z-index:999;height:42px;
+  position:fixed;top:0;left:0;right:0;z-index:200;height:42px;
 }
 .topbar-side{display:flex;align-items:center;gap:20px}
 .topbar a{font-size:11px;letter-spacing:0.1em;color:rgba(255,255,255,0.6);text-transform:uppercase;font-weight:500;transition:color .2s}
@@ -91,38 +70,30 @@ a{text-decoration:none;color:inherit}
 .tdiv{width:1px;height:13px;background:rgba(255,255,255,0.18)}
 
 /* NAV */
-nav.scrolled{background:var(--navy);box-shadow:0 4px 24px rgba(14,30,46,.18);border-bottom-color:transparent}
-nav.scrolled .nav-brand-name{color:#fff}
-nav.scrolled .nav-brand-sub{color:var(--gold-light)}
-nav.scrolled .nav-menu a{color:rgba(255,255,255,.75)}
-nav.scrolled .nav-menu a:hover{color:var(--gold-light)}
 nav{
-  position:fixed;top:42px;left:0;right:0;z-index:100;
-  background:rgba(11,22,43,.88);border-bottom:1px solid rgba(240,208,120,.12);
+  position:fixed;top:42px;left:0;right:0;z-index:199;
+  background:#fff;border-bottom:2px solid var(--border);
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 5vw;height:76px;backdrop-filter:blur(0);transition:background .28s ease,border-color .28s ease,backdrop-filter .28s ease,box-shadow .28s ease;
+  padding:0 5vw;height:76px;
 }
-.site-nav.scrolled{background:#0B162B;border-bottom-color:rgba(240,208,120,.18);backdrop-filter:blur(12px);box-shadow:0 18px 34px rgba(10,18,28,.22)}
-.hero,.portal,section,.about-wrap,.cta-band,.trust-bar,footer,[id]{scroll-margin-top:130px}
 .nav-brand{line-height:1.2}
-.nav-brand-name{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:#fff;transition:color .28s ease}
-.nav-brand-sub{font-size:9.5px;font-weight:600;letter-spacing:0.22em;color:var(--gold-light);text-transform:uppercase;transition:color .28s ease}
-.nav-menu{list-style:none;gap:30px}
-.nav-menu a{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:rgba(255,255,255,.84);transition:color .2s}
-.nav-menu a:hover{color:var(--gold-light)}
+.nav-brand-name{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--navy)}
+.nav-brand-sub{font-size:9.5px;font-weight:600;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase}
+.nav-menu{display:flex;list-style:none;gap:30px}
+.nav-menu a{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:#555;transition:color .2s}
+.nav-menu a:hover{color:var(--gold)}
 .nav-actions{display:flex;align-items:center;gap:12px}
-.nav-btns{gap:10px;align-items:center}
-.account-trigger{width:46px;height:46px;border:1.5px solid rgba(255,255,255,.22);border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;box-shadow:0 8px 18px rgba(14,30,46,.06);position:relative;backdrop-filter:blur(10px)}
-.account-trigger svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:1.8}
-.account-trigger:hover{border-color:var(--gold-light);transform:translateY(-1px);box-shadow:0 10px 20px rgba(14,30,46,.1);background:rgba(255,255,255,.12)}
-.account-trigger:hover svg{stroke:var(--gold-light)}
-.nbtn-outline{border:1.5px solid rgba(255,255,255,.45);color:#fff;padding:9px 20px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;transition:all .2s;background:transparent}
-.nbtn-outline:hover{background:rgba(255,255,255,.12);border-color:var(--gold-light);color:#fff}
+.nav-btns{display:flex;gap:10px;align-items:center}
+.account-trigger{width:46px;height:46px;border:1.5px solid var(--border);border-radius:50%;background:linear-gradient(180deg,#fff 0%,var(--cream) 100%);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;box-shadow:0 8px 18px rgba(14,30,46,.06);position:relative}
+.account-trigger svg{width:18px;height:18px;stroke:var(--navy);fill:none;stroke-width:1.8}
+.account-trigger:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:0 10px 20px rgba(14,30,46,.1)}
+.account-trigger:hover svg{stroke:var(--gold)}
+.nbtn-outline{border:1.5px solid var(--navy);color:var(--navy);padding:9px 20px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;transition:all .2s}
+.nbtn-outline:hover{background:var(--navy);color:#fff}
 .nbtn-fill{background:var(--gold);color:#fff;padding:10px 22px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:1.5px solid var(--gold);transition:all .2s}
 .nbtn-fill:hover{background:#9a7d20;border-color:#9a7d20}
-.hbg{cursor:pointer;background:none;border:none;padding:0}
-.hbg span{width:22px;height:2px;background:#fff;display:block;transition:background .28s ease}
-.hbg span + span{margin-top:5px}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hbg span{width:22px;height:2px;background:var(--navy);display:block}
 .mob-nav{display:none;position:fixed;top:118px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);flex-direction:column;z-index:198;padding:16px 5vw;box-shadow:0 6px 20px rgba(0,0,0,.07)}
 .mob-nav.open{display:flex}
 .mob-nav a,.mob-auth{font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--navy);padding:13px 0;border-bottom:1px solid var(--border)}
@@ -130,10 +101,10 @@ nav{
 .mob-auth{display:none;width:100%;background:none;border:none;text-align:left;font-family:'DM Sans',sans-serif;cursor:pointer}
 
 /* AUTH MODAL */
-.auth-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:40px 20px;overflow-y:auto;z-index:9999}
+.auth-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:28px;z-index:260}
 .auth-modal.open{display:flex}
 .auth-backdrop{position:absolute;inset:0;background:rgba(7,14,22,.52);backdrop-filter:blur(10px)}
-.auth-panel{position:relative;width:95%;max-width:800px;max-height:90vh;height:auto;margin:auto;overflow-y:auto;overflow-x:hidden;background:linear-gradient(180deg,#fff 0%,#fdfbf7 100%);border:1px solid rgba(14,30,46,.08);border-radius:28px;box-shadow:0 40px 100px rgba(10,18,28,.24);display:grid;grid-template-columns:minmax(300px,.92fr) minmax(0,1.08fr)}
+.auth-panel{position:relative;width:min(100%,1040px);max-height:min(88vh,780px);overflow:auto;background:linear-gradient(180deg,#fff 0%,#fdfbf7 100%);border:1px solid rgba(14,30,46,.08);border-radius:28px;box-shadow:0 40px 100px rgba(10,18,28,.24);display:grid;grid-template-columns:minmax(300px,.92fr) minmax(0,1.08fr)}
 .auth-aside{background:radial-gradient(circle at top right,rgba(240,208,120,.12),transparent 34%),linear-gradient(160deg,#13263a 0%,#0f1d2d 48%,#18283a 100%);color:#fff;padding:48px 42px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
 .auth-aside::before,.auth-aside::after{content:'';position:absolute;border-radius:50%;border:1px solid rgba(240,208,120,.16)}
 .auth-aside::before{width:250px;height:250px;right:-82px;top:-88px}
@@ -144,7 +115,7 @@ nav{
 .auth-points{list-style:none;margin-top:34px;display:flex;flex-direction:column;gap:16px;position:relative;padding-top:26px;border-top:1px solid rgba(240,208,120,.16)}
 .auth-points li{display:flex;align-items:center;gap:11px;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.78)}
 .auth-points svg{width:14px;height:14px;stroke:var(--gold-light);fill:none;stroke-width:2}
-.auth-main{padding:2rem;background:linear-gradient(180deg,rgba(255,255,255,.92) 0%,rgba(248,245,239,.68) 100%)}
+.auth-main{padding:42px 42px 38px;background:linear-gradient(180deg,rgba(255,255,255,.92) 0%,rgba(248,245,239,.68) 100%)}
 .auth-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:30px}
 .auth-top h2{font-family:'Playfair Display',serif;font-size:38px;color:var(--navy);line-height:1.02;letter-spacing:-.02em}
 .auth-top p{font-size:13.5px;color:#706d66;margin-top:10px;max-width:430px;line-height:1.7}
@@ -197,73 +168,13 @@ nav{
 .account-trigger.logged-in .account-status-dot{display:block}
 .auth-field input.invalid{border-color:#bb4d3e;box-shadow:0 0 0 4px rgba(187,77,62,.08)}
 .auth-submit:disabled{opacity:.72;cursor:wait;transform:none}
-.form-success-state{display:grid;place-items:center;text-align:center;gap:16px;min-height:260px;padding:26px 20px;border:1px solid rgba(184,149,42,.18);border-radius:24px;background:linear-gradient(180deg,#fff 0%,rgba(248,245,239,.92) 100%);box-shadow:0 18px 36px rgba(14,30,46,.08)}
-.form-success-state svg{width:52px;height:52px;stroke:var(--gold);fill:none;stroke-width:1.8}
-.form-success-state h4{font-family:'Playfair Display',serif;font-size:30px;color:var(--navy);line-height:1.1}
-.form-success-state p{max-width:420px;font-size:13.5px;line-height:1.8;color:var(--mid)}
-.form-success-state button{border:1.5px solid var(--navy);background:var(--navy);color:#fff;padding:12px 18px;border-radius:999px;font:700 11px 'DM Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .2s}
-.form-success-state button:hover{background:var(--gold);border-color:var(--gold)}
-.success-reset-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);cursor:pointer}
-.success-reset-link:hover{color:var(--navy)}
-.field-error{margin-top:6px;font-size:11px;color:#bb4d3e;letter-spacing:.04em}
-.lead-invalid{border-color:#bb4d3e !important;box-shadow:0 0 0 4px rgba(187,77,62,.08) !important}
-.copy-email-wrap{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
-.copy-email-btn{position:relative;border:1px solid rgba(184,149,42,.3);background:rgba(184,149,42,.08);color:var(--gold);padding:8px 12px;border-radius:999px;font:700 10px 'DM Sans',sans-serif;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .2s}
-.copy-email-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
-.copy-email-tip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(6px);background:var(--navy);color:#fff;padding:6px 10px;border-radius:999px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;white-space:nowrap}
-.copy-email-btn.copied .copy-email-tip{opacity:1;transform:translateX(-50%) translateY(0)}
-.animate-fade{animation:fadeInUp .45s ease forwards}
-.calc-chart-shell{margin-top:20px;display:grid;gap:16px}
-.calc-chart-panel{display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:18px;align-items:center;padding:18px;border:1px solid var(--border);border-radius:20px;background:linear-gradient(180deg,#fff 0%,var(--cream) 100%)}
-.calc-chart-meta{display:grid;gap:10px}
-.calc-breakdown-item{display:flex;justify-content:space-between;gap:14px;padding-bottom:10px;border-bottom:1px solid rgba(14,30,46,.08);font-size:12px;color:var(--mid)}
-.calc-breakdown-item strong{color:var(--navy);font-weight:700}
-.calc-report-actions{display:flex;gap:10px;flex-wrap:wrap}
-.calc-report-btn{border:1.5px solid rgba(14,30,46,.14);background:#fff;color:var(--navy);padding:11px 14px;border-radius:999px;font:700 10.5px 'DM Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .2s}
-.calc-report-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
-.yield-rate-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
-.yield-rate-card{padding:16px 18px;border-radius:18px;border:1px solid rgba(184,149,42,.22);background:linear-gradient(180deg,#fff7df 0%,#fff 100%)}
-.yield-rate-card span{display:block;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#7a766e}
-.yield-rate-card strong{display:block;margin-top:8px;font-family:'Playfair Display',serif;font-size:36px;line-height:1;color:var(--gold)}
-.testimonial-media{width:58px;height:58px;border-radius:50%;overflow:hidden;border:2px solid rgba(184,149,42,.22);background:#fff;flex-shrink:0}
-.testimonial-media img{width:100%;height:100%;object-fit:cover;display:block}
-.print-only-header{display:none}
-@keyframes fadeInUp{
-  from{opacity:0;transform:translateY(12px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-@media print{
-  @page{size:A4;margin:18mm}
-  body{background:#fff;color:#111;overflow:visible}
-  .topbar,nav,.mob-nav,footer,.wa-btn,.btt,.cookie-banner,.auth-modal,.auth-toast,.cta-band,.contact-section,.trust-bar,.portal,.svc-section,.about-wrap,.proc-section,.testi-section,.portfolio-section,.landlord-dashboard,.viewing-modal{display:none !important}
-  .hero{display:none !important}
-  .print-only-header{display:flex !important;align-items:center;justify-content:space-between;gap:24px;position:relative;margin-bottom:22px;padding-bottom:18px;border-bottom:2px solid rgba(184,149,42,.38)}
-  .print-only-header::after{content:'Confidential Investment Analysis';position:absolute;right:0;top:48%;transform:translateY(-50%) rotate(-14deg);font:700 34px 'Playfair Display',serif;letter-spacing:.08em;color:rgba(14,30,46,.06);white-space:nowrap;pointer-events:none}
-  .print-brand-logo{display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;border:1px solid rgba(184,149,42,.35);border-radius:50%;background:#fff7df;color:var(--navy);font:700 24px 'Playfair Display',serif}
-  .print-brand-copy strong{display:block;font:700 22px 'Playfair Display',serif;color:var(--navy)}
-  .print-brand-copy span{display:block;margin-top:4px;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#7a766e}
-  .calc-section{padding:0 !important}
-  .calc-wrap{display:block !important}
-  .calc-form-card{display:none !important}
-  .calc-result-shell{padding:0 !important;background:none !important;border:none !important}
-  #yieldResultCard{display:block !important;opacity:1 !important;transform:none !important;box-shadow:none !important;border:1px solid rgba(14,30,46,.12) !important}
-  #yieldEmptyState,.calc-report-actions{display:none !important}
-  .yield-rate-card{background:#fff;border-color:rgba(184,149,42,.4)}
-  .yield-rate-card strong{color:#9f7f1f}
-  .calc-chart-panel{background:#fff;border-color:rgba(14,30,46,.12)}
-  #yieldBreakdownChart{background:#fff;border-radius:18px}
-  canvas{print-color-adjust:exact;-webkit-print-color-adjust:exact}
-}
 
 /* HERO */
-.hero{margin-top:118px;display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 118px);overflow:hidden}
+.hero{margin-top:118px;display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 118px)}
 .hero-l{
-  flex:1 1 0;
-  min-width:0;
   background:var(--navy);
   display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(2rem,5vh,5rem) 5vw;position:relative;overflow:hidden;
+  padding:80px 5vw 80px 5vw;position:relative;overflow:hidden;
 }
 .hero-l::before,.hero-l::after{content:'';position:absolute;border-radius:50%;border:1px solid rgba(184,149,42,0.12);pointer-events:none}
 .hero-l::before{width:320px;height:320px;bottom:-80px;right:-80px}
@@ -271,7 +182,7 @@ nav{
 .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px}
 .hero-eyebrow-line{width:30px;height:1px;background:var(--gold)}
 .hero-eyebrow span{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:500}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3.8rem);font-weight:700;color:#fff;line-height:1.1;margin-bottom:22px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,4.2vw,60px);font-weight:700;color:#fff;line-height:1.13;margin-bottom:22px}
 .hero h1 em{font-style:italic;color:var(--gold-light)}
 .hero-desc{font-size:14.5px;color:rgba(255,255,255,.58);line-height:1.8;max-width:400px;margin-bottom:38px}
 .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
@@ -279,19 +190,13 @@ nav{
 .hcta-p:hover{background:transparent;color:var(--gold-light);border-color:var(--gold-light)}
 .hcta-s{border:2px solid rgba(255,255,255,.3);color:rgba(255,255,255,.85);padding:13px 30px;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;transition:all .2s}
 .hcta-s:hover{border-color:rgba(255,255,255,.7);color:#fff}
-.hero-stats{display:flex;flex-wrap:wrap;gap:2.5rem;margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,.08);justify-content:flex-start}
-.hs-item{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:12px;flex:0 1 auto}
-.hs-ring{display:flex;align-items:center;justify-content:center;position:relative;width:100%;padding:0;border:none;border-radius:0;aspect-ratio:auto;box-shadow:none;background:transparent;outline:none}
-.hs-num{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,2.4vw,2.2rem);font-weight:700;color:var(--gold-light);line-height:1}
+.hero-stats{display:flex;gap:28px;margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,.08)}
+.hs-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--gold-light);line-height:1}
 .hs-lbl{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px}
 
-.hero-r{position:relative;overflow:hidden;background:var(--stone);min-height:460px;min-width:0;margin:0;padding:0}
-#heroVideo{opacity:0;transition:opacity .6s ease}
-#heroVideo.is-ready{opacity:1}
-.hero-r video{position:absolute;top:0;left:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center center;opacity:0;transform:scale(1.01);backface-visibility:hidden;will-change:opacity,transform;transition:opacity 1.2s ease,transform 1.2s ease}
-.hero-r video.is-ready{opacity:.85;transform:scale(1)}
-.hero-r-bg{position:absolute;inset:0;background:rgba(0,0,0,.2);z-index:1}
-.hero-float{position:absolute;bottom:36px;left:32px;right:32px;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);padding:26px 28px;border-left:4px solid var(--gold);z-index:20}
+.hero-r{position:relative;overflow:hidden;background:var(--stone);min-height:460px}
+.hero-r-bg{position:absolute;inset:0;background:linear-gradient(160deg,rgba(14,30,46,.2) 0%,transparent 55%),url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80') center/cover no-repeat}
+.hero-float{position:absolute;bottom:36px;left:32px;right:32px;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);padding:26px 28px;border-left:4px solid var(--gold)}
 .hero-float h3{font-family:'Playfair Display',serif;font-size:17px;color:var(--navy);margin-bottom:5px}
 .hero-float p{font-size:12.5px;color:var(--mid);line-height:1.55}
 .hero-float-link{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-top:12px}
@@ -585,17 +490,15 @@ footer{background:var(--navy);padding:60px 5vw 0}
 
 /* RESPONSIVE */
 @media(max-width:1100px){.svc-grid{grid-template-columns:repeat(2,1fr)}.f-grid{grid-template-columns:1fr 1fr;gap:32px}}
-@media(max-width:1024px){
-  .auth-panel{grid-template-columns:1fr;width:90%}
-  .auth-aside{display:none}
+@media(max-width:900px){
   .topbar{padding:0 18px}
   nav{padding:0 18px}
   .mob-nav{top:118px;padding:16px 18px}
   .hero{grid-template-columns:1fr;min-height:auto}
-  .hero-l{padding:56px 2rem 48px}
+  .hero-l{padding:56px 5vw 48px}
   .hero-r{height:360px}
   .hero-float{left:20px;right:20px;bottom:20px;padding:22px}
-  .hero-stats{gap:1.75rem}
+  .hero-stats{flex-wrap:wrap;gap:20px}
   .portal-grid{grid-template-columns:1fr}
   .pcrd:first-child{border-right:none;border-bottom:1px solid var(--border)}
   .svc-grid{grid-template-columns:repeat(2,1fr)}
@@ -611,6 +514,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
   .portfolio-grid,.trust-grid{grid-template-columns:1fr 1fr}
   .nav-menu,.nav-btns{display:none}
   .mob-auth{display:block}
+  .hbg{display:flex}
 }
 @media(max-width:700px){
   .topbar{height:auto;min-height:42px;padding:10px 16px;align-items:flex-start}
@@ -632,22 +536,22 @@ footer{background:var(--navy);padding:60px 5vw 0}
   .c-form-title{margin-bottom:18px}
 }
 @media(max-width:600px){
-  .auth-modal{padding:40px 20px}
-  .auth-panel{width:90%;border-radius:22px}
+  .auth-modal{padding:14px}
+  .auth-panel{grid-template-columns:1fr;max-height:min(92vh,760px);border-radius:22px}
   .auth-aside{padding:30px 24px}
   .auth-aside h3{font-size:28px}
-  .auth-main{padding:2rem}
+  .auth-main{padding:24px 20px 26px}
   .auth-top{margin-bottom:22px}
   .auth-top h2{font-size:26px}
   .auth-close{width:42px;height:42px;border-radius:12px}
-  .auth-socials,.auth-grid,.calc-chart-panel{grid-template-columns:1fr}
+  .auth-socials,.auth-grid{grid-template-columns:1fr}
   .auth-meta{flex-direction:column;align-items:flex-start}
   .svc-grid,.f-grid,.frow,.proc-steps{grid-template-columns:1fr}
-  .calc-grid,.tenant-grid,.result-meta,.portfolio-grid,.trust-grid,.calc-chart-panel{grid-template-columns:1fr}
+  .calc-grid,.tenant-grid,.result-meta,.portfolio-grid,.trust-grid{grid-template-columns:1fr}
   .topbar-side:last-child{display:none}
-  .hero h1{font-size:clamp(1.8rem,4vw,3.8rem)}
+  .hero h1{font-size:32px}
   .hero-desc,.s-intro,.cta-band p{font-size:14px}
-  .hero-stats{display:flex;gap:1rem;margin-top:32px;padding-top:24px}
+  .hero-stats{display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px;padding-top:24px}
   .hero-r{height:320px}
   .hero-float{left:16px;right:16px;bottom:16px;padding:18px}
   .hero-float h3{font-size:16px}
@@ -671,7 +575,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
 }
 @media(max-width:420px){
   .hero h1{font-size:28px}
-  .auth-modal{padding:40px 20px}
+  .auth-modal{padding:10px}
   .auth-tabs{display:flex;width:100%}
   .auth-tab{flex:1;padding:11px 10px}
   .hero-eyebrow span,.s-eye span{letter-spacing:0.16em}
@@ -683,16 +587,6 @@ footer{background:var(--navy);padding:60px 5vw 0}
 </style>
 </head>
 <body>
-
-<div class="print-only-header">
-  <div class="flex items-center gap-4">
-    <div class="print-brand-logo">US</div>
-    <div class="print-brand-copy">
-      <strong>Urban Spectrum Property Management</strong>
-      <span>Confidential Investment Analysis</span>
-    </div>
-  </div>
-</div>
 
 <!-- TOP BAR -->
 <div class="topbar">
@@ -711,21 +605,21 @@ footer{background:var(--navy);padding:60px 5vw 0}
 </div>
 
 <!-- NAV -->
-<nav class="site-nav" id="siteNav">
-  <a href="#home" class="nav-brand" aria-label="Go to homepage">
+<nav>
+  <a href="#top" class="nav-brand" aria-label="Go to top of page" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
     <div class="nav-brand-name">Urban Spectrum</div>
     <div class="nav-brand-sub">Property Management Ltd</div>
   </a>
-  <ul class="nav-menu hidden lg:flex">
+  <ul class="nav-menu">
     <li><a href="#services">Services</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="#portfolio">Properties</a></li>
+    <li><a href="listings.html">Properties</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-actions">
-    <div class="nav-btns hidden lg:flex">
+    <div class="nav-btns">
       <a href="tel:+442087729552" class="nbtn-outline">Call Us</a>
       <a href="#contact" class="nbtn-fill">Free Valuation</a>
     </div>
@@ -735,7 +629,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
       <span class="account-status-dot"></span>
       <span class="notif-badge" id="notifBadge"></span>
     </button>
-    <button class="hbg block lg:hidden" type="button" aria-label="Toggle mobile navigation" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    <div class="hbg" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </div>
 </nav>
 
@@ -746,7 +640,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
   <a href="#about" onclick="toggleMenu()">About</a>
   <a href="#process" onclick="toggleMenu()">Process</a>
   <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
-  <a href="#portfolio" onclick="toggleMenu()">Properties</a>
+  <a href="listings.html" onclick="toggleMenu()">Properties</a>
   <a href="#contact" onclick="toggleMenu()">Contact</a>
 </div>
 
@@ -1057,9 +951,9 @@ footer{background:var(--navy);padding:60px 5vw 0}
             <div>
               <div class="cal-wrap">
                 <div class="cal-header">
-                  <button class="cal-nav-btn" type="button" aria-label="View previous month" onclick="calNavigate(-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+                  <button class="cal-nav-btn" onclick="calNavigate(-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
                   <h4 id="calMonthLabel">April 2026</h4>
-                  <button class="cal-nav-btn" type="button" aria-label="View next month" onclick="calNavigate(1)"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+                  <button class="cal-nav-btn" onclick="calNavigate(1)"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
                 </div>
                 <div class="cal-grid" id="calGrid"></div>
               </div>
@@ -1081,8 +975,6 @@ footer{background:var(--navy);padding:60px 5vw 0}
   </div>
 </section>
 
-<main id="appViewHost" class="transition-opacity duration-300 ease-out opacity-100">
-<div id="routeViewHome" data-route-view="home">
 <!-- HERO -->
 <div class="hero" id="home">
   <div class="hero-l">
@@ -1097,24 +989,12 @@ footer{background:var(--navy);padding:60px 5vw 0}
       <a href="#services" class="hcta-s">Our Services</a>
     </div>
     <div class="hero-stats">
-      <div class="hs-item">
-        <div class="hs-ring"><div class="hs-num">25+</div></div>
-        <div class="hs-lbl">Years Experience</div>
-      </div>
-      <div class="hs-item">
-        <div class="hs-ring"><div class="hs-num">500+</div></div>
-        <div class="hs-lbl">Properties Managed</div>
-      </div>
-      <div class="hs-item">
-        <div class="hs-ring"><div class="hs-num">98%</div></div>
-        <div class="hs-lbl">Client Retention</div>
-      </div>
+      <div><div class="hs-num">25+</div><div class="hs-lbl">Years Experience</div></div>
+      <div><div class="hs-num">500+</div><div class="hs-lbl">Properties Managed</div></div>
+      <div><div class="hs-num">98%</div><div class="hs-lbl">Client Retention</div></div>
     </div>
   </div>
   <div class="hero-r">
-    <video autoplay muted loop playsinline class="w-full h-full object-cover" id="heroVideo">
-      <source src="https://videos.pexels.com/video-files/7578552/7578552-uhd_2560_1440_30fps.mp4" type="video/mp4">
-    </video>
     <div class="hero-r-bg"></div>
     <div class="hero-float">
       <h3>Balham &amp; South London Specialists</h3>
@@ -1242,7 +1122,11 @@ footer{background:var(--navy);padding:60px 5vw 0}
 <section class="testi-section" id="testimonials">
   <div class="s-eye"><div class="s-eye-line"></div><span>Client Reviews</span></div>
   <h2 class="s-title">Trusted By London<br>Landlords &amp; Investors</h2>
-  <div class="testi-grid" id="testimonialsGrid"></div>
+  <div class="testi-grid">
+    <div class="tc"><div class="tc-qqq">"</div><div class="tc-stars">★★★★★</div><blockquote>Urban Spectrum transformed how I manage my portfolio. My dedicated manager is always reachable and handles everything with total professionalism.</blockquote><div class="tc-auth"><div class="tc-av">JR</div><div><div class="tc-nm">James R.</div><div class="tc-loc">Landlord · Balham</div></div></div></div>
+    <div class="tc"><div class="tc-qqq">"</div><div class="tc-stars">★★★★★</div><blockquote>They found excellent tenants within two weeks and the onboarding was seamless. I haven't had a void period since switching three years ago.</blockquote><div class="tc-auth"><div class="tc-av">PM</div><div><div class="tc-nm">Priya M.</div><div class="tc-loc">Property Investor · Clapham</div></div></div></div>
+    <div class="tc"><div class="tc-qqq">"</div><div class="tc-stars">★★★★★</div><blockquote>The block management service has been outstanding. Service charges are transparent, contractors are reliable and communication is first-class.</blockquote><div class="tc-auth"><div class="tc-av">DK</div><div><div class="tc-nm">David K.</div><div class="tc-loc">Leaseholder · Tooting</div></div></div></div>
+  </div>
 </section>
 
 <!-- PORTFOLIO ENGINE -->
@@ -1312,32 +1196,6 @@ footer{background:var(--navy);padding:60px 5vw 0}
             <strong id="annualCosts" class="mt-2 block font-['Playfair_Display'] text-3xl text-slate-900">£0</strong>
           </div>
         </div>
-        <div class="yield-rate-grid">
-          <div class="yield-rate-card">
-            <span>Gross Yield</span>
-            <strong id="grossYieldValue">0.00%</strong>
-          </div>
-          <div class="yield-rate-card">
-            <span>Net Yield</span>
-            <strong id="netYieldValue">0.00%</strong>
-          </div>
-        </div>
-        <div class="calc-chart-shell">
-          <div class="calc-chart-panel">
-            <div class="mx-auto h-[220px] w-full max-w-[220px]">
-              <canvas id="yieldBreakdownChart" aria-label="Investment yield breakdown chart"></canvas>
-            </div>
-            <div class="calc-chart-meta">
-              <div class="calc-breakdown-item"><span>Net Annual Profit</span><strong id="yieldNetProfitValue">£0</strong></div>
-              <div class="calc-breakdown-item"><span>Estimated Maintenance (15%)</span><strong id="yieldMaintenanceValue">£0</strong></div>
-              <div class="calc-breakdown-item"><span>Management Fees (10%)</span><strong id="yieldManagementValue">£0</strong></div>
-              <div class="calc-report-actions">
-                <button type="button" class="calc-report-btn" onclick="downloadYieldReport()">Download PDF</button>
-                <button type="button" class="calc-report-btn" onclick="printYieldReport()">Print Results</button>
-              </div>
-            </div>
-          </div>
-        </div>
         <p id="yieldSummary" class="mt-5 text-sm leading-7 text-stone-600">Enter your figures to generate an instant landlord forecast card.</p>
       </div>
       <div id="yieldEmptyState" class="result-summary">Your result card will animate in here with annual income, blended costs, and net yield once the inputs are submitted.</div>
@@ -1356,104 +1214,6 @@ footer{background:var(--navy);padding:60px 5vw 0}
     <a href="tel:+442087729552" class="cb-o">Call +44 (0)20 8772 9552</a>
   </div>
 </div>
-</div>
-
-<section id="routeViewServices" data-route-view="services" class="hidden" aria-hidden="true">
-  <div class="svc-section">
-    <div class="svc-hd">
-      <div>
-        <div class="s-eye"><div class="s-eye-line"></div><span>Services Focus</span></div>
-        <h2 class="s-title">Built For London Landlords,<br>Investors & Assets</h2>
-      </div>
-      <p class="s-intro">A dedicated SPA services route that surfaces Urban Spectrum's management capability, operational process, and premium reporting standards without a full-page reload.</p>
-    </div>
-    <div class="svc-grid">
-      <div class="sc">
-        <span class="sc-num">01</span>
-        <h3>Residential Management</h3>
-        <p>End-to-end lettings, compliance, renewals, arrears control, and tenant coordination for premium London portfolios.</p>
-      </div>
-      <div class="sc">
-        <span class="sc-num">02</span>
-        <h3>Asset Protection</h3>
-        <p>Maintenance oversight, certification tracking, and landlord reporting structured to reduce operational risk.</p>
-      </div>
-      <div class="sc">
-        <span class="sc-num">03</span>
-        <h3>Investor Reporting</h3>
-        <p>Yield-led updates, branded analysis, and visibility designed for high-value landlord conversations.</p>
-      </div>
-    </div>
-  </div>
-  <div class="about-wrap" id="servicesViewStory">
-    <div class="about-g">
-      <div class="about-img">
-        <div class="about-img-ov"></div>
-        <div class="about-badge"><strong>SW</strong><span>London Expertise</span></div>
-      </div>
-      <div class="about-cnt">
-        <div class="s-eye"><div class="s-eye-line"></div><span>Service Philosophy</span></div>
-        <h2 class="s-title">Operational Discipline.<br>Luxury-Level Service.</h2>
-        <p class="s-intro">Urban Spectrum's service model blends boutique relationship management with disciplined compliance, landlord reporting, and asset oversight.</p>
-        <ul class="about-pts">
-          <li class="apt"><div class="apt-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="apt-txt"><h4>Single Point Of Contact</h4><p>A consistent property manager aligned to the portfolio, tenant profile, and reporting cycle.</p></div></li>
-          <li class="apt"><div class="apt-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="apt-txt"><h4>Compliance Confidence</h4><p>Processes built for certificates, inspections, documentation readiness, and legal peace of mind.</p></div></li>
-          <li class="apt"><div class="apt-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="apt-txt"><h4>Yield Protection</h4><p>Decision-making framed around occupancy, arrears reduction, maintenance planning, and retained value.</p></div></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <section class="proc-section" id="servicesViewProcess">
-    <div style="text-align:center">
-      <div class="s-eye" style="justify-content:center"><div class="s-eye-line"></div><span>Delivery Workflow</span></div>
-      <h2 class="s-title" style="text-align:center">How The Service Journey Works</h2>
-      <p class="s-intro" style="margin:0 auto;text-align:center">This focused services view gives prospects a concise overview of the operational sequence behind the Urban Spectrum offer.</p>
-    </div>
-    <div class="proc-steps">
-      <div class="pstep"><div class="pstep-circle">1</div><h3>Discovery</h3><p>Portfolio review, valuation guidance, and management objectives aligned to landlord goals.</p></div>
-      <div class="pstep"><div class="pstep-circle">2</div><h3>Onboarding</h3><p>Compliance audit, listing preparation, documentation readiness, and marketing launch.</p></div>
-      <div class="pstep"><div class="pstep-circle">3</div><h3>Management</h3><p>Rent collection, maintenance, inspections, and tenant communication under one operating rhythm.</p></div>
-      <div class="pstep"><div class="pstep-circle">4</div><h3>Reporting</h3><p>Professional updates, financial visibility, and yield-led conversations for informed decisions.</p></div>
-    </div>
-  </section>
-</section>
-
-<section id="routeViewPropertyDetail" data-route-view="property-detail" class="hidden" aria-hidden="true">
-  <section class="portfolio-section">
-    <div class="portfolio-head">
-      <div>
-        <div class="s-eye"><div class="s-eye-line"></div><span>Property Detail</span></div>
-        <h2 class="s-title" id="propertyDetailTitle">Featured London Asset</h2>
-      </div>
-      <p class="s-intro" id="propertyDetailSummary">A premium property detail route rendered as part of the SPA without a browser reload.</p>
-    </div>
-    <div class="grid gap-8 rounded-[28px] border border-stone-200 bg-white p-6 shadow-[0_20px_50px_rgba(14,30,46,.08)] lg:grid-cols-[1.08fr_.92fr] md:p-8">
-      <div class="overflow-hidden rounded-[24px] bg-[var(--stone)]">
-        <img id="propertyDetailImage" src="" alt="" class="h-full min-h-[320px] w-full object-cover" loading="lazy">
-      </div>
-      <div class="flex flex-col justify-between gap-6">
-        <div>
-          <div class="inline-flex rounded-full border border-amber-300 bg-amber-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-700" id="propertyDetailArea">London</div>
-          <div class="mt-4 flex flex-wrap items-end gap-4">
-            <div class="font-['Playfair_Display'] text-5xl text-slate-900" id="propertyDetailPrice">£0 pcm</div>
-            <div class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500" id="propertyDetailEpc">EPC B</div>
-          </div>
-          <p class="mt-5 text-sm leading-8 text-stone-600" id="propertyDetailDescription"></p>
-          <div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3" id="propertyDetailMeta"></div>
-          <div class="mt-6 rounded-[22px] border border-stone-200 bg-stone-50 p-5">
-            <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Managed Highlights</p>
-            <ul class="mt-4 flex flex-col gap-3 text-sm leading-7 text-stone-600" id="propertyDetailHighlights"></ul>
-          </div>
-        </div>
-        <div class="flex flex-wrap gap-3">
-          <a id="propertyDetailTour" class="portfolio-btn secondary" href="#" target="_blank" rel="noopener">Virtual Tour</a>
-          <button id="propertyDetailViewingBtn" class="portfolio-btn primary" type="button">Book Viewing</button>
-        </div>
-      </div>
-    </div>
-  </section>
-</section>
-</main>
 
 <!-- CONTACT -->
 <section class="contact-section" id="contact">
@@ -1607,11 +1367,11 @@ footer{background:var(--navy);padding:60px 5vw 0}
     </div>
     <div class="f-col">
       <h4>Contact</h4>
-      <address>114 Balham High Road<br>London SW12 9AA<br>United Kingdom<br><br><a href="tel:+442087729552">+44 (0)20 8772 9552</a><br><span class="copy-email-wrap"><a id="footerEmailLink" href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a><button type="button" class="copy-email-btn" aria-label="Copy Urban Spectrum email address" onclick="copyFooterEmail()"><span class="copy-email-tip">Copied!</span>Copy</button></span></address>
+      <address>114 Balham High Road<br>London SW12 9AA<br>United Kingdom<br><br><a href="tel:+442087729552">+44 (0)20 8772 9552</a><br><a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a></address>
     </div>
   </div>
   <div class="f-bottom">
-    <p>© 2026 Urban Spectrum Property Management Ltd. Registered in England &amp; Wales. All rights reserved.</p>
+    <p>© 2025 Urban Spectrum Property Management Ltd. Registered in England &amp; Wales. All rights reserved.</p>
     <div class="f-btm-links"><a href="#contact">Privacy Policy</a><a href="#contact">Terms</a><a href="#contact">Complaints</a></div>
   </div>
 </footer>
@@ -1639,126 +1399,12 @@ footer{background:var(--navy);padding:60px 5vw 0}
 <div class="page-fade" id="pageFade"></div>
 
 <script>
-document.addEventListener('DOMContentLoaded',()=>{
-// Premium handover configuration: update this object to rebrand phone, email, WhatsApp, testimonials, and listings.
-const BUSINESS_CONFIG={
-  companyName:'Urban Spectrum Property Management Ltd',
-  shortName:'Urban Spectrum',
-  contact:{
-    phoneDisplay:'+44 (0)20 8772 9552',
-    phoneHref:'+442087729552',
-    email:'info@urbanspectrum.co.uk',
-    whatsappHref:'https://wa.me/442087729552'
-  },
-  leadWebhookUrl:'https://example.com/webhooks/urban-spectrum-leads',
-  addressLine:'114 Balham High Road, London SW12 9AA',
-  pages:{
-    home:{
-      title:'Urban Spectrum Property Management Ltd — London',
-      description:'Urban Spectrum Property Management delivers premium London property management, landlord reporting, and investment-grade rental services.'
-    },
-    services:{
-      title:'Services | Urban Spectrum Property Management',
-      description:'Explore Urban Spectrum property management services, landlord reporting, compliance workflows, and premium London asset support.'
-    },
-    propertyDetail:{
-      title:'Property Detail | Urban Spectrum Property Management',
-      description:'Review a premium managed London property with detailed highlights, pricing, and viewing options from Urban Spectrum.'
-    }
-  },
-  testimonials:[
-    {
-      initials:'JR',
-      name:'James R.',
-      role:'Landlord · Balham',
-      quote:'Urban Spectrum transformed how I manage my portfolio. My dedicated manager is always reachable and handles everything with total professionalism.',
-      image:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80',
-      imageAlt:'Headshot of landlord client James R. for Urban Spectrum testimonial'
-    },
-    {
-      initials:'PM',
-      name:'Priya M.',
-      role:'Property Investor · Clapham',
-      quote:'They found excellent tenants within two weeks and the onboarding was seamless. I have not had a void period since switching three years ago.',
-      image:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
-      imageAlt:'Headshot of investor client Priya M. for Urban Spectrum testimonial'
-    },
-    {
-      initials:'DK',
-      name:'David K.',
-      role:'Leaseholder · Tooting',
-      quote:'The block management service has been outstanding. Service charges are transparent, contractors are reliable and communication is first-class.',
-      image:'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80',
-      imageAlt:'Headshot of leaseholder client David K. for Urban Spectrum testimonial'
-    }
-  ],
-  properties:[
-    {
-      slug:'balham-high-road-apartment',
-      title:'Balham High Road Apartment',
-      area:'Balham, SW12',
-      beds:'2 Beds',
-      baths:'2 Baths',
-      price:'£2,450 pcm',
-      epc:'B',
-      image:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1200&q=80',
-      imageAlt:'Elegant Balham apartment living room styled for a premium rental listing',
-      summary:'A design-led Balham apartment positioned for professionals seeking a premium South London rental with polished presentation and management oversight.',
-      description:'This Balham apartment blends strong commuter appeal with a refined interior finish, making it well suited to premium tenant demand. The listing is presented as a compliance-ready managed asset with a hospitality-grade marketing standard.',
-      highlights:['Premium presentation suited to professional tenants','Operationally managed with compliance-ready documentation','Strong Balham positioning near transport, retail, and lifestyle amenities'],
-      tour:'#'
-    },
-    {
-      slug:'clapham-investment-townhouse',
-      title:'Clapham Investment Townhouse',
-      area:'Clapham, SW4',
-      beds:'4 Beds',
-      baths:'3 Baths',
-      price:'£4,900 pcm',
-      epc:'C',
-      image:'https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200&q=80',
-      imageAlt:'Contemporary Clapham townhouse exterior for an investment-grade property listing',
-      summary:'A high-value Clapham townhouse configured for family-led occupancy, premium positioning, and asset-conscious management.',
-      description:'This Clapham townhouse is presented as an investment-grade London asset with strong family appeal, a larger internal footprint, and a marketing profile designed to support premium occupancy. The detail view is positioned to support both landlord and tenant conversations.',
-      highlights:['Family-oriented townhouse format in a prime Clapham location','Strong rental profile for high-quality long-term occupancy','Presented with investor-grade marketing and management framing'],
-      tour:'#'
-    },
-    {
-      slug:'riverside-canary-wharf-let',
-      title:'Riverside Canary Wharf Let',
-      area:'Canary Wharf, E14',
-      beds:'3 Beds',
-      baths:'2 Baths',
-      price:'£3,850 pcm',
-      epc:'B',
-      image:'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1200&q=80',
-      imageAlt:'Modern Canary Wharf apartment kitchen and dining area with riverside appeal',
-      summary:'A contemporary riverside apartment with corporate-market appeal and a presentation style suited to premium Canary Wharf lettings.',
-      description:'This Canary Wharf property is framed around professional tenant demand, modern interior presentation, and a high-spec managed experience. Its riverside location and clean visual merchandising make it ideal for premium urban marketing.',
-      highlights:['Canary Wharf positioning with strong professional rental appeal','Riverside presentation and premium interior finish','Suitable for fast, polished lettings marketing within a high-value tenant market'],
-      tour:'#'
-    }
-  ]
-};
-const sanityClient=window.SanityClient?.createClient({
-  projectId:'20st7wah',
-  dataset:'production',
-  useCdn:true,
-  apiVersion:'2024-01-01'
-})||null;
 const API_URL=(window.API_URL||'https://urban-spectrum-backend-production.up.railway.app').replace(/\/$/,'');
 const GOOGLE_AUTH_URL=(window.GOOGLE_AUTH_URL||'').trim();
 const AUTH_TOKEN_KEY='urbanSpectrumAuthToken';
 const AUTH_SESSION_KEY='urbanSpectrumCurrentUser';
-const ROUTER_CONFIG={
-  home:{id:'home',viewId:'routeViewHome'},
-  services:{id:'services',viewId:'routeViewServices'},
-  'property-detail':{id:'property-detail',viewId:'routeViewPropertyDetail'}
-};
 let landlordIncomeChart;
-let yieldBreakdownChart;
 let landlordDashboardState={properties:[],selectedProperty:null};
-let activeRoute={pageId:'home',propertySlug:null};
 
 function getAuthToken(){return localStorage.getItem(AUTH_TOKEN_KEY)||''}
 function setAuthToken(token){if(token){localStorage.setItem(AUTH_TOKEN_KEY,token)}else{localStorage.removeItem(AUTH_TOKEN_KEY)}}
@@ -1778,311 +1424,6 @@ function setFieldError(input,message){if(input)input.classList.add('invalid');sh
 function setSession(token,user){setAuthToken(token);setCurrentUser(user)}
 function clearSession(){setAuthToken('');setCurrentUser(null)}
 function isLandlord(user){return String(user?.accountType||'').toLowerCase()==='landlord'}
-const EMAIL_REGEX=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-const UK_PHONE_REGEX=/^(?:(?:\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}|(?:\+44\s?(?:1\d{3}|2\d{2}|3\d{2})|\(?0(?:1\d{3}|2\d{2}|3\d{2})\)?)\s?\d{3,4}\s?\d{3,4})$/;
-
-function escapeHtml(value){
-  return String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-}
-function getPropertyBySlug(slug){
-  return BUSINESS_CONFIG.properties.find(property=>property.slug===slug)||BUSINESS_CONFIG.properties[0];
-}
-function setPageMeta(pageId,property){
-  const meta=document.querySelector('meta[name="description"]');
-  let title=BUSINESS_CONFIG.pages[pageId]?.title||BUSINESS_CONFIG.pages.home.title;
-  let description=BUSINESS_CONFIG.pages[pageId]?.description||BUSINESS_CONFIG.pages.home.description;
-  if(pageId==='property-detail'&&property){
-    title=`${property.title} | ${BUSINESS_CONFIG.shortName}`;
-    description=property.summary||BUSINESS_CONFIG.pages.propertyDetail.description;
-  }
-  document.title=title;
-  if(meta)meta.setAttribute('content',description);
-}
-function applyBusinessConfig(){
-  document.querySelectorAll('a[href^="tel:"]').forEach(link=>{
-    link.href=`tel:${BUSINESS_CONFIG.contact.phoneHref}`;
-    link.textContent=BUSINESS_CONFIG.contact.phoneDisplay;
-  });
-  document.querySelectorAll('a[href^="mailto:"]').forEach(link=>{
-    link.href=`mailto:${BUSINESS_CONFIG.contact.email}`;
-    link.textContent=BUSINESS_CONFIG.contact.email;
-  });
-  document.querySelectorAll('.wa-btn').forEach(link=>link.href=BUSINESS_CONFIG.contact.whatsappHref);
-  const footerEmail=document.getElementById('footerEmailLink');
-  if(footerEmail){
-    footerEmail.href=`mailto:${BUSINESS_CONFIG.contact.email}`;
-    footerEmail.textContent=BUSINESS_CONFIG.contact.email;
-  }
-  const officeAddress=document.querySelector('.topbar-side a:not([href])');
-  if(officeAddress)officeAddress.textContent=BUSINESS_CONFIG.addressLine;
-  const printBrandName=document.querySelector('.print-brand-copy strong');
-  if(printBrandName)printBrandName.textContent=BUSINESS_CONFIG.companyName.replace(/\s+Ltd$/,'');
-}
-function buildRouteUrl(pageId,{propertySlug}={}){
-  const url=new URL(window.location.href);
-  url.searchParams.delete('page');
-  url.searchParams.delete('property');
-  if(pageId!=='home')url.searchParams.set('page',pageId);
-  if(pageId==='property-detail'&&propertySlug)url.searchParams.set('property',propertySlug);
-  url.hash='';
-  return `${url.pathname}${url.search}`;
-}
-function getRouteFromLocation(){
-  const params=new URLSearchParams(window.location.search);
-  const requestedPage=params.get('page')||'home';
-  const pageId=ROUTER_CONFIG[requestedPage]?requestedPage:'home';
-  const propertySlug=params.get('property')||BUSINESS_CONFIG.properties[0].slug;
-  return {pageId,propertySlug};
-}
-function renderPropertyDetail(propertySlug){
-  const property=getPropertyBySlug(propertySlug);
-  if(!property)return null;
-  document.getElementById('propertyDetailTitle').textContent=property.title;
-  document.getElementById('propertyDetailSummary').textContent=property.summary;
-  document.getElementById('propertyDetailImage').src=property.image;
-  document.getElementById('propertyDetailImage').alt=property.imageAlt;
-  document.getElementById('propertyDetailArea').textContent=property.area;
-  document.getElementById('propertyDetailPrice').textContent=property.price;
-  document.getElementById('propertyDetailEpc').textContent=`EPC ${property.epc}`;
-  document.getElementById('propertyDetailDescription').textContent=property.description;
-  document.getElementById('propertyDetailMeta').innerHTML=[
-    property.beds,
-    property.baths,
-    'Premium Managed Listing'
-  ].map(item=>`<div class="rounded-2xl border border-stone-200 bg-stone-50 px-4 py-4 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">${escapeHtml(item)}</div>`).join('');
-  document.getElementById('propertyDetailHighlights').innerHTML=(property.highlights||[]).map(item=>`<li class="flex items-start gap-3"><span class="mt-2 inline-block h-2.5 w-2.5 rounded-full bg-[var(--gold)]"></span><span>${escapeHtml(item)}</span></li>`).join('');
-  const tourLink=document.getElementById('propertyDetailTour');
-  tourLink.href=property.tour||'#';
-  const viewingBtn=document.getElementById('propertyDetailViewingBtn');
-  viewingBtn.onclick=()=>openViewingModal(property.title);
-  return property;
-}
-function scrollToRouteTarget(targetId){
-  if(!targetId)return;
-  requestAnimationFrame(()=>{
-    document.getElementById(targetId)?.scrollIntoView({behavior:'smooth',block:'start'});
-  });
-}
-function switchPage(pageId,options={}){
-  const host=document.getElementById('appViewHost');
-  const route=ROUTER_CONFIG[pageId]||ROUTER_CONFIG.home;
-  const finalize=()=>{
-    document.querySelectorAll('[data-route-view]').forEach(view=>view.classList.add('hidden'));
-    const activeView=document.getElementById(route.viewId);
-    if(activeView)activeView.classList.remove('hidden');
-    const activeProperty=pageId==='property-detail'?renderPropertyDetail(options.propertySlug):null;
-    setPageMeta(pageId,activeProperty);
-    activeRoute={pageId,propertySlug:options.propertySlug||null};
-    if(!options.skipHistory){
-      const method=options.replace?'replaceState':'pushState';
-      history[method]({pageId,propertySlug:options.propertySlug||null},'',buildRouteUrl(pageId,options));
-    }
-    if(host){
-      requestAnimationFrame(()=>{
-        host.classList.remove('opacity-0');
-        host.classList.add('opacity-100');
-      });
-    }
-    window.scrollTo({top:0,behavior:options.instant?'auto':'smooth'});
-    if(options.targetId)scrollToRouteTarget(options.targetId);
-  };
-  if(host&&!options.instant){
-    host.classList.remove('opacity-100');
-    host.classList.add('opacity-0');
-    setTimeout(finalize,180);
-    return;
-  }
-  finalize();
-}
-function clearLeadValidation(form){
-  form.querySelectorAll('.lead-invalid').forEach(field=>field.classList.remove('lead-invalid'));
-  form.querySelectorAll('.field-error').forEach(node=>node.remove());
-}
-function setLeadFieldError(field,message){
-  if(!field)return false;
-  field.classList.add('lead-invalid');
-  const note=document.createElement('div');
-  note.className='field-error';
-  note.textContent=message;
-  field.insertAdjacentElement('afterend',note);
-  return false;
-}
-function validateLeadForm(form,{requirePhone=false}={}){
-  clearLeadValidation(form);
-  const emailField=form.querySelector('input[type="email"], input[name="email"]');
-  const phoneField=form.querySelector('input[type="tel"], input[name="phone"], input[name="viewingPhone"], #viewingPhone');
-  if(emailField){
-    const email=normalizeEmail(emailField.value||'');
-    if(!EMAIL_REGEX.test(email))return setLeadFieldError(emailField,'Please enter a valid email address.');
-    emailField.value=email;
-  }
-  if(phoneField){
-    const phone=(phoneField.value||'').trim();
-    if(requirePhone&&!phone)return setLeadFieldError(phoneField,'Please enter a UK phone number so we can reach you.');
-    if(phone&&!UK_PHONE_REGEX.test(phone))return setLeadFieldError(phoneField,'Please enter a valid UK phone number.');
-  }
-  return true;
-}
-function storeOriginalFormMarkup(form){
-  if(form&&!form.dataset.originalMarkup)form.dataset.originalMarkup=form.innerHTML;
-}
-function restoreFormState(formId){
-  const form=document.getElementById(formId);
-  if(!form||!form.dataset.originalMarkup)return;
-  form.innerHTML=form.dataset.originalMarkup;
-  clearLeadValidation(form);
-  if(formId==='yieldCalculatorForm'){
-    form.reset();
-    document.getElementById('yieldEmptyState')?.classList.remove('hidden');
-    document.getElementById('yieldResultCard')?.classList.add('hidden','translate-y-4','opacity-0');
-  }
-  if(formId==='viewingForm')prefillUserFacingForms(getCurrentUser());
-}
-function setFormButtonLoading(form,{isLoading,label}){
-  const submitButton=form?.querySelector('button[type="submit"]');
-  if(!submitButton)return()=>{};
-  if(!submitButton.dataset.originalLabel)submitButton.dataset.originalLabel=submitButton.textContent;
-  submitButton.disabled=!!isLoading;
-  submitButton.textContent=isLoading?label:submitButton.dataset.originalLabel;
-  return ()=>setFormButtonLoading(form,{isLoading:false});
-}
-function showSuccessState(form,{title,message,actionLabel,action,linkLabel,linkAction}){
-  storeOriginalFormMarkup(form);
-  form.innerHTML=`
-    <div class="form-success-state animate-fade">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-      <div>
-        <h4>${escapeHtml(title)}</h4>
-        <p>${escapeHtml(message)}</p>
-      </div>
-      ${actionLabel?`<button type="button">${escapeHtml(actionLabel)}</button>`:''}
-      ${linkLabel?`<button type="button" class="success-reset-link">${escapeHtml(linkLabel)}</button>`:''}
-    </div>
-  `;
-  const buttons=form.querySelectorAll('button');
-  if(actionLabel&&typeof action==='function'&&buttons[0])buttons[0].addEventListener('click',action);
-  if(linkLabel&&typeof linkAction==='function'){
-    const linkButton=actionLabel?buttons[1]:buttons[0];
-    if(linkButton)linkButton.addEventListener('click',linkAction);
-  }
-}
-function renderComponent(targetId,items,renderer){
-  const target=document.getElementById(targetId);
-  if(!target)return;
-  target.innerHTML=items.map((item,index)=>renderer(item,index)).join('');
-}
-function renderTestimonials(){
-  renderComponent('testimonialsGrid',BUSINESS_CONFIG.testimonials,testimonial=>`
-    <div class="tc">
-      <div class="tc-qqq">"</div>
-      <div class="tc-stars">★★★★★</div>
-      <blockquote>${escapeHtml(testimonial.quote)}</blockquote>
-      <div class="tc-auth">
-        <div class="testimonial-media"><img src="${escapeHtml(testimonial.image)}" alt="${escapeHtml(testimonial.imageAlt)}" loading="lazy"></div>
-        <div>
-          <div class="tc-nm">${escapeHtml(testimonial.name)}</div>
-          <div class="tc-loc">${escapeHtml(testimonial.role)}</div>
-        </div>
-      </div>
-    </div>
-  `);
-}
-function normalizeSanityProperty(property,index){
-  const title=String(property?.title||`Managed Property ${index+1}`).trim();
-  const slug=title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||`managed-property-${index+1}`;
-  const location=String(property?.location||'London').trim();
-  const bedsValue=property?.beds!==undefined&&property?.beds!==null?`${property.beds} Beds`:'Contact Us';
-  const priceValue=String(property?.price||'Price on Application').trim();
-  return {
-    slug,
-    title,
-    area:location,
-    beds:bedsValue,
-    baths:'Contact Us',
-    price:priceValue.startsWith('£')?priceValue:`£${priceValue}`,
-    epc:'TBC',
-    image:property?.imageUrl||BUSINESS_CONFIG.properties[index%BUSINESS_CONFIG.properties.length]?.image||'',
-    imageAlt:`${title} property image managed by Urban Spectrum`,
-    summary:`${title} is now synced live from Sanity and presented as a professionally managed London property opportunity.`,
-    description:`This listing is being delivered dynamically from the Urban Spectrum Sanity workspace so the client can manage availability and marketing presentation without editing site code.`,
-    highlights:[
-      `Live synced from Sanity for ${location}`,
-      `Presented with ${bedsValue.toLowerCase()} and premium management framing`,
-      'Ready for ongoing client-side content management'
-    ],
-    tour:'#'
-  };
-}
-function renderPropertyCards(){
-  renderComponent('portfolioGrid',BUSINESS_CONFIG.properties,property=>`
-    <article class="portfolio-card">
-      <div class="portfolio-media">
-        <img src="${escapeHtml(property.image)}" alt="${escapeHtml(property.imageAlt)}" loading="lazy">
-        <div class="portfolio-overlay">
-          <div class="portfolio-price">${escapeHtml(property.price)}</div>
-          <div class="epc-badge">EPC ${escapeHtml(property.epc)}</div>
-        </div>
-      </div>
-      <div class="portfolio-body">
-        <h3>${escapeHtml(property.title)}</h3>
-        <p class="tool-note">${escapeHtml(property.area)} managed by Urban Spectrum with compliance-ready documentation and premium presentation.</p>
-        <div class="portfolio-meta">
-          <span>${escapeHtml(property.beds)}</span>
-          <span>${escapeHtml(property.baths)}</span>
-          <span>UK Compliant Listing</span>
-        </div>
-        <div class="portfolio-actions">
-          <button class="portfolio-btn secondary" type="button" onclick="switchPage('property-detail',{propertySlug:${JSON.stringify(property.slug)}})">View Details</button>
-          <button class="portfolio-btn primary" type="button" onclick="openViewingModal(${JSON.stringify(property.title)})">Book Viewing</button>
-        </div>
-      </div>
-    </article>
-  `);
-}
-function renderProperties(){
-  renderPropertyCards();
-}
-async function syncSanityProperties(){
-  if(!sanityClient)return;
-  try{
-    const liveProperties=await sanityClient.fetch(`*[_type == "property"]{title, price, location, "imageUrl": image.asset->url, beds}`);
-    if(Array.isArray(liveProperties)&&liveProperties.length){
-      BUSINESS_CONFIG.properties=liveProperties.map(normalizeSanityProperty);
-      renderProperties();
-      if(activeRoute.pageId==='property-detail'){
-        const currentProperty=getPropertyBySlug(activeRoute.propertySlug);
-        switchPage('property-detail',{propertySlug:currentProperty.slug,skipHistory:true,instant:true});
-      }
-    }
-  }catch(error){
-    console.warn('Sanity sync failed, keeping fallback properties visible.',error);
-  }
-}
-function initializeNavState(){
-  const nav=document.getElementById('siteNav');
-  if(!nav)return;
-  nav.classList.toggle('scrolled',window.scrollY>50);
-}
-async function copyFooterEmail(){
-  const emailLink=document.getElementById('footerEmailLink');
-  const copyBtn=document.querySelector('.copy-email-btn');
-  const value=emailLink?.textContent?.trim();
-  if(!value||!copyBtn)return;
-  try{
-    await navigator.clipboard.writeText(value);
-    copyBtn.classList.add('copied');
-    clearTimeout(window.copyEmailTimer);
-    window.copyEmailTimer=setTimeout(()=>copyBtn.classList.remove('copied'),1400);
-  }catch(error){
-    showToast('Copy to clipboard is unavailable in this browser.');
-  }
-}
-function downloadYieldReport(){
-  showToast('PDF export will connect to your reporting workflow in the next release.');
-}
-function printYieldReport(){
-  window.print();
-}
 
 async function apiFetch(path,{method='GET',body,auth=false,headers={}}={}){
   const requestHeaders={...headers};
@@ -2102,17 +1443,6 @@ async function apiFetch(path,{method='GET',body,auth=false,headers={}}={}){
     throw new Error(data.message||'Something went wrong while contacting the Urban Spectrum API.');
   }
   return data;
-}
-async function sendLeadToWebhook(data){
-  const response=await fetch(BUSINESS_CONFIG.leadWebhookUrl,{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify(data)
-  });
-  if(!response.ok){
-    throw new Error('Webhook request failed.');
-  }
-  return response;
 }
 
 function switchAuthMode(mode){
@@ -2339,8 +1669,10 @@ async function requestPasswordReset(){
 async function handleSubmit(e){
   e.preventDefault();
   const form=e.target;
-  if(!validateLeadForm(form))return;
-  const stopLoading=setFormButtonLoading(form,{isLoading:true,label:'Sending Enquiry...'});
+  const submitBtn=document.getElementById('submitBtn');
+  const original=submitBtn.textContent;
+  submitBtn.textContent='Sending...';
+  submitBtn.disabled=true;
   try{
     const firstName=form.querySelector('input[name="firstName"]').value.trim();
     const lastName=form.querySelector('input[name="lastName"]').value.trim();
@@ -2349,100 +1681,114 @@ async function handleSubmit(e){
     const enquiryType=form.querySelector('select[name="enquiryType"]').value;
     const propertyAddress=form.querySelector('input[name="propertyAddress"]').value.trim();
     const message=form.querySelector('textarea[name="message"]').value.trim();
-    const leadPayload={
-      leadType:'contact',
-      name:[firstName,lastName].filter(Boolean).join(' '),
-      email,
-      phone,
-      propertyInterest:propertyAddress||enquiryType||'General enquiry',
-      enquiryType,
-      message,
-      sourcePage:activeRoute.pageId
-    };
-    try{await sendLeadToWebhook(leadPayload);}catch(webhookError){console.warn('Webhook unavailable, continuing.',webhookError);}
-    showToast('Your enquiry has been sent.');
-    showSuccessState(form,{
-      title:'Thank You For Your Enquiry',
-      message:'Your message has been delivered successfully. If anything interrupts your connection next time, simply try again and we will pick it up.',
-      linkLabel:'Send another request',
-      linkAction:()=>restoreFormState('contactForm')
+    await apiFetch('/api/contact',{
+      method:'POST',
+      body:{
+        name:[firstName,lastName].filter(Boolean).join(' '),
+        email,
+        phone,
+        enquiryType,
+        propertyAddress,
+        message
+      }
     });
+    submitBtn.textContent='Enquiry Sent ✓';
+    submitBtn.style.background='#2d7a4f';
+    showToast('Your enquiry has been sent.');
+    form.reset();
+    prefillUserFacingForms(getCurrentUser());
   }catch(error){
-    showToast('We could not send your enquiry. Please check your connection and try again.');
+    showToast(error.message);
   }finally{
-    stopLoading();
+    setTimeout(()=>{
+      submitBtn.textContent=original;
+      submitBtn.style.background='';
+      submitBtn.disabled=false;
+    },2400);
   }
+}
+const propertyData=[
+  {
+    title:'Balham High Road Apartment',
+    area:'Balham, SW12',
+    beds:'2 Beds',
+    baths:'2 Baths',
+    price:'£2,450 pcm',
+    epc:'B',
+    image:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1200&q=80',
+    tour:'#'
+  },
+  {
+    title:'Clapham Investment Townhouse',
+    area:'Clapham, SW4',
+    beds:'4 Beds',
+    baths:'3 Baths',
+    price:'£4,900 pcm',
+    epc:'C',
+    image:'https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200&q=80',
+    tour:'#'
+  },
+  {
+    title:'Riverside Canary Wharf Let',
+    area:'Canary Wharf, E14',
+    beds:'3 Beds',
+    baths:'2 Baths',
+    price:'£3,850 pcm',
+    epc:'B',
+    image:'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1200&q=80',
+    tour:'#'
+  }
+];
+function renderPropertyCards(){
+  const grid=document.getElementById('portfolioGrid');
+  if(!grid)return;
+  grid.innerHTML=propertyData.map(property=>`
+    <article class="portfolio-card">
+      <div class="portfolio-media">
+        <img src="${property.image}" alt="${property.title}">
+        <div class="portfolio-overlay">
+          <div class="portfolio-price">${property.price}</div>
+          <div class="epc-badge">EPC ${property.epc}</div>
+        </div>
+      </div>
+      <div class="portfolio-body">
+        <h3>${property.title}</h3>
+        <p class="tool-note">${property.area} managed by Urban Spectrum with compliance-ready documentation and premium presentation.</p>
+        <div class="portfolio-meta">
+          <span>${property.beds}</span>
+          <span>${property.baths}</span>
+          <span>UK Compliant Listing</span>
+        </div>
+        <div class="portfolio-actions">
+          <a class="portfolio-btn secondary" href="${property.tour}">Virtual Tour</a>
+          <button class="portfolio-btn primary" type="button" onclick="openViewingModal('${property.title.replace(/'/g,"&#39;")}')">Book Viewing</button>
+        </div>
+      </div>
+    </article>
+  `).join('');
 }
 function formatCurrency(value){
   return new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP',maximumFractionDigits:0}).format(value);
 }
 function handleYieldCalculator(e){
   e.preventDefault();
-  const form=e.target;
-  const monthlyRentField=document.getElementById('monthlyRent');
-  const managementFeeField=document.getElementById('managementFee');
-  const maintenanceCostField=document.getElementById('maintenanceCost');
-  const propertyValueField=document.getElementById('propertyValue');
-  [monthlyRentField,managementFeeField,maintenanceCostField,propertyValueField].forEach(field=>field.classList.remove('lead-invalid'));
   const monthlyRent=Number(document.getElementById('monthlyRent').value||0);
   const managementFee=Number(document.getElementById('managementFee').value||0);
+  const maintenanceCost=Number(document.getElementById('maintenanceCost').value||0);
   const propertyValue=Number(document.getElementById('propertyValue').value||0);
-  if(monthlyRent<=0){monthlyRentField.classList.add('lead-invalid');showToast('Enter a monthly rent greater than zero.');return;}
-  if(managementFee<0||managementFee>100){managementFeeField.classList.add('lead-invalid');showToast('Management fee should be between 0 and 100.');return;}
-  if(propertyValue<=0){propertyValueField.classList.add('lead-invalid');showToast('Enter a property value greater than zero.');return;}
   const grossAnnual=monthlyRent*12;
-  const managementAnnual=grossAnnual*0.10;
-  const estimatedMaintenance=grossAnnual*0.15;
-  const totalCosts=managementAnnual+estimatedMaintenance;
+  const managementAnnual=grossAnnual*(managementFee/100);
+  const totalCosts=managementAnnual+maintenanceCost;
   const netAnnual=grossAnnual-totalCosts;
-  const grossYield=propertyValue>0?(grossAnnual/propertyValue)*100:0;
   const netYield=propertyValue>0?(netAnnual/propertyValue)*100:0;
   document.getElementById('grossAnnualRent').textContent=formatCurrency(grossAnnual);
   document.getElementById('annualCosts').textContent=formatCurrency(totalCosts);
   document.getElementById('annualNetIncome').textContent=formatCurrency(netAnnual);
   document.getElementById('netYieldPill').textContent=`${netYield.toFixed(2)}%`;
-  document.getElementById('grossYieldValue').textContent=`${grossYield.toFixed(2)}%`;
-  document.getElementById('netYieldValue').textContent=`${netYield.toFixed(2)}%`;
-  document.getElementById('yieldNetProfitValue').textContent=formatCurrency(netAnnual);
-  document.getElementById('yieldMaintenanceValue').textContent=formatCurrency(estimatedMaintenance);
-  document.getElementById('yieldManagementValue').textContent=formatCurrency(managementAnnual);
-  maintenanceCostField.value=Math.round(estimatedMaintenance);
-  document.getElementById('yieldSummary').textContent=`Gross yield is calculated as annual rent divided by property value. Net yield reflects a London-market underwriting model using a fixed 10% management fee and 15% maintenance reserve, with your entered management fee of ${managementFee.toFixed(1)}% retained as a discussion benchmark.`;
+  document.getElementById('yieldSummary').textContent=`Projected annual net income after a ${managementFee.toFixed(1)}% management fee and ${formatCurrency(maintenanceCost)} maintenance allowance.`;
   document.getElementById('yieldEmptyState').classList.add('hidden');
   const card=document.getElementById('yieldResultCard');
   card.classList.remove('hidden','translate-y-4','opacity-0');
-  const chartCanvas=document.getElementById('yieldBreakdownChart');
-  if(yieldBreakdownChart)yieldBreakdownChart.destroy();
-  yieldBreakdownChart=new Chart(chartCanvas,{
-    type:'doughnut',
-    data:{
-      labels:['Net Annual Profit','Estimated Maintenance (15%)','Management Fees (10%)'],
-      datasets:[{
-        data:[netAnnual,estimatedMaintenance,managementAnnual],
-        backgroundColor:['#0e1e2e','#d4ab3f','#f0d078'],
-        borderColor:'#ffffff',
-        borderWidth:4,
-        hoverOffset:8
-      }]
-    },
-    options:{
-      maintainAspectRatio:false,
-      cutout:'68%',
-      plugins:{
-        legend:{display:false},
-        tooltip:{
-          callbacks:{
-            label(context){return `${context.label}: ${formatCurrency(context.parsed)}`;}
-          }
-        }
-      }
-    }
-  });
-  const calcSubmitBtn=form.querySelector('button[type="submit"]');
-  if(calcSubmitBtn){
-    calcSubmitBtn.textContent='Recalculate';
-    calcSubmitBtn.style.background='var(--gold)';
-  }
 }
 function generateTicketId(){
   return `US-${Math.floor(1000+Math.random()*9000)}`;
@@ -2486,7 +1832,6 @@ async function handleMaintenanceRequest(e){
   }
 }
 function openViewingModal(propertyTitle){
-  restoreFormState('viewingForm');
   document.getElementById('viewingProperty').value=propertyTitle;
   document.getElementById('viewingMessage').value=`I would like to arrange a viewing for ${propertyTitle}.`;
   prefillUserFacingForms(getCurrentUser());
@@ -2817,27 +2162,22 @@ function initializeLandlordDashboard(user){
 }
 async function handleViewingRequest(e){
   e.preventDefault();
-  const form=e.target;
-  if(!validateLeadForm(form,{requirePhone:true}))return;
-  const stopLoading=setFormButtonLoading(form,{isLoading:true,label:'Sending Request...'});
   const propertyTitle=document.getElementById('viewingProperty').value;
   try{
-    try{await sendLeadToWebhook({leadType:'viewing',
-      name:document.getElementById('viewingName').value.trim(),
-      email:document.getElementById('viewingEmail').value.trim(),
-      phone:document.getElementById('viewingPhone').value.trim(),
-      propertyInterest:propertyTitle,
-      preferredDate:document.getElementById('viewingDate').value,
-      message:document.getElementById('viewingMessage').value.trim(),
-      sourcePage:activeRoute.pageId
-    });}catch(webhookError){console.warn('Webhook unavailable.',webhookError);}
-    showToast(`Viewing request sent for ${propertyTitle}`);
-    showSuccessState(form,{
-      title:'Viewing Request Received',
-      message:`Your request for ${propertyTitle} is in the Urban Spectrum queue. We will confirm the next available appointment window shortly.`,
-      linkLabel:'Send another request',
-      linkAction:()=>restoreFormState('viewingForm')
+    await apiFetch('/api/viewings',{
+      method:'POST',
+      body:{
+        propertyTitle,
+        preferredDate:document.getElementById('viewingDate').value,
+        name:document.getElementById('viewingName').value.trim(),
+        email:document.getElementById('viewingEmail').value.trim(),
+        phone:document.getElementById('viewingPhone').value.trim(),
+        message:document.getElementById('viewingMessage').value.trim()
+      }
     });
+    e.target.reset();
+    closeViewingModal();
+    showToast(`Viewing request sent for ${propertyTitle}`);
     const contactForm=document.getElementById('contactForm');
     if(contactForm){
       const enquiryType=contactForm.querySelector('select[name="enquiryType"]');
@@ -2848,35 +2188,11 @@ async function handleViewingRequest(e){
       if(messageField)messageField.value=`Viewing request submitted for ${propertyTitle}. Please confirm the next available appointment options.`;
     }
   }catch(error){
-    showToast('We could not send your viewing request. Please try again in a moment.');
-  }finally{
-    stopLoading();
+    showToast(error.message);
   }
 }
-function acceptCookies(){localStorage.setItem('cookieConsent','accepted');const b=document.getElementById('cookieBanner');if(b)b.classList.remove('show');}
-function declineCookies(){localStorage.setItem('cookieConsent','declined');const b=document.getElementById('cookieBanner');if(b)b.classList.remove('show');}
 const secs=document.querySelectorAll('[id]');
 const lnks=document.querySelectorAll('.nav-menu a');
-void secs;void lnks;
-applyBusinessConfig();
-storeOriginalFormMarkup(document.getElementById('yieldCalculatorForm'));
-storeOriginalFormMarkup(document.getElementById('viewingForm'));
-storeOriginalFormMarkup(document.getElementById('contactForm'));
-renderTestimonials();
-renderPropertyCards();
-syncSanityProperties();
-document.getElementById('routeViewHome')?.classList.remove('hidden');
-document.getElementById('routeViewServices')?.classList.add('hidden');
-document.getElementById('routeViewPropertyDetail')?.classList.add('hidden');
-const heroVideo=document.getElementById('heroVideo');
-if(heroVideo){
-  const revealHeroVideo=()=>heroVideo.classList.add('is-ready');
-  if(heroVideo.readyState>=2)revealHeroVideo();
-  else{
-    heroVideo.addEventListener('loadeddata',revealHeroVideo,{once:true});
-    heroVideo.addEventListener('canplay',revealHeroVideo,{once:true});
-  }
-}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAuthModal();closeViewingModal()}});
 document.getElementById('authModal').addEventListener('click',e=>{if(e.target.id==='authModal')closeAuthModal()});
 document.querySelectorAll('.auth-social').forEach(btn=>btn.addEventListener('click',()=>handleSocialAuth(btn.textContent.replace('Continue with ','').trim())));
@@ -2886,19 +2202,21 @@ if(window.lucide)lucide.createIcons();
 consumeOAuthCallback();
 bootstrapSession();
 
-const bttBtn=document.getElementById('btt');
-window.addEventListener('scroll',()=>{
-  if(bttBtn)bttBtn.classList.toggle('show',window.scrollY>400);
-  initializeNavState();
-});
-initializeNavState();
+// Back to top button
+const bttBtn = document.getElementById('btt');
+if(bttBtn) window.addEventListener('scroll', () => { bttBtn.classList.toggle('show', window.scrollY > 400); });
+
+// Cookie functions
+function acceptCookies(){localStorage.setItem('cookieConsent','accepted');const b=document.getElementById('cookieBanner');if(b)b.classList.remove('show');}
+function declineCookies(){localStorage.setItem('cookieConsent','declined');const b=document.getElementById('cookieBanner');if(b)b.classList.remove('show');}
 setTimeout(()=>{if(!localStorage.getItem('cookieConsent')){const b=document.getElementById('cookieBanner');if(b)b.classList.add('show');}},1200);
 
-const pageFade=document.getElementById('pageFade');
-if(pageFade){
+// Page transition
+document.addEventListener('DOMContentLoaded',()=>{
+  const pageFade=document.getElementById('pageFade');
+  if(!pageFade)return;
   document.querySelectorAll('a[href]').forEach(link=>{
     const href=link.getAttribute('href');
-    if(link.dataset.routePage)return;
     if(!href||href.startsWith('#')||href.startsWith('tel:')||href.startsWith('mailto:')||href.includes('#'))return;
     link.addEventListener('click',e=>{
       e.preventDefault();
@@ -2907,16 +2225,7 @@ if(pageFade){
     });
   });
   pageFade.classList.remove('out');
-}
-Object.assign(window,{
-  openAuthModal,closeAuthModal,toggleMenu,switchAuthMode,requestPasswordReset,logoutUser,
-  handleAuthSubmit,handleSocialAuth,handleYieldCalculator,handleSubmit,closeViewingModal,
-  openViewingModal,handleVaultUpload,handleVaultDragOver,handleVaultDragLeave,handleVaultDrop,
-  downloadVaultDoc,deleteVaultDoc,calNavigate,calSelectDate,calSelectSlot,confirmViewingBooking,
-  sendRentReminder,switchDashTab,acceptCookies,declineCookies,copyFooterEmail,switchPage,
-  downloadDashboardDocument
 });
-}); // end DOMContentLoaded
 </script>
 </body>
 </html>
