@@ -318,7 +318,8 @@ h2.s-title{font-family:'Playfair Display',serif;font-size:clamp(28px,2.8vw,46px)
 .f-submit:hover{background:var(--gold)}
 
 /* LANDLORD CALCULATOR */
-.calc-section{background:#fff}
+.calc-section{background:#fff;display:none}
+.calc-section.active{display:block}
 .calc-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:start;margin-top:48px}
 .calc-form-card,.calc-result-shell,.tenant-card,.portfolio-card,.trust-item,.viewing-panel{border:1px solid var(--border);background:#fff;box-shadow:0 18px 42px rgba(14,30,46,.06)}
 .calc-form-card{padding:34px}
@@ -362,7 +363,7 @@ h2.s-title{font-family:'Playfair Display',serif;font-size:clamp(28px,2.8vw,46px)
 .portfolio-btn.secondary:hover{background:var(--cream);border-color:var(--gold);color:var(--gold)}
 
 /* TENANT DESK */
-.tenant-section{background:#fff}
+
 .tenant-wrap{display:grid;grid-template-columns:1fr .9fr;gap:28px;align-items:start;margin-top:48px}
 .tenant-card{padding:34px}
 .photo-upload-placeholder{border:1.5px dashed rgba(184,149,42,.45);background:var(--cream);padding:18px;text-align:center;color:var(--mid);font-size:13px;line-height:1.7}
@@ -515,7 +516,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
   <div class="topbar-side">
     <a href="tel:+442087729552" class="hot">+44 (0)20 8772 9552</a>
     <div class="tdiv"></div>
-    <a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a>
+    <a href="/cdn-cgi/l/email-protection#660f080009261314040708151603051214130b48050948130d"><span class="__cf_email__" data-cfemail="80e9eee6efc0f5f2e2e1eef3f0e5e3f4f2f5edaee3efaef5eb">[email&#160;protected]</span></a>
     <div class="tdiv"></div>
     <a>114 Balham High Rd, London SW12 9AA</a>
   </div>
@@ -1010,70 +1011,6 @@ footer{background:var(--navy);padding:60px 5vw 0}
   </div>
 </section>
 
-<!-- TENANT MAINTENANCE -->
-<section class="tenant-section" id="tenant-desk">
-  <div class="s-eye"><div class="s-eye-line"></div><span>Tenant Area</span></div>
-  <h2 class="s-title">Automated Maintenance Request<br>Desk With Ticket Reference</h2>
-  <div class="tenant-wrap">
-    <div class="tenant-card">
-      <h3>Report an Issue</h3>
-      <p class="tool-note">A structured request flow helps tenants communicate clearly while giving your management team a professional, trackable intake process.</p>
-      <form id="maintenanceForm">
-        <div class="tenant-grid">
-          <div class="tenant-field">
-            <label>Issue Category</label>
-            <select id="issueCategory" required>
-              <option value="" disabled selected>Please select…</option>
-              <option>Plumbing</option>
-              <option>Electrical</option>
-              <option>Heating</option>
-              <option>Appliance</option>
-              <option>Locks &amp; Security</option>
-              <option>Damp / Leak</option>
-            </select>
-          </div>
-          <div class="tenant-field">
-            <label>Urgency Level</label>
-            <select id="issueUrgency" required>
-              <option value="" disabled selected>Please select…</option>
-              <option>Emergency</option>
-              <option>Urgent</option>
-              <option>Standard</option>
-            </select>
-          </div>
-        </div>
-        <div class="tenant-field">
-          <label>Photo Upload</label>
-          <div class="photo-upload-placeholder">
-            <strong>Upload Placeholder</strong>
-            Add image support here later for leak damage, appliance faults, or access issues. The UI is ready for a backend file endpoint.
-          </div>
-        </div>
-        <div class="tenant-field">
-          <label>Description</label>
-          <textarea id="issueDescription" placeholder="Describe the issue, where it is located, and whether access is safe right now." required></textarea>
-        </div>
-        <div class="tenant-actions">
-          <button type="submit" class="tool-btn">Submit Request</button>
-          <span class="tool-pill">Official Ticket Generated On Submit</span>
-        </div>
-      </form>
-    </div>
-    <div class="tenant-card">
-      <div class="ticket-box">
-        <span>Maintenance Reference</span>
-        <strong id="ticketIdDisplay">US-0000</strong>
-        <p id="ticketStatusText">Once submitted, your tenant request receives a formal reference number for follow-up and auditability.</p>
-      </div>
-      <ul class="tenant-list">
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Emergency tickets can be visually prioritized for internal dispatch.</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Category routing helps the right contractor or manager receive the job faster.</span></li>
-        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Reference IDs make the experience feel credible, trackable, and operationally mature.</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
 <!-- CTA BAND -->
 <div class="cta-band">
   <div>
@@ -1106,7 +1043,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
       </div>
       <div class="cblk">
         <div class="cblk-lbl">Email</div>
-        <h4><a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a></h4>
+        <h4><a href="/cdn-cgi/l/email-protection#325b5c545d72474050535c414257514640475f1c515d1c4759"><span class="__cf_email__" data-cfemail="c8a1a6aea788bdbaaaa9a6bbb8adabbcbabda5e6aba7e6bda3">[email&#160;protected]</span></a></h4>
       </div>
       <div class="cblk">
         <div class="cblk-lbl">Office Hours</div>
@@ -1238,7 +1175,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
     </div>
     <div class="f-col">
       <h4>Contact</h4>
-      <address>114 Balham High Road<br>London SW12 9AA<br>United Kingdom<br><br><a href="tel:+442087729552">+44 (0)20 8772 9552</a><br><a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a></address>
+      <address>114 Balham High Road<br>London SW12 9AA<br>United Kingdom<br><br><a href="tel:+442087729552">+44 (0)20 8772 9552</a><br><a href="/cdn-cgi/l/email-protection#533a3d353c13262131323d202336302721263e7d303c7d2638"><span class="__cf_email__" data-cfemail="dfb6b1b9b09faaadbdbeb1acafbabcabadaab2f1bcb0f1aab4">[email&#160;protected]</span></a></address>
     </div>
   </div>
   <div class="f-bottom">
@@ -1269,7 +1206,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
 
 <div class="page-fade" id="pageFade"></div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const API_URL=(window.API_URL||'https://urban-spectrum-backend-production.up.railway.app').replace(/\/$/,'');
 const GOOGLE_AUTH_URL=(window.GOOGLE_AUTH_URL||'').trim();
 const AUTH_TOKEN_KEY='urbanSpectrumAuthToken';
@@ -1351,6 +1288,7 @@ async function renderAuthState(){
   const name=document.getElementById('accountName');
   const userText=document.getElementById('authUserText');
   const dashboard=document.getElementById('landlordDashboard');
+  const calcSection=document.getElementById('landlord-tools');
   if(user){
     trigger.classList.add('logged-in');
     trigger.setAttribute('aria-label','Open account for '+getDisplayName(user));
@@ -1360,9 +1298,11 @@ async function renderAuthState(){
     prefillUserFacingForms(user);
     if(isLandlord(user)){
       dashboard.classList.add('active');
+      if(calcSection) calcSection.classList.add('active');
       await loadLandlordDashboard();
     }else{
       dashboard.classList.remove('active');
+      if(calcSection) calcSection.classList.remove('active');
       await hydrateLatestTicket();
     }
   }else{
@@ -1371,6 +1311,7 @@ async function renderAuthState(){
     name.textContent='Account';
     userBar.style.display='none';
     dashboard.classList.remove('active');
+    if(calcSection) calcSection.classList.remove('active');
   }
 }
 
@@ -1856,7 +1797,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAuthModal();cl
 document.getElementById('authModal').addEventListener('click',e=>{if(e.target.id==='authModal')closeAuthModal()});
 document.querySelectorAll('.auth-social').forEach(btn=>btn.addEventListener('click',()=>handleSocialAuth(btn.textContent.replace('Continue with ','').trim())));
 document.getElementById('yieldCalculatorForm').addEventListener('submit',handleYieldCalculator);
-document.getElementById('maintenanceForm').addEventListener('submit',handleMaintenanceRequest);
 document.getElementById('viewingForm').addEventListener('submit',handleViewingRequest);
 if(window.lucide)lucide.createIcons();
 consumeOAuthCallback();
@@ -1875,17 +1815,4 @@ setTimeout(()=>{if(!localStorage.getItem('cookieConsent')){const b=document.getE
 window.addEventListener('DOMContentLoaded', () => {
   const pageFade = document.getElementById('pageFade');
   if (!pageFade) return;
-  document.querySelectorAll('a[href]').forEach(link => {
-    const href = link.getAttribute('href');
-    if(!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('http') || href.startsWith('https') || href.includes('#')) return;
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      pageFade.classList.add('out');
-      setTimeout(() => window.location.href = href, 350);
-    });
-  });
-  window.addEventListener('pageshow', () => pageFade.classList.remove('out'));
-});
-</script>
-</body>
-</html>
+  document.querySelect
