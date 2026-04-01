@@ -252,7 +252,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
   <div class="topbar-side">
     <a href="tel:+442087729552" class="hot">+44 (0)20 8772 9552</a>
     <div class="tdiv"></div>
-    <a href="/cdn-cgi/l/email-protection#5930373f36192c2b3b38372a293c3a2d2b2c34773a36772c32"><span class="__cf_email__" data-cfemail="5a33343c351a2f28383b34292a3f392e282f37743935742f31">[email&#160;protected]</span></a>
+    <a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a>
     <div class="tdiv"></div>
     <a>114 Balham High Rd, London SW12 9AA</a>
   </div>
@@ -483,7 +483,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
         London SW12 9AA<br>
         United Kingdom<br><br>
         <a href="tel:+442087729552">+44 (0)20 8772 9552</a><br>
-        <a href="/cdn-cgi/l/email-protection#c6afa8a0a986b3b4a4a7a8b5b6a3a5b2b4b3abe8a5a9e8b3ad"><span class="__cf_email__" data-cfemail="8de4e3ebe2cdf8ffefece3fefde8eef9fff8e0a3eee2a3f8e6">[email&#160;protected]</span></a>
+        <a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a>
       </address>
     </div>
   </div>
@@ -493,7 +493,10 @@ footer{background:var(--navy);padding:60px 5vw 0}
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+// Auth modal stub — redirects to main page if user tries to sign in from listings
+function openAuthModal(){ window.location.href = 'index.html#contact'; }
+function closeAuthModal(){}
 const API_URL = 'https://urban-spectrum-backend-production.up.railway.app';
 
 const PROPERTIES = [
@@ -502,7 +505,7 @@ const PROPERTIES = [
     price:1950, beds:2, baths:1, reception:1,
     features:['Furnished','Garden Access','Gas Central Heating','Double Glazing'],
     status:'available', isNew:true,
-    image:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80&auto=format',
+    image:'https://picsum.photos/seed/prop1/800/500',
     description:'A bright and spacious two bedroom apartment situated moments from Balham tube station. The property benefits from a modern fitted kitchen, contemporary bathroom and private garden access.',lat:51.4432,lng:-0.1522
   },
   {
@@ -510,7 +513,7 @@ const PROPERTIES = [
     price:1650, beds:1, baths:1, reception:1,
     features:['Part Furnished','Private Garden','Bills Negotiable'],
     status:'available', isNew:false,
-    image:'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80',
+    image:'https://picsum.photos/seed/prop2/800/500',
     description:'Charming garden flat on a quiet residential street in sought-after Clapham. Features a private rear garden, modern kitchen and spacious double bedroom.',lat:51.4571,lng:-0.1652
   },
   {
@@ -518,7 +521,7 @@ const PROPERTIES = [
     price:2800, beds:3, baths:2, reception:2,
     features:['Unfurnished','Garage','EPC Rating B','Garden'],
     status:'available', isNew:true,
-    image:'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
+    image:'https://picsum.photos/seed/prop3/800/500',
     description:'Substantial three bedroom Victorian terraced house offering generous living space across three floors. Includes a garage, large rear garden and has been fully refurbished to a high standard.',lat:51.4309,lng:-0.1652
   },
   {
@@ -526,7 +529,7 @@ const PROPERTIES = [
     price:1150, beds:'studio', baths:1, reception:0,
     features:['Furnished','All Bills Included','Gym Access'],
     status:'available', isNew:false,
-    image:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80',
+    image:'https://picsum.photos/seed/prop4/800/500',
     description:'Modern studio apartment in a well-maintained purpose-built block. All utility bills are included in the rent. Ideal for a single professional. Excellent transport links to central London.',lat:51.4419,lng:-0.1269
   },
   {
@@ -534,7 +537,7 @@ const PROPERTIES = [
     price:3200, beds:null, baths:null, reception:null,
     features:['A1/A2 Use Class','Prominent Position','Storage Room','WC Facilities'],
     status:'available', isNew:false,
-    image:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
+    image:'https://picsum.photos/seed/prop5/800/500',
     description:'Prime ground floor retail unit located on busy Balham High Road with excellent footfall. Comprising approximately 650 sq ft of open plan retail space with storage and WC to the rear.',lat:51.4432,lng:-0.1522
   },
   {
@@ -542,7 +545,7 @@ const PROPERTIES = [
     price:3800, beds:4, baths:2, reception:2,
     features:['Unfurnished','Roof Terrace','Off-Street Parking','EPC Rating C'],
     status:'available', isNew:true,
-    image:'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
+    image:'https://picsum.photos/seed/prop6/800/500',
     description:'Exceptional four bedroom townhouse on one of Clapham\'s most desirable roads. Features a stunning roof terrace with views across South London, off-street parking and beautifully appointed throughout.',lat:51.4600,lng:-0.1480
   },
   {
@@ -550,7 +553,7 @@ const PROPERTIES = [
     price:1800, beds:null, baths:null, reception:null,
     features:['B1 Use Class','Fibre Broadband Ready','Air Conditioning','Shared Reception'],
     status:'available', isNew:false,
-    image:'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80',
+    image:'https://picsum.photos/seed/prop7/800/500',
     description:'Modern first floor office suite within a well-managed commercial building. Approximately 400 sq ft of bright open plan workspace with access to shared reception and meeting room facilities.',lat:51.4276,lng:-0.1681
   },
   {
@@ -558,7 +561,7 @@ const PROPERTIES = [
     price:2100, beds:2, baths:1, reception:1,
     features:['Part Furnished','Private Entrance','Cellar Storage','Period Features'],
     status:'available', isNew:false,
-    image:'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80',
+    image:'https://picsum.photos/seed/prop8/800/500',
     description:'Charming two bedroom maisonette set within a period Victorian conversion. Retains many original features including high ceilings and sash windows. Benefits from a private entrance and cellar storage.',lat:51.4480,lng:-0.1350
   }
 ];
@@ -592,7 +595,7 @@ function renderCard(p) {
   return `
     <div class="prop-card" data-id="${p.id}" data-type="${p.type}" data-beds="${p.beds}" data-price="${p.price}" data-area="${p.area}">
       <div class="prop-media">
-        <img src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80&auto=format'">
+        <img src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.src='https://picsum.photos/seed/prop0/800/500'">
         <div class="prop-badges">
           <span class="prop-badge type">${p.type === 'residential' ? 'Residential' : 'Commercial'}</span>
           ${p.isNew ? '<span class="prop-badge new">New</span>' : ''}
