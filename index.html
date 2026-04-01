@@ -317,6 +317,75 @@ h2.s-title{font-family:'Playfair Display',serif;font-size:clamp(28px,2.8vw,46px)
 .f-submit{background:var(--navy);color:#fff;border:none;padding:12px 32px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;cursor:pointer;align-self:flex-start;margin-top:4px;transition:background .2s}
 .f-submit:hover{background:var(--gold)}
 
+/* NOTIFICATION BADGE */
+.notif-badge{position:absolute;top:2px;right:2px;width:14px;height:14px;border-radius:50%;background:#e53e3e;border:2px solid #fff;display:none;font-size:8px;color:#fff;align-items:center;justify-content:center;font-weight:700;z-index:10}
+.notif-badge.show{display:flex}
+
+/* RENT TRACKER */
+.rent-tracker-table{min-width:100%;text-align:left;border-collapse:collapse}
+.rent-tracker-table th{padding:10px 14px;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#78716c;background:#fafaf9;border-bottom:1px solid #e7e5e4}
+.rent-tracker-table td{padding:12px 14px;font-size:13px;color:#1c1917;border-bottom:1px solid #f5f5f4;vertical-align:middle}
+.rent-tracker-table tr:last-child td{border-bottom:none}
+.rent-status{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.rent-status.paid{background:#dcfce7;color:#166534}
+.rent-status.late{background:#fef9c3;color:#854d0e}
+.rent-status.overdue{background:#fee2e2;color:#991b1b}
+.rent-status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.rent-status.paid .rent-status-dot{background:#16a34a}
+.rent-status.late .rent-status-dot{background:#ca8a04}
+.rent-status.overdue .rent-status-dot{background:#dc2626}
+.rent-remind-btn{border:1px solid #e7e5e4;background:#fff;color:#44403c;padding:5px 12px;font:600 10px 'DM Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:6px;transition:all .2s}
+.rent-remind-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.rent-remind-btn:disabled{opacity:.45;cursor:default}
+.rent-summary-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.rent-pill{padding:6px 14px;border-radius:999px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.rent-pill.all{background:var(--navy);color:#fff}
+.rent-pill.paid-pill{background:#dcfce7;color:#166534}
+.rent-pill.late-pill{background:#fef9c3;color:#854d0e}
+.rent-pill.overdue-pill{background:#fee2e2;color:#991b1b}
+
+/* DOCUMENT VAULT UPLOAD */
+.vault-upload-zone{border:2px dashed #d6d3d1;border-radius:16px;padding:28px 20px;text-align:center;cursor:pointer;transition:all .2s;background:#fafaf9;margin-top:16px}
+.vault-upload-zone:hover,.vault-upload-zone.drag-over{border-color:var(--gold);background:#fffbeb}
+.vault-upload-zone p{font-size:12.5px;color:#78716c;margin-top:6px;line-height:1.55}
+.vault-upload-zone span{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+.vault-file-input{display:none}
+.vault-doc-row{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border-bottom:1px solid #f5f5f4}
+.vault-doc-row:last-child{border-bottom:none}
+.vault-doc-icon{width:32px;height:32px;border-radius:8px;background:var(--cream);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.vault-doc-icon svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:1.8}
+.vault-doc-name{flex:1;font-size:12.5px;font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vault-doc-type{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);white-space:nowrap}
+.vault-doc-action{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);cursor:pointer;white-space:nowrap;background:none;border:none;padding:4px 8px;border-radius:6px;transition:background .2s}
+.vault-doc-action:hover{background:var(--cream)}
+
+/* VIEWING CALENDAR */
+.cal-wrap{margin-top:16px}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cal-header h4{font-family:'Playfair Display',serif;font-size:16px;color:var(--navy)}
+.cal-nav-btn{width:32px;height:32px;border:1px solid var(--border);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:all .2s}
+.cal-nav-btn:hover{background:var(--navy);border-color:var(--navy)}
+.cal-nav-btn:hover svg{stroke:#fff}
+.cal-nav-btn svg{width:14px;height:14px;stroke:var(--navy);fill:none;stroke-width:2.5}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-day-label{text-align:center;font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#a8a29e;padding:4px 0}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:12px;color:#44403c;border-radius:8px;cursor:pointer;transition:all .18s;position:relative;border:1.5px solid transparent}
+.cal-day:hover:not(.cal-day-empty):not(.cal-day-past){background:var(--cream);border-color:var(--gold)}
+.cal-day.cal-day-empty{cursor:default}
+.cal-day.cal-day-past{color:#d4d0ca;cursor:default}
+.cal-day.cal-day-today{background:var(--navy);color:#fff;font-weight:700}
+.cal-day.cal-day-selected{background:var(--gold);color:#fff;font-weight:700}
+.cal-day.cal-day-booked::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.cal-day.cal-day-today.cal-day-booked::after,.cal-day.cal-day-selected.cal-day-booked::after{background:#fff}
+.cal-slots{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cal-slot{padding:9px 6px;text-align:center;font-size:11px;font-weight:600;letter-spacing:.06em;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;transition:all .18s;background:#fff;color:var(--navy)}
+.cal-slot:hover{border-color:var(--gold);background:#fffbeb}
+.cal-slot.selected-slot{background:var(--navy);color:#fff;border-color:var(--navy)}
+.cal-slot.booked-slot{background:#f5f5f4;color:#a8a29e;cursor:default;border-color:#e7e5e4;text-decoration:line-through}
+.cal-confirm-btn{width:100%;margin-top:14px;background:var(--navy);color:#fff;border:none;padding:13px;font:700 11px 'DM Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-radius:8px;transition:background .2s}
+.cal-confirm-btn:hover{background:var(--gold)}
+.cal-confirm-btn:disabled{opacity:.45;cursor:default}
+
 /* LANDLORD CALCULATOR */
 .calc-section{background:#fff;display:none}
 .calc-section.active{display:block}
@@ -496,7 +565,15 @@ footer{background:var(--navy);padding:60px 5vw 0}
   .f-btm-links{flex-wrap:wrap;gap:12px}
   .calc-form-card,.calc-result-shell,.tenant-card,.viewing-panel,.trust-item{padding:22px}
 }
-@media(max-width:420px){
+/* DASHBOARD TABS */
+.dash-tab{padding:9px 18px;background:transparent;border:none;border-radius:12px;font:600 11px 'DM Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#78716c;cursor:pointer;transition:all .18s;position:relative;white-space:nowrap}
+.dash-tab.active{background:#fff;color:var(--navy);box-shadow:0 4px 12px rgba(14,30,46,.1)}
+.dash-tab-badge{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:#e53e3e;color:#fff;font-size:9px;font-weight:700;border-radius:50%;margin-left:6px;vertical-align:middle}
+.dash-panel{display:block}
+@media(max-width:640px){
+  .dash-tab{padding:8px 12px;font-size:10px}
+}
+
   .hero h1{font-size:28px}
   .auth-modal{padding:10px}
   .auth-tabs{display:flex;width:100%}
@@ -516,7 +593,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
   <div class="topbar-side">
     <a href="tel:+442087729552" class="hot">+44 (0)20 8772 9552</a>
     <div class="tdiv"></div>
-    <a href="/cdn-cgi/l/email-protection#660f080009261314040708151603051214130b48050948130d"><span class="__cf_email__" data-cfemail="80e9eee6efc0f5f2e2e1eef3f0e5e3f4f2f5edaee3efaef5eb">[email&#160;protected]</span></a>
+    <a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a>
     <div class="tdiv"></div>
     <a>114 Balham High Rd, London SW12 9AA</a>
   </div>
@@ -550,6 +627,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
       <svg viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="8" r="4"/></svg>
       <span class="account-name" id="accountName">Account</span>
       <span class="account-status-dot"></span>
+      <span class="notif-badge" id="notifBadge"></span>
     </button>
     <div class="hbg" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </div>
@@ -705,7 +783,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
           Landlord Analytics Dashboard
         </div>
         <h2 class="mt-4 font-['Playfair_Display'] text-4xl leading-tight text-slate-900">Portfolio performance at a glance.</h2>
-        <p class="mt-3 max-w-2xl text-sm leading-7 text-stone-600">This landlord-only workspace shows rental performance, property-level switching, maintenance exposure, and downloadable reporting in one ultra-clean control layer.</p>
+        <p class="mt-3 max-w-2xl text-sm leading-7 text-stone-600">Your landlord-only workspace — rental performance, rent payment tracking, document vault, viewing calendar and reporting in one clean control layer.</p>
       </div>
       <div class="min-w-[260px]">
         <label for="dashboardPropertySwitcher" class="mb-3 block text-[10px] font-bold uppercase tracking-[0.24em] text-slate-500">Managed Property</label>
@@ -714,16 +792,15 @@ footer{background:var(--navy);padding:60px 5vw 0}
       </div>
     </div>
 
-    <div class="mt-8 grid gap-4 md:grid-cols-3">
+    <!-- KPI CARDS -->
+    <div class="mt-8 grid gap-4 md:grid-cols-4">
       <div class="rounded-3xl border border-stone-200 bg-stone-50 p-5">
         <div class="flex items-center justify-between gap-4">
           <div>
-            <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Total Portfolio Value</p>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Portfolio Value</p>
             <strong id="dashboardPortfolioValue" class="mt-3 block font-['Playfair_Display'] text-4xl text-slate-900">£2.4M</strong>
           </div>
-          <div class="rounded-full border border-amber-300 bg-white p-3 text-amber-700">
-            <i data-lucide="home" class="h-5 w-5"></i>
-          </div>
+          <div class="rounded-full border border-amber-300 bg-white p-3 text-amber-700"><i data-lucide="home" class="h-5 w-5"></i></div>
         </div>
       </div>
       <div class="rounded-3xl border border-stone-200 bg-stone-50 p-5">
@@ -732,54 +809,169 @@ footer{background:var(--navy);padding:60px 5vw 0}
             <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Occupancy Rate</p>
             <strong id="dashboardOccupancyRate" class="mt-3 block font-['Playfair_Display'] text-4xl text-slate-900">94%</strong>
           </div>
-          <div class="rounded-full border border-amber-300 bg-white p-3 text-amber-700">
-            <i data-lucide="trending-up" class="h-5 w-5"></i>
-          </div>
+          <div class="rounded-full border border-amber-300 bg-white p-3 text-amber-700"><i data-lucide="trending-up" class="h-5 w-5"></i></div>
         </div>
       </div>
       <div class="rounded-3xl border border-stone-200 bg-stone-50 p-5">
         <div class="flex items-center justify-between gap-4">
           <div>
-            <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Active Maintenance</p>
-            <strong id="dashboardMaintenanceCount" class="mt-3 block font-['Playfair_Display'] text-4xl text-slate-900">2 Open Tickets</strong>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Maintenance</p>
+            <strong id="dashboardMaintenanceCount" class="mt-3 block font-['Playfair_Display'] text-4xl text-slate-900">2 Open</strong>
           </div>
-          <div class="rounded-full border border-amber-300 bg-white p-3 text-amber-700">
-            <i data-lucide="file-text" class="h-5 w-5"></i>
+          <div class="rounded-full border border-amber-300 bg-white p-3 text-amber-700"><i data-lucide="file-text" class="h-5 w-5"></i></div>
+        </div>
+      </div>
+      <div class="rounded-3xl border border-stone-200 bg-stone-50 p-5">
+        <div class="flex items-center justify-between gap-4">
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Rent This Month</p>
+            <strong id="dashboardRentStatus" class="mt-3 block font-['Playfair_Display'] text-4xl text-slate-900">2/3</strong>
+            <p class="mt-1 text-[10px] text-stone-400 uppercase tracking-[.12em]">Tenants Paid</p>
           </div>
+          <div class="rounded-full border border-amber-300 bg-white p-3 text-amber-700"><i data-lucide="pound-sterling" class="h-5 w-5"></i></div>
         </div>
       </div>
     </div>
 
-    <div class="mt-8 grid gap-6 xl:grid-cols-[1.5fr_.9fr]">
-      <div class="rounded-[26px] border border-stone-200 bg-white p-5">
-        <div class="flex items-center justify-between gap-4 flex-wrap">
-          <div>
-            <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Financial Overview</p>
-            <h3 class="mt-2 font-['Playfair_Display'] text-3xl text-slate-900">Monthly Rental Income</h3>
+    <!-- DASHBOARD TABS -->
+    <div class="mt-8">
+      <div class="flex gap-1 p-1 bg-stone-100 rounded-2xl w-fit mb-6 flex-wrap">
+        <button class="dash-tab active" onclick="switchDashTab('overview')">Overview</button>
+        <button class="dash-tab" onclick="switchDashTab('rent')">
+          Rent Tracker
+          <span class="dash-tab-badge" id="rentTabBadge" style="display:none"></span>
+        </button>
+        <button class="dash-tab" onclick="switchDashTab('vault')">Documents</button>
+        <button class="dash-tab" onclick="switchDashTab('calendar')">Viewings</button>
+      </div>
+
+      <!-- OVERVIEW TAB -->
+      <div class="dash-panel" id="dashTab-overview">
+        <div class="grid gap-6 xl:grid-cols-[1.5fr_.9fr]">
+          <div class="rounded-[26px] border border-stone-200 bg-white p-5">
+            <div class="flex items-center justify-between gap-4 flex-wrap">
+              <div>
+                <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Financial Overview</p>
+                <h3 class="mt-2 font-['Playfair_Display'] text-3xl text-slate-900">Monthly Rental Income</h3>
+              </div>
+              <div class="rounded-full bg-amber-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-700">Last 6 Months</div>
+            </div>
+            <div class="mt-6 h-[280px]"><canvas id="landlordIncomeChart"></canvas></div>
           </div>
-          <div class="rounded-full bg-amber-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-700">Last 6 Months</div>
-        </div>
-        <div class="mt-6 h-[320px]">
-          <canvas id="landlordIncomeChart"></canvas>
-        </div>
-      </div>
-      <div class="rounded-[26px] border border-stone-200 bg-stone-50 p-5">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Document Vault</p>
-        <h3 class="mt-2 font-['Playfair_Display'] text-3xl text-slate-900">Essential Downloads</h3>
-        <div class="mt-5 overflow-hidden rounded-2xl border border-stone-200 bg-white">
-          <table class="min-w-full text-left">
-            <thead class="bg-stone-50">
-              <tr>
-                <th class="px-4 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-500">Document</th>
-                <th class="px-4 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-500">Type</th>
-                <th class="px-4 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-500 text-right">Action</th>
-              </tr>
-            </thead>
-            <tbody id="documentVaultTable" class="divide-y divide-stone-200"></tbody>
-          </table>
+          <div class="rounded-[26px] border border-stone-200 bg-stone-50 p-5">
+            <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Document Vault</p>
+            <h3 class="mt-2 font-['Playfair_Display'] text-3xl text-slate-900">Essential Downloads</h3>
+            <div class="mt-5 overflow-hidden rounded-2xl border border-stone-200 bg-white">
+              <table class="min-w-full text-left">
+                <thead class="bg-stone-50">
+                  <tr>
+                    <th class="px-4 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-500">Document</th>
+                    <th class="px-4 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-500">Type</th>
+                    <th class="px-4 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-500 text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="documentVaultTable" class="divide-y divide-stone-200"></tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+
+      <!-- RENT TRACKER TAB -->
+      <div class="dash-panel" id="dashTab-rent" style="display:none">
+        <div class="rounded-[26px] border border-stone-200 bg-white p-6">
+          <div class="flex items-center justify-between flex-wrap gap-4 mb-4">
+            <div>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Payment Status</p>
+              <h3 class="mt-2 font-['Playfair_Display'] text-3xl text-slate-900">Rent Tracker</h3>
+            </div>
+            <div class="flex items-center gap-3 flex-wrap">
+              <div class="rent-pill all" id="rentPillAll">All Tenants</div>
+              <div class="rent-pill paid-pill" id="rentPillPaid">— Paid</div>
+              <div class="rent-pill late-pill" id="rentPillLate">— Late</div>
+              <div class="rent-pill overdue-pill" id="rentPillOverdue">— Overdue</div>
+            </div>
+          </div>
+          <div class="overflow-hidden rounded-2xl border border-stone-200">
+            <table class="rent-tracker-table w-full">
+              <thead>
+                <tr>
+                  <th>Tenant</th>
+                  <th>Property</th>
+                  <th>Rent Due</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th class="text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="rentTrackerBody"></tbody>
+            </table>
+          </div>
+          <p class="mt-4 text-xs text-stone-400">* Reminder emails are sent automatically to late/overdue tenants. Manual button sends an immediate chase.</p>
+        </div>
+      </div>
+
+      <!-- DOCUMENT VAULT TAB -->
+      <div class="dash-panel" id="dashTab-vault" style="display:none">
+        <div class="rounded-[26px] border border-stone-200 bg-white p-6">
+          <div class="flex items-center justify-between flex-wrap gap-4 mb-2">
+            <div>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Document Management</p>
+              <h3 class="mt-2 font-['Playfair_Display'] text-3xl text-slate-900">Document Vault</h3>
+            </div>
+            <label class="tool-btn" style="cursor:pointer;font-size:11px;padding:11px 20px" title="Upload a document">
+              + Upload Document
+              <input type="file" class="vault-file-input" id="vaultFileInput" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" multiple onchange="handleVaultUpload(event)">
+            </label>
+          </div>
+          <p class="text-sm text-stone-500 mb-4">Store tenancy agreements, gas safety certificates, EPCs, insurance documents and more. Files are securely stored and accessible any time.</p>
+          <div class="vault-upload-zone" id="vaultDropZone" onclick="document.getElementById('vaultFileInput').click()" ondragover="handleVaultDragOver(event)" ondragleave="handleVaultDragLeave(event)" ondrop="handleVaultDrop(event)">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#b8952a" stroke-width="1.5" style="margin:0 auto"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span>Drop files here or click to upload</span>
+            <p>PDF, Word, JPEG, PNG — up to 20MB per file<br>Gas Certs · EPCs · Tenancy Agreements · Insurance · Inventories</p>
+          </div>
+          <div class="mt-5 overflow-hidden rounded-2xl border border-stone-200 bg-white">
+            <div style="padding:10px 14px;background:#fafaf9;border-bottom:1px solid #e7e5e4;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#78716c;">Stored Documents</div>
+            <div id="vaultDocList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEWING CALENDAR TAB -->
+      <div class="dash-panel" id="dashTab-calendar" style="display:none">
+        <div class="rounded-[26px] border border-stone-200 bg-white p-6">
+          <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
+            <div>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">Booking Management</p>
+              <h3 class="mt-2 font-['Playfair_Display'] text-3xl text-slate-900">Viewing Calendar</h3>
+            </div>
+            <p class="text-sm text-stone-500 max-w-xs">Select a date to see available time slots. Booked viewings are highlighted.</p>
+          </div>
+          <div class="grid gap-6 md:grid-cols-[1fr_320px]">
+            <div>
+              <div class="cal-wrap">
+                <div class="cal-header">
+                  <button class="cal-nav-btn" onclick="calNavigate(-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+                  <h4 id="calMonthLabel">April 2026</h4>
+                  <button class="cal-nav-btn" onclick="calNavigate(1)"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+                </div>
+                <div class="cal-grid" id="calGrid"></div>
+              </div>
+              <div class="mt-5" id="calSlotsWrap" style="display:none">
+                <p class="text-[11px] font-semibold uppercase tracking-[.22em] text-stone-500 mb-3">Available Slots — <span id="calSelectedDateLabel"></span></p>
+                <div class="cal-slots" id="calSlots"></div>
+                <button class="cal-confirm-btn" id="calConfirmBtn" onclick="confirmViewingBooking()" disabled>Select a time slot to confirm</button>
+              </div>
+            </div>
+            <div class="rounded-2xl border border-stone-200 bg-stone-50 p-5">
+              <p class="text-[11px] font-semibold uppercase tracking-[.22em] text-stone-500 mb-3">Upcoming Viewings</p>
+              <div id="upcomingViewingsList" class="flex flex-col gap-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /tabs -->
   </div>
 </section>
 
@@ -1043,7 +1235,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
       </div>
       <div class="cblk">
         <div class="cblk-lbl">Email</div>
-        <h4><a href="/cdn-cgi/l/email-protection#325b5c545d72474050535c414257514640475f1c515d1c4759"><span class="__cf_email__" data-cfemail="c8a1a6aea788bdbaaaa9a6bbb8adabbcbabda5e6aba7e6bda3">[email&#160;protected]</span></a></h4>
+        <h4><a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a></h4>
       </div>
       <div class="cblk">
         <div class="cblk-lbl">Office Hours</div>
@@ -1300,6 +1492,9 @@ async function renderAuthState(){
       dashboard.classList.add('active');
       if(calcSection) calcSection.classList.add('active');
       await loadLandlordDashboard();
+      renderRentTracker();
+      renderCalendar();
+      renderVaultDocs();
     }else{
       dashboard.classList.remove('active');
       if(calcSection) calcSection.classList.remove('active');
@@ -1651,7 +1846,212 @@ function populatePropertySwitcher(properties,selectedPropertyId){
   const switcher=document.getElementById('dashboardPropertySwitcher');
   switcher.innerHTML=properties.map(property=>`<option value="${property.id}" ${property.id===selectedPropertyId?'selected':''}>${property.title}</option>`).join('');
 }
-function renderDocumentVault(items){
+// ── DASHBOARD TABS ────────────────────────────────────────────────
+function switchDashTab(tab){
+  document.querySelectorAll('.dash-tab').forEach((btn,i)=>{
+    const tabs=['overview','rent','vault','calendar'];
+    btn.classList.toggle('active',tabs[i]===tab);
+  });
+  document.querySelectorAll('.dash-panel').forEach(p=>p.style.display='none');
+  const panel=document.getElementById('dashTab-'+tab);
+  if(panel)panel.style.display='block';
+  if(tab==='rent')renderRentTracker();
+  if(tab==='vault')renderVaultDocs();
+  if(tab==='calendar')renderCalendar();
+}
+
+// ── RENT TRACKER ──────────────────────────────────────────────────
+const DEMO_TENANTS=[
+  {id:1,name:'James Robertson',property:'Flat 4, 22 Cavendish Rd SW12',rent:1850,dueDate:'01 Apr 2026',status:'paid'},
+  {id:2,name:'Priya Mehta',property:'12 Elspeth Road, Clapham SW11',rent:2200,dueDate:'01 Apr 2026',status:'late'},
+  {id:3,name:'David Kaur',property:'Studio 2, 8 Tooting High St SW17',rent:1400,dueDate:'28 Mar 2026',status:'overdue'},
+  {id:4,name:'Sophie Chen',property:'Flat 1, 22 Cavendish Rd SW12',rent:1750,dueDate:'01 Apr 2026',status:'paid'},
+];
+function renderRentTracker(){
+  const body=document.getElementById('rentTrackerBody');
+  if(!body)return;
+  const paid=DEMO_TENANTS.filter(t=>t.status==='paid').length;
+  const late=DEMO_TENANTS.filter(t=>t.status==='late').length;
+  const overdue=DEMO_TENANTS.filter(t=>t.status==='overdue').length;
+  document.getElementById('rentPillPaid').textContent=`${paid} Paid`;
+  document.getElementById('rentPillLate').textContent=`${late} Late`;
+  document.getElementById('rentPillOverdue').textContent=`${overdue} Overdue`;
+  document.getElementById('dashboardRentStatus').textContent=`${paid}/${DEMO_TENANTS.length}`;
+  const alertCount=late+overdue;
+  const badge=document.getElementById('rentTabBadge');
+  if(badge){badge.textContent=alertCount;badge.style.display=alertCount>0?'inline-flex':'none';}
+  const notif=document.getElementById('notifBadge');
+  if(notif){notif.textContent=alertCount;notif.classList.toggle('show',alertCount>0);}
+  body.innerHTML=DEMO_TENANTS.map(t=>{
+    const statusLabel={paid:'Paid',late:'Late',overdue:'Overdue'}[t.status];
+    const canRemind=t.status!=='paid';
+    return `<tr>
+      <td><strong style="font-weight:600">${t.name}</strong></td>
+      <td style="color:#78716c;font-size:12px">${t.property}</td>
+      <td style="color:#78716c;font-size:12px">${t.dueDate}</td>
+      <td><strong>£${t.rent.toLocaleString('en-GB')}</strong></td>
+      <td><span class="rent-status ${t.status}"><span class="rent-status-dot"></span>${statusLabel}</span></td>
+      <td style="text-align:right">
+        <button class="rent-remind-btn" ${!canRemind?'disabled':''} onclick="sendRentReminder(${t.id},'${t.name}')">
+          ${canRemind?'Send Reminder':'—'}
+        </button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+function sendRentReminder(id,name){
+  showToast(`Reminder sent to ${name}`);
+  const tenant=DEMO_TENANTS.find(t=>t.id===id);
+  if(tenant&&tenant.status!=='paid'){tenant.status='late';renderRentTracker();}
+}
+
+// ── DOCUMENT VAULT ────────────────────────────────────────────────
+let vaultDocs=[
+  {id:1,name:'Gas Safety Certificate 2025.pdf',type:'Gas Cert',date:'Jan 2025',icon:'file-text'},
+  {id:2,name:'EPC - 22 Cavendish Road.pdf',type:'EPC',date:'Mar 2024',icon:'zap'},
+  {id:3,name:'Tenancy Agreement - Robertson.pdf',type:'Tenancy',date:'Apr 2025',icon:'file'},
+  {id:4,name:'Building Insurance Policy.pdf',type:'Insurance',date:'Jun 2025',icon:'shield'},
+];
+function renderVaultDocs(){
+  const list=document.getElementById('vaultDocList');
+  if(!list)return;
+  if(vaultDocs.length===0){list.innerHTML='<p style="padding:20px;text-align:center;font-size:13px;color:#a8a29e">No documents uploaded yet. Click Upload Document to add your first file.</p>';return;}
+  list.innerHTML=vaultDocs.map(doc=>`
+    <div class="vault-doc-row" id="vdoc-${doc.id}">
+      <div class="vault-doc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <span class="vault-doc-name">${doc.name}</span>
+      <span class="vault-doc-type">${doc.type}</span>
+      <span class="vault-doc-type" style="color:#a8a29e">${doc.date}</span>
+      <button class="vault-doc-action" onclick="downloadVaultDoc(${doc.id})">Download</button>
+      <button class="vault-doc-action" style="color:#dc2626" onclick="deleteVaultDoc(${doc.id})">Remove</button>
+    </div>`).join('');
+}
+function handleVaultUpload(event){
+  const files=Array.from(event.target.files);
+  files.forEach(file=>{
+    const typeGuess=guessDocType(file.name);
+    vaultDocs.unshift({id:Date.now()+Math.random(),name:file.name,type:typeGuess,date:new Date().toLocaleDateString('en-GB',{month:'short',year:'numeric'}),icon:'file-text'});
+  });
+  renderVaultDocs();
+  showToast(`${files.length} document${files.length>1?'s':''} uploaded`);
+  event.target.value='';
+}
+function handleVaultDragOver(e){e.preventDefault();document.getElementById('vaultDropZone').classList.add('drag-over')}
+function handleVaultDragLeave(e){document.getElementById('vaultDropZone').classList.remove('drag-over')}
+function handleVaultDrop(e){
+  e.preventDefault();
+  document.getElementById('vaultDropZone').classList.remove('drag-over');
+  const files=Array.from(e.dataTransfer.files);
+  files.forEach(file=>{
+    vaultDocs.unshift({id:Date.now()+Math.random(),name:file.name,type:guessDocType(file.name),date:new Date().toLocaleDateString('en-GB',{month:'short',year:'numeric'}),icon:'file-text'});
+  });
+  renderVaultDocs();
+  showToast(`${files.length} document${files.length>1?'s':''} uploaded`);
+}
+function guessDocType(name){
+  const n=name.toLowerCase();
+  if(n.includes('gas'))return 'Gas Cert';
+  if(n.includes('epc'))return 'EPC';
+  if(n.includes('tenancy')||n.includes('agreement'))return 'Tenancy';
+  if(n.includes('insurance'))return 'Insurance';
+  if(n.includes('inventory'))return 'Inventory';
+  if(n.includes('electric'))return 'EICR';
+  return 'Document';
+}
+function downloadVaultDoc(id){showToast('Download started')}
+function deleteVaultDoc(id){vaultDocs=vaultDocs.filter(d=>d.id!==id);renderVaultDocs();showToast('Document removed')}
+
+// ── VIEWING CALENDAR ──────────────────────────────────────────────
+let calYear=new Date().getFullYear();
+let calMonth=new Date().getMonth();
+let calSelectedDate=null;
+let calSelectedSlot=null;
+const BOOKED_VIEWINGS=[
+  {date:'2026-04-03',slot:'10:00am',property:'Flat 4, 22 Cavendish Rd',name:'Ahmed Hassan'},
+  {date:'2026-04-07',slot:'2:00pm',property:'12 Elspeth Road',name:'Laura Patel'},
+  {date:'2026-04-10',slot:'11:00am',property:'Studio 2, 8 Tooting',name:'Michael Osei'},
+  {date:'2026-04-15',slot:'3:00pm',property:'Flat 1, 22 Cavendish Rd',name:'Emma Williams'},
+];
+const TIME_SLOTS=['9:00am','10:00am','11:00am','12:00pm','1:00pm','2:00pm','3:00pm','4:00pm','5:00pm'];
+function calNavigate(dir){calMonth+=dir;if(calMonth>11){calMonth=0;calYear++;}if(calMonth<0){calMonth=11;calYear--;}renderCalendar();}
+function renderCalendar(){
+  const monthNames=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const label=document.getElementById('calMonthLabel');
+  if(label)label.textContent=`${monthNames[calMonth]} ${calYear}`;
+  const grid=document.getElementById('calGrid');
+  if(!grid)return;
+  const dayLabels=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  let html=dayLabels.map(d=>`<div class="cal-day-label">${d}</div>`).join('');
+  const firstDay=new Date(calYear,calMonth,1).getDay();
+  const offset=(firstDay===0?6:firstDay-1);
+  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+  const today=new Date();
+  for(let i=0;i<offset;i++)html+=`<div class="cal-day cal-day-empty"></div>`;
+  for(let d=1;d<=daysInMonth;d++){
+    const dateStr=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday=today.getFullYear()===calYear&&today.getMonth()===calMonth&&today.getDate()===d;
+    const isPast=new Date(dateStr)<new Date(today.toDateString());
+    const isSelected=calSelectedDate===dateStr;
+    const isBooked=BOOKED_VIEWINGS.some(v=>v.date===dateStr);
+    let cls='cal-day';
+    if(isPast)cls+=' cal-day-past';
+    else if(isSelected)cls+=' cal-day-selected';
+    else if(isToday)cls+=' cal-day-today';
+    if(isBooked)cls+=' cal-day-booked';
+    html+=`<div class="${cls}" ${!isPast?`onclick="calSelectDate('${dateStr}')"`:''} >${d}</div>`;
+  }
+  grid.innerHTML=html;
+  renderUpcomingViewings();
+}
+function calSelectDate(dateStr){
+  calSelectedDate=dateStr;calSelectedSlot=null;renderCalendar();
+  const wrap=document.getElementById('calSlotsWrap');
+  const labelEl=document.getElementById('calSelectedDateLabel');
+  if(wrap)wrap.style.display='block';
+  if(labelEl){const d=new Date(dateStr);labelEl.textContent=d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});}
+  const slotsDiv=document.getElementById('calSlots');
+  if(!slotsDiv)return;
+  const bookedSlots=BOOKED_VIEWINGS.filter(v=>v.date===dateStr).map(v=>v.slot);
+  slotsDiv.innerHTML=TIME_SLOTS.map(s=>{
+    const booked=bookedSlots.includes(s);
+    return `<div class="cal-slot${booked?' booked-slot':''}" ${!booked?`onclick="calSelectSlot(this,'${s}')"`:''}>${s}${booked?' ✓':''}</div>`;
+  }).join('');
+  const confirmBtn=document.getElementById('calConfirmBtn');
+  if(confirmBtn){confirmBtn.disabled=true;confirmBtn.textContent='Select a time slot to confirm';}
+}
+function calSelectSlot(el,slot){
+  calSelectedSlot=slot;
+  document.querySelectorAll('.cal-slot').forEach(s=>s.classList.remove('selected-slot'));
+  el.classList.add('selected-slot');
+  const confirmBtn=document.getElementById('calConfirmBtn');
+  if(confirmBtn){confirmBtn.disabled=false;confirmBtn.textContent=`Confirm Viewing — ${slot}`;}
+}
+function confirmViewingBooking(){
+  if(!calSelectedDate||!calSelectedSlot)return;
+  BOOKED_VIEWINGS.push({date:calSelectedDate,slot:calSelectedSlot,property:'New Viewing',name:'Pending confirmation'});
+  calSelectedDate=null;calSelectedSlot=null;
+  document.getElementById('calSlotsWrap').style.display='none';
+  renderCalendar();
+  showToast(`Viewing booked — ${calSelectedSlot}`);
+}
+function renderUpcomingViewings(){
+  const list=document.getElementById('upcomingViewingsList');
+  if(!list)return;
+  const today=new Date();
+  const upcoming=BOOKED_VIEWINGS.filter(v=>new Date(v.date)>=new Date(today.toDateString())).sort((a,b)=>new Date(a.date)-new Date(b.date)).slice(0,5);
+  if(upcoming.length===0){list.innerHTML='<p style="font-size:13px;color:#a8a29e;text-align:center;padding:20px 0">No upcoming viewings scheduled.</p>';return;}
+  list.innerHTML=upcoming.map(v=>{
+    const d=new Date(v.date);
+    const label=d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+    return `<div style="padding:12px;background:#fff;border-radius:12px;border:1px solid #e7e5e4">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">${label} · ${v.slot}</div>
+      <div style="font-size:13px;font-weight:600;color:var(--navy)">${v.name}</div>
+      <div style="font-size:11.5px;color:#78716c;margin-top:2px">${v.property}</div>
+    </div>`;
+  }).join('');
+}
+
+(items){
   const table=document.getElementById('documentVaultTable');
   table.innerHTML=items.map(item=>`
     <tr>
