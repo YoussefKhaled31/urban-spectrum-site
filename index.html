@@ -295,26 +295,26 @@ h2.s-title{font-family:'Playfair Display',serif;font-size:clamp(28px,2.8vw,46px)
 .cb-o:hover{border-color:#fff}
 
 /* CONTACT */
-.contact-section{background:var(--cream)}
-.contact-g{display:grid;grid-template-columns:1fr 1.35fr;gap:72px;margin-top:52px;align-items:start}
+.contact-section{background:var(--cream);padding-top:60px;padding-bottom:60px}
+.contact-g{display:grid;grid-template-columns:1fr 1.35fr;gap:48px;margin-top:36px;align-items:start}
 .c-blocks{display:flex;flex-direction:column;gap:32px}
-.cblk{padding-bottom:26px;border-bottom:1px solid var(--border)}
+.cblk{padding-bottom:18px;border-bottom:1px solid var(--border)}
 .cblk:last-child{border:none;padding-bottom:0}
-.cblk-lbl{font-size:9px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.cblk h4{font-family:'Playfair Display',serif;font-size:15px;color:var(--navy);margin-bottom:5px}
-.cblk p,.cblk a{font-size:13.5px;color:var(--mid);line-height:1.7}
+.cblk-lbl{font-size:9px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.cblk h4{font-family:'Playfair Display',serif;font-size:14px;color:var(--navy);margin-bottom:4px}
+.cblk p,.cblk a{font-size:13px;color:var(--mid);line-height:1.6}
 .cblk a:hover{color:var(--gold)}
-.map-wrap{width:100%;height:175px;overflow:hidden;border:1px solid var(--border);margin-top:11px}
+.map-wrap{width:100%;height:145px;overflow:hidden;border:1px solid var(--border);margin-top:10px}
 .map-wrap iframe{width:100%;height:100%;border:0}
 .c-form{display:flex;flex-direction:column;gap:0}
-.c-form-title{font-family:'Playfair Display',serif;font-size:21px;color:var(--navy);margin-bottom:26px;font-weight:500}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.c-form-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--navy);margin-bottom:18px;font-weight:500}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:11px}
 .fg label{font-size:9.5px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--navy)}
-.fg input,.fg select,.fg textarea{border:1.5px solid var(--border);background:#fff;padding:12px 15px;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--navy);outline:none;transition:border-color .2s;-webkit-appearance:none}
+.fg input,.fg select,.fg textarea{border:1.5px solid var(--border);background:#fff;padding:10px 13px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--navy);outline:none;transition:border-color .2s;-webkit-appearance:none}
 .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold)}
-.fg textarea{resize:vertical;min-height:105px}
-.f-submit{background:var(--navy);color:#fff;border:none;padding:14px 38px;font-family:'DM Sans',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;cursor:pointer;align-self:flex-start;margin-top:6px;transition:background .2s}
+.fg textarea{resize:vertical;min-height:82px}
+.f-submit{background:var(--navy);color:#fff;border:none;padding:12px 32px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;cursor:pointer;align-self:flex-start;margin-top:4px;transition:background .2s}
 .f-submit:hover{background:var(--gold)}
 
 /* LANDLORD CALCULATOR */
@@ -509,14 +509,13 @@ footer{background:var(--navy);padding:60px 5vw 0}
 </style>
 </head>
 <body>
-<div class="page-fade" id="pageFade"></div>
 
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-side">
     <a href="tel:+442087729552" class="hot">+44 (0)20 8772 9552</a>
     <div class="tdiv"></div>
-    <a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a>
+    <a href="/cdn-cgi/l/email-protection#e1888f878ea1949383808f929184829593948ccf828ecf948a"><span class="__cf_email__" data-cfemail="9df4f3fbf2dde8effffcf3eeedf8fee9efe8f0b3fef2b3e8f6">[email&#160;protected]</span></a>
     <div class="tdiv"></div>
     <a>114 Balham High Rd, London SW12 9AA</a>
   </div>
@@ -538,8 +537,8 @@ footer{background:var(--navy);padding:60px 5vw 0}
     <li><a href="#about">About</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="#contact">Contact</a></li>
     <li><a href="listings.html">Properties</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-actions">
     <div class="nav-btns">
@@ -562,8 +561,8 @@ footer{background:var(--navy);padding:60px 5vw 0}
   <a href="#about" onclick="toggleMenu()">About</a>
   <a href="#process" onclick="toggleMenu()">Process</a>
   <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
-  <a href="#contact" onclick="toggleMenu()">Contact</a>
   <a href="listings.html" onclick="toggleMenu()">Properties</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
 </div>
 
 <div class="auth-modal" id="authModal" aria-hidden="true">
@@ -797,7 +796,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
       <a href="#services" class="hcta-s">Our Services</a>
     </div>
     <div class="hero-stats">
-      <div><div class="hs-num">15+</div><div class="hs-lbl">Years Experience</div></div>
+      <div><div class="hs-num">25+</div><div class="hs-lbl">Years Experience</div></div>
       <div><div class="hs-num">500+</div><div class="hs-lbl">Properties Managed</div></div>
       <div><div class="hs-num">98%</div><div class="hs-lbl">Client Retention</div></div>
     </div>
@@ -1239,7 +1238,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
     </div>
     <div class="f-col">
       <h4>Contact</h4>
-      <address>114 Balham High Road<br>London SW12 9AA<br>United Kingdom<br><br><a href="tel:+442087729552">+44 (0)20 8772 9552</a><br><a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a></address>
+      <address>114 Balham High Road<br>London SW12 9AA<br>United Kingdom<br><br><a href="tel:+442087729552">+44 (0)20 8772 9552</a><br><a href="/cdn-cgi/l/email-protection#177e797178576265757679646772746365627a39747839627c"><span class="__cf_email__" data-cfemail="2841464e47685d5a4a49465b584d4b5c5a5d45064b47065d43">[email&#160;protected]</span></a></address>
     </div>
   </div>
   <div class="f-bottom">
@@ -1248,7 +1247,29 @@ footer{background:var(--navy);padding:60px 5vw 0}
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<!-- WHATSAPP BUTTON -->
+<a class="wa-btn" href="https://wa.me/442087729552" target="_blank" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.12 1.529 5.849L.057 23.547a.5.5 0 0 0 .612.612l5.698-1.472A11.955 11.955 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.877 9.877 0 0 1-5.031-1.376l-.361-.214-3.732.965.991-3.625-.235-.372A9.844 9.844 0 0 1 2.118 12C2.118 6.533 6.533 2.118 12 2.118S21.882 6.533 21.882 12 17.467 21.882 12 21.882z"/></svg>
+  <span class="wa-tooltip">Chat with us</span>
+</a>
+
+<!-- BACK TO TOP -->
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <p class="cookie-text" style="color:rgba(255,255,255,.75);font-size:13px;line-height:1.7;margin:0;flex:1">We use <strong style="color:#fff">cookies</strong> to enhance your experience. By continuing to browse, you agree to our use of cookies in accordance with our <a href="#" style="color:var(--gold)">Privacy Policy</a>.</p>
+  <div style="display:flex;gap:10px;flex-shrink:0">
+    <button onclick="acceptCookies()" style="background:var(--gold);color:#fff;border:none;padding:10px 22px;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer">Accept All</button>
+    <button onclick="declineCookies()" style="background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);padding:10px 22px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer">Essential Only</button>
+  </div>
+</div>
+
+<div class="page-fade" id="pageFade"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const API_URL=(window.API_URL||'https://urban-spectrum-backend-production.up.railway.app').replace(/\/$/,'');
 const GOOGLE_AUTH_URL=(window.GOOGLE_AUTH_URL||'').trim();
 const AUTH_TOKEN_KEY='urbanSpectrumAuthToken';
@@ -1842,25 +1863,5 @@ consumeOAuthCallback();
 bootstrapSession();
 
 const bttBtn = document.getElementById('btt');
-window.addEventListener('scroll', () => { bttBtn.classList.toggle('show', window.scrollY > 400); });
-
-// Page transition
-window.addEventListener('DOMContentLoaded', () => {
-  const pageFade = document.getElementById('pageFade');
-  if (!pageFade) return;
-  document.querySelectorAll('a[href]').forEach(link => {
-    const href = link.getAttribute('href');
-    if(!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('http') || href.startsWith('https') || href.includes('#')) return;
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      pageFade.classList.add('out');
-      setTimeout(() => window.location.href = href, 350);
-    });
-  });
-  window.addEventListener('pageshow', () => pageFade.classList.remove('out'));
-});
-
-</script>
-
-<!-- COOKIE BANNER -->
-<di
+if(bttBtn) window.addEventListener('scroll', () => { bttBtn.classList.toggle('show', window.scrollY > 400); });
+function acceptCookies(){localStorage.setItem('cookieConsent','accepte

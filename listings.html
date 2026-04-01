@@ -40,7 +40,7 @@ nav{position:fixed;top:42px;left:0;right:0;z-index:199;background:#fff;border-bo
 .nav-brand{line-height:1.2;flex-shrink:0;min-width:170px}
 .nav-brand-name{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--navy)}
 .nav-brand-sub{font-size:9.5px;font-weight:600;letter-spacing:0.22em;color:var(--gold);text-transform:uppercase}
-.nav-menu{display:flex;list-style:none;gap:22px}
+.nav-menu{display:flex;list-style:none;gap:30px}
 .nav-menu a{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:#555;transition:color .2s}
 .nav-menu a:hover,.nav-menu a.active{color:var(--gold)}
 .nav-actions{display:flex;align-items:center;gap:12px}
@@ -48,6 +48,11 @@ nav{position:fixed;top:42px;left:0;right:0;z-index:199;background:#fff;border-bo
 .nbtn-outline{border:1.5px solid var(--navy);color:var(--navy);padding:9px 20px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;transition:all .2s}
 .nbtn-outline:hover{background:var(--navy);color:#fff}
 .nbtn-fill{background:var(--gold);color:#fff;padding:10px 22px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:1.5px solid var(--gold);transition:all .2s}
+.account-trigger{width:46px;height:46px;border:1.5px solid var(--border);border-radius:50%;background:linear-gradient(180deg,#fff 0%,var(--cream) 100%);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;box-shadow:0 8px 18px rgba(14,30,46,.06);position:relative}
+.account-trigger svg{width:18px;height:18px;stroke:var(--navy);fill:none;stroke-width:1.8}
+.account-trigger:hover{border-color:var(--gold);transform:translateY(-1px)}
+.account-name{display:none}
+.account-status-dot{display:none;width:8px;height:8px;background:#25D366;border-radius:50%;position:absolute;top:2px;right:2px;border:2px solid #fff}
 .nbtn-fill:hover{background:#9a7d20;border-color:#9a7d20}
 .hbg{display:none;flex-direction:column;gap:5px;cursor:pointer}
 .hbg span{width:22px;height:2px;background:var(--navy);display:block}
@@ -247,7 +252,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
   <div class="topbar-side">
     <a href="tel:+442087729552" class="hot">+44 (0)20 8772 9552</a>
     <div class="tdiv"></div>
-    <a href="/cdn-cgi/l/email-protection#dbb2b5bdb49baea9b9bab5a8abbeb8afa9aeb6f5b8b4f5aeb0"><span class="__cf_email__" data-cfemail="c4adaaa2ab84b1b6a6a5aab7b4a1a7b0b6b1a9eaa7abeab1af">[email&#160;protected]</span></a>
+    <a href="/cdn-cgi/l/email-protection#5930373f36192c2b3b38372a293c3a2d2b2c34773a36772c32"><span class="__cf_email__" data-cfemail="5a33343c351a2f28383b34292a3f392e282f37743935742f31">[email&#160;protected]</span></a>
     <div class="tdiv"></div>
     <a>114 Balham High Rd, London SW12 9AA</a>
   </div>
@@ -277,6 +282,11 @@ footer{background:var(--navy);padding:60px 5vw 0}
       <a href="tel:+442087729552" class="nbtn-outline">Call Us</a>
       <a href="index.html#contact" class="nbtn-fill">Free Valuation</a>
     </div>
+    <button class="account-trigger" id="accountTrigger" type="button" aria-label="Open account options" onclick="openAuthModal()">
+      <svg viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="8" r="4"/></svg>
+      <span class="account-name" id="accountName">Account</span>
+      <span class="account-status-dot"></span>
+    </button>
     <div class="hbg" onclick="document.getElementById('mobNav').classList.toggle('open')"><span></span><span></span><span></span></div>
   </div>
 </nav>
@@ -296,11 +306,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
   <div class="breadcrumb">
     <a href="index.html">Home</a>
     <span>›</span>
-    <span class="current">Available Listings</span>
-  </div>
-  <div class="page-hero-eye">
-    <div class="page-hero-eye-line"></div>
-    <span>Available Now</span>
+    <span class="current">Properties</span>
   </div>
   <h1>Available <em>Listings</em></h1>
   <p>Residential and commercial lettings across Balham, Clapham, Tooting and the wider South London area. All properties are fully managed by our experienced team.</p>
@@ -487,7 +493,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const API_URL = 'https://urban-spectrum-backend-production.up.railway.app';
 
 const PROPERTIES = [
@@ -805,12 +811,4 @@ if(!localStorage.getItem('cookieConsent')){setTimeout(()=>document.getElementByI
 
 renderAll(PROPERTIES);
 </script>
-<div class="page-fade" id="pageFade"></div>
-
-<!-- BACK TO TOP -->
-<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
-  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-</button>
-
-</body>
-</html>
+<div class="page-
