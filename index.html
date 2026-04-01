@@ -593,7 +593,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
   <div class="topbar-side">
     <a href="tel:+442087729552" class="hot">+44 (0)20 8772 9552</a>
     <div class="tdiv"></div>
-    <a href="/cdn-cgi/l/email-protection#650c0b030a25101707040b16150006111710084b060a4b100e"><span class="__cf_email__" data-cfemail="5f363139301f2a2d3d3e312c2f3a3c2b2d2a32713c30712a34">[email&#160;protected]</span></a>
+    <a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a>
     <div class="tdiv"></div>
     <a>114 Balham High Rd, London SW12 9AA</a>
   </div>
@@ -1235,7 +1235,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
       </div>
       <div class="cblk">
         <div class="cblk-lbl">Email</div>
-        <h4><a href="/cdn-cgi/l/email-protection#345d5a525b74414656555a47445157404641591a575b1a415f"><span class="__cf_email__" data-cfemail="c4adaaa2ab84b1b6a6a5aab7b4a1a7b0b6b1a9eaa7abeab1af">[email&#160;protected]</span></a></h4>
+        <h4><a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a></h4>
       </div>
       <div class="cblk">
         <div class="cblk-lbl">Office Hours</div>
@@ -1367,7 +1367,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
     </div>
     <div class="f-col">
       <h4>Contact</h4>
-      <address>114 Balham High Road<br>London SW12 9AA<br>United Kingdom<br><br><a href="tel:+442087729552">+44 (0)20 8772 9552</a><br><a href="/cdn-cgi/l/email-protection#533a3d353c13262131323d202336302721263e7d303c7d2638"><span class="__cf_email__" data-cfemail="dfb6b1b9b09faaadbdbeb1acafbabcabadaab2f1bcb0f1aab4">[email&#160;protected]</span></a></address>
+      <address>114 Balham High Road<br>London SW12 9AA<br>United Kingdom<br><br><a href="tel:+442087729552">+44 (0)20 8772 9552</a><br><a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a></address>
     </div>
   </div>
   <div class="f-bottom">
@@ -1398,7 +1398,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
 
 <div class="page-fade" id="pageFade"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const API_URL=(window.API_URL||'https://urban-spectrum-backend-production.up.railway.app').replace(/\/$/,'');
 const GOOGLE_AUTH_URL=(window.GOOGLE_AUTH_URL||'').trim();
 const AUTH_TOKEN_KEY='urbanSpectrumAuthToken';
@@ -2051,7 +2051,7 @@ function renderUpcomingViewings(){
   }).join('');
 }
 
-(items){
+function renderDocumentVault(items){
   const table=document.getElementById('documentVaultTable');
   table.innerHTML=items.map(item=>`
     <tr>
