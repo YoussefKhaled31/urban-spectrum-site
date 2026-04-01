@@ -699,7 +699,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
   <div class="topbar-side">
     <a href="tel:+442087729552" class="hot">+44 (0)20 8772 9552</a>
     <div class="tdiv"></div>
-    <a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a>
+    <a href="#" class="js-email-link"></a>
     <div class="tdiv"></div>
     <a>114 Balham High Rd, London SW12 9AA</a>
   </div>
@@ -1475,7 +1475,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
       </div>
       <div class="cblk">
         <div class="cblk-lbl">Email</div>
-        <h4><a href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a></h4>
+        <h4><a href="#" class="js-email-link"></a></h4>
       </div>
       <div class="cblk">
         <div class="cblk-lbl">Office Hours</div>
@@ -1607,7 +1607,7 @@ footer{background:var(--navy);padding:60px 5vw 0}
     </div>
     <div class="f-col">
       <h4>Contact</h4>
-      <address>114 Balham High Road<br>London SW12 9AA<br>United Kingdom<br><br><a href="tel:+442087729552">+44 (0)20 8772 9552</a><br><span class="copy-email-wrap"><a id="footerEmailLink" href="mailto:info@urbanspectrum.co.uk">info@urbanspectrum.co.uk</a><button type="button" class="copy-email-btn" aria-label="Copy Urban Spectrum email address" onclick="copyFooterEmail()"><span class="copy-email-tip">Copied!</span>Copy</button></span></address>
+      <address>114 Balham High Road<br>London SW12 9AA<br>United Kingdom<br><br><a href="tel:+442087729552">+44 (0)20 8772 9552</a><br><span class="copy-email-wrap"><a id="footerEmailLink" href="#" class="js-email-link"></a><button type="button" class="copy-email-btn" aria-label="Copy Urban Spectrum email address" onclick="copyFooterEmail()"><span class="copy-email-tip">Copied!</span>Copy</button></span></address>
     </div>
   </div>
   <div class="f-bottom">
@@ -1799,19 +1799,21 @@ function setPageMeta(pageId,property){
   if(meta)meta.setAttribute('content',description);
 }
 function applyBusinessConfig(){
+  // Email is written by JS at runtime so Cloudflare never sees it in the HTML
+  const em=BUSINESS_CONFIG.contact.email;
+  document.querySelectorAll('.js-email-link').forEach(link=>{
+    link.href=`mailto:${em}`;
+    link.textContent=em;
+  });
   document.querySelectorAll('a[href^="tel:"]').forEach(link=>{
     link.href=`tel:${BUSINESS_CONFIG.contact.phoneHref}`;
     link.textContent=BUSINESS_CONFIG.contact.phoneDisplay;
   });
-  document.querySelectorAll('a[href^="mailto:"]').forEach(link=>{
-    link.href=`mailto:${BUSINESS_CONFIG.contact.email}`;
-    link.textContent=BUSINESS_CONFIG.contact.email;
-  });
   document.querySelectorAll('.wa-btn').forEach(link=>link.href=BUSINESS_CONFIG.contact.whatsappHref);
   const footerEmail=document.getElementById('footerEmailLink');
   if(footerEmail){
-    footerEmail.href=`mailto:${BUSINESS_CONFIG.contact.email}`;
-    footerEmail.textContent=BUSINESS_CONFIG.contact.email;
+    footerEmail.href=`mailto:${em}`;
+    footerEmail.textContent=em;
   }
   const officeAddress=document.querySelector('.topbar-side a:not([href])');
   if(officeAddress)officeAddress.textContent=BUSINESS_CONFIG.addressLine;
@@ -2064,9 +2066,8 @@ function initializeNavState(){
   nav.classList.toggle('scrolled',window.scrollY>50);
 }
 async function copyFooterEmail(){
-  const emailLink=document.getElementById('footerEmailLink');
   const copyBtn=document.querySelector('.copy-email-btn');
-  const value=emailLink?.textContent?.trim();
+  const value=BUSINESS_CONFIG.contact.email;
   if(!value||!copyBtn)return;
   try{
     await navigator.clipboard.writeText(value);
